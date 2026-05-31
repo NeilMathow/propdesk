@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account — PropDesk</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { min-height:100vh;background:#0d0a08;display:flex;align-items:center;justify-content:center;padding:40px 24px;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; }
+    .orb { position:fixed;border-radius:50%;filter:blur(100px);opacity:0.28;pointer-events:none; }
+    .orb-1 { width:420px;height:420px;background:radial-gradient(ellipse,rgba(239,68,68,0.6) 0%,rgba(249,115,22,0.3) 50%,transparent 70%);top:-120px;left:-100px;animation:float1 10s ease-in-out infinite; }
+    .orb-2 { width:360px;height:360px;background:radial-gradient(ellipse,rgba(249,115,22,0.5) 0%,rgba(239,68,68,0.2) 50%,transparent 70%);bottom:-80px;right:-80px;animation:float2 12s ease-in-out infinite; }
+    .orb-3 { width:240px;height:240px;background:radial-gradient(ellipse,rgba(249,115,22,0.4) 0%,transparent 70%);bottom:30%;left:4%;animation:float3 14s ease-in-out infinite; }
+    .orb-4 { width:300px;height:300px;background:radial-gradient(ellipse,rgba(239,68,68,0.35) 0%,rgba(249,115,22,0.15) 50%,transparent 70%);top:35%;right:3%;animation:float1 16s ease-in-out infinite reverse; }
+    @keyframes float1 { 0%,100%{transform:translate(0,0) scale(1)} 40%{transform:translate(70px,90px) scale(1.1)} 70%{transform:translate(-30px,50px) scale(0.94)} }
+    @keyframes float2 { 0%,100%{transform:translate(0,0) scale(1)} 35%{transform:translate(-80px,-70px) scale(1.12)} 70%{transform:translate(40px,-30px) scale(0.92)} }
+    @keyframes float3 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(90px,-70px) scale(1.15)} }
+    .card { position:relative;z-index:1;background:rgba(16,13,11,0.82);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border:1px solid rgba(255,255,255,0.08);border-radius:22px;padding:48px 44px 40px;width:100%;max-width:500px;animation:fadeUp 0.5s ease both; }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+    .logo { display:flex;align-items:center;justify-content:center;margin-bottom:24px; }
+    .card-head { text-align:center;margin-bottom:32px; }
+    .card-head h1 { font-size:26px;font-weight:800;color:#fff;letter-spacing:-0.4px;margin-bottom:7px; }
+    .card-head p { font-size:14px;color:rgba(255,255,255,0.42); }
+    .field-row { display:grid;grid-template-columns:1fr 1fr;gap:12px; }
+    .field { display:flex;flex-direction:column;gap:6px;margin-bottom:14px; }
+    .field label { font-size:11.5px;font-weight:700;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.07em; }
+    .field input { background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:10px;padding:13px 16px;font-size:14px;color:#fff;font-family:inherit;outline:none;width:100%;transition:border-color 0.2s,box-shadow 0.2s; }
+    .field input::placeholder { color:rgba(255,255,255,0.2); }
+    .field input:focus { border-color:#f97316;box-shadow:0 0 0 3px rgba(249,115,22,0.12); }
+    .pw-wrap { position:relative; }
+    .pw-wrap input { padding-right:46px; }
+    .pw-toggle { position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;padding:0;color:rgba(255,255,255,0.3);display:flex;align-items:center;transition:color 0.2s; }
+    .pw-toggle:hover { color:#f97316; }
+    .field-error { font-size:12px;color:#ef4444;margin-top:2px;display:none; }
+    .field-error.visible { display:block; }
+    input.invalid, input.invalid:focus { border-color:#ef4444!important;box-shadow:0 0 0 3px rgba(239,68,68,0.15)!important; }
+    .btn-main { width:100%;padding:14px;background:linear-gradient(135deg,#ef4444,#f97316);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;transition:opacity 0.2s,box-shadow 0.2s;margin-top:6px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;gap:8px; }
+    .btn-main:hover { opacity:0.88;box-shadow:0 0 28px rgba(249,115,22,0.38); }
+    .btn-main:disabled { opacity:0.6;cursor:not-allowed; }
+    .btn-google { width:100%;padding:13px 16px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:10px;color:#fff;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:background 0.2s,border-color 0.2s;margin-bottom:20px; }
+    .btn-google:hover { background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.22); }
+    .or-divider { display:flex;align-items:center;gap:12px;margin-bottom:20px; }
+    .or-divider-line { flex:1;height:1px;background:rgba(255,255,255,0.07); }
+    .or-divider span { font-size:12px;color:rgba(255,255,255,0.28); }
+    .alert { display:none;margin-bottom:16px;padding:12px 16px;border-radius:10px;font-size:13px;text-align:center; }
+    .alert-error { background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);color:#ef4444; }
+    .alert-success { background:rgba(0,217,126,0.1);border:1px solid rgba(0,217,126,0.3);color:#00d97e; }
+    .alert.visible { display:block; }
+    .card-foot { text-align:center;font-size:13px;color:rgba(255,255,255,0.35);margin-bottom:12px; }
+    .card-foot a { color:#f97316;text-decoration:none;font-weight:700; }
+    .card-foot a:hover { text-decoration:underline; }
+    .back-link { display:flex;align-items:center;justify-content:center;gap:6px;margin-top:22px;font-size:12.5px;color:rgba(255,255,255,0.25);text-decoration:none;transition:color 0.2s; }
+    .back-link:hover { color:#f97316; }
+    .spinner { width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin 0.7s linear infinite; }
+    @keyframes spin { to{transform:rotate(360deg)} }
+    .terms { font-size:11.5px;color:rgba(255,255,255,0.28);text-align:center;margin-top:-10px;margin-bottom:16px;line-height:1.6; }
+    .terms a { color:#f97316;text-decoration:none; }
+    .terms a:hover { text-decoration:underline; }
+  </style>
+</head>
+<body>
+
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="orb orb-4"></div>
+
+  <div class="card">
+    <div class="logo">
+      <span style="font-family:'Bebas Neue',sans-serif;font-size:38px;color:#fff;letter-spacing:1.5px;">PROP</span>
+      <span style="font-family:'Bebas Neue',sans-serif;font-size:38px;background:linear-gradient(135deg,#ef4444,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:1.5px;">DESK</span>
+    </div>
+
+    <div class="card-head">
+      <h1>Create your <span style="background:linear-gradient(135deg,#ef4444,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Account</span></h1>
+      <p>Start tracking your prop firms for free</p>
+    </div>
+
+    <div id="alert" class="alert"></div>
+
+    <button class="btn-google" type="button" onclick="signUpWithGoogle()">
+      <svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.615z" fill="#4285F4"/>
+        <path d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.258c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332C2.438 15.983 5.482 18 9 18z" fill="#34A853"/>
+        <path d="M3.964 10.707c-.18-.54-.282-1.117-.282-1.707s.102-1.167.282-1.707V4.961H.957C.347 6.175 0 7.55 0 9s.348 2.825.957 4.039l3.007-2.332z" fill="#FBBC05"/>
+        <path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0 5.482 0 2.438 2.017.957 4.961L3.964 7.293C4.672 5.166 6.656 3.58 9 3.58z" fill="#EA4335"/>
+      </svg>
+      Sign up with Google
+    </button>
+
+    <div class="or-divider">
+      <div class="or-divider-line"></div>
+      <span>or</span>
+      <div class="or-divider-line"></div>
+    </div>
+
+    <form id="signup-form" onsubmit="handleSignup(event)">
+      <div class="field-row">
+        <div class="field">
+          <label>First Name</label>
+          <input type="text" id="su-fname" placeholder="First Name" />
+          <span class="field-error" id="fname-err"></span>
+        </div>
+        <div class="field">
+          <label>Last Name</label>
+          <input type="text" id="su-lname" placeholder="Last Name" />
+          <span class="field-error" id="lname-err"></span>
+        </div>
+      </div>
+      <div class="field">
+        <label>Email Address</label>
+        <input type="email" id="su-email" placeholder="Email" />
+        <span class="field-error" id="su-email-err"></span>
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <div class="pw-wrap">
+          <input type="password" id="su-pw" placeholder="Min. 6 characters" />
+          <button type="button" class="pw-toggle" id="su-pw-btn"></button>
+        </div>
+        <span class="field-error" id="su-pw-err"></span>
+      </div>
+      <button type="submit" class="btn-main" id="submit-btn">Create Account</button>
+    </form>
+
+    <p class="terms">By signing up you agree to our <a href="tos.html">Terms of Service</a> and <a href="privacy.html">Privacy Policy</a>.</p>
+
+    <div class="card-foot">
+      Already have an account? <a href="login.html">Sign in</a>
+    </div>
+    <a href="index.html" class="back-link">← Back to home</a>
+  </div>
+
+  <script>
+    const { createClient } = supabase;
+    const _supabase = createClient(
+      'https://klwdnnotnehjgafkatwm.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtsd2Rubm90bmVoamdhZmthdHdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAxNzIzMjUsImV4cCI6MjA5NTc0ODMyNX0.JWzre0ERniU1O75evSWITUd9Oorax5Kj0Qwvlo0TjkI'
+    );
+
+    const eyeIcon = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`;
+    const eyeOffIcon = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>`;
+    const pwBtn = document.getElementById('su-pw-btn');
+    pwBtn.innerHTML = eyeIcon;
+    pwBtn.addEventListener('click', () => {
+      const i = document.getElementById('su-pw');
+      i.type = i.type === 'password' ? 'text' : 'password';
+      pwBtn.innerHTML = i.type === 'password' ? eyeIcon : eyeOffIcon;
+    });
+
+    function showAlert(msg, type = 'error') {
+      const el = document.getElementById('alert');
+      el.textContent = msg;
+      el.className = `alert alert-${type} visible`;
+    }
+    function hideAlert() { document.getElementById('alert').className = 'alert'; }
+
+    function setError(inputId, errId, msg) {
+      document.getElementById(inputId).classList.add('invalid');
+      const e = document.getElementById(errId);
+      e.textContent = msg; e.classList.add('visible');
+    }
+    function clearError(inputId, errId) {
+      document.getElementById(inputId).classList.remove('invalid');
+      document.getElementById(errId).classList.remove('visible');
+    }
+
+    [['su-fname','fname-err'],['su-lname','lname-err'],['su-email','su-email-err'],['su-pw','su-pw-err']].forEach(([id,err]) => {
+      document.getElementById(id).addEventListener('input', () => { clearError(id, err); hideAlert(); });
+    });
+
+    async function handleSignup(e) {
+      e.preventDefault();
+      hideAlert();
+      const fname = document.getElementById('su-fname').value.trim();
+      const lname = document.getElementById('su-lname').value.trim();
+      const email = document.getElementById('su-email').value.trim();
+      const password = document.getElementById('su-pw').value;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      let valid = true;
+
+      if (!fname) { setError('su-fname','fname-err','First name is required'); valid = false; }
+      else clearError('su-fname','fname-err');
+      if (!lname) { setError('su-lname','lname-err','Last name is required'); valid = false; }
+      else clearError('su-lname','lname-err');
+      if (!email) { setError('su-email','su-email-err','Email is required'); valid = false; }
+      else if (!emailRegex.test(email)) { setError('su-email','su-email-err','Enter a valid email'); valid = false; }
+      else clearError('su-email','su-email-err');
+      if (!password) { setError('su-pw','su-pw-err','Password is required'); valid = false; }
+      else if (password.length < 6) { setError('su-pw','su-pw-err','Password must be at least 6 characters'); valid = false; }
+      else clearError('su-pw','su-pw-err');
+
+      if (!valid) return;
+
+      const btn = document.getElementById('submit-btn');
+      btn.disabled = true;
+      btn.innerHTML = '<div class="spinner"></div> Creating account…';
+
+      const { error } = await _supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: { first_name: fname, last_name: lname, full_name: `${fname} ${lname}` }
+        }
+      });
+
+      if (error) {
+        showAlert(error.message);
+        btn.disabled = false;
+        btn.innerHTML = 'Create Account';
+      } else {
+        showAlert('Account created! Check your email to confirm your account.', 'success');
+        btn.innerHTML = '✓ Account Created';
+      }
+    }
+
+    async function signUpWithGoogle() {
+      await _supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: { redirectTo: window.location.origin + '/index.html' }
+      });
+    }
+
+    // Redirect if already logged in
+    _supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session) window.location.href = 'index.html';
+    });
+  </script>
+</body>
+</html>
