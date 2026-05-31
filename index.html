@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PropTracker — Prop Firm Dashboard. Track Rules, Drawdowns & Payouts.</title>
+  <meta name="description" content="Auto-track Apex, Topstep, Take Profit Trader, MyFundedFutures & more — rules, daily loss limits, drawdowns & payouts in one dashboard. Start your free trial." />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+    .payout-graphic-card {
+      transition: none;
+      cursor: default;
+    }
+    .graphic-group {
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: default;
+    }
+    .graphic-group:hover {
+      transform: scale(1.01) translateY(-4px);
+    }
+    .graphic-group:hover .payout-graphic-card {
+      border-color: rgba(249,115,22,0.35) !important;
+      box-shadow: 0 0 20px rgba(249,115,22,0.08) !important;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .journal-checklist .feat-check { display:flex; align-items:center; gap:10px; padding:6px 0; font-size:14px; color:rgba(255,255,255,0.75); border:none; background:none; border-radius:0; margin-bottom:4px; }
+    .journal-checklist .check-icon { width:7px; height:7px; border-radius:50%; background:var(--orange); flex-shrink:0; font-size:0; }
+  </style>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo" style="display:flex; align-items:center; margin-right:32px;">
+      <span style="font-family:'Bebas Neue',sans-serif; font-size:32px; color:#fff; letter-spacing:1px;">PROP</span>
+      <span style="font-family:'Bebas Neue',sans-serif; font-size:32px; background:linear-gradient(90deg,#ef4444,#f97316); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; letter-spacing:1px;">DESK</span>
+    </div>
+        <div class="nav-links">
+      <a href="index.html" class="nav-active">Home</a>
+      <a href="about.html">Contact</a>
+      <a href="partners.html">Partners</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="features.html">Features</a>
+    </div>
+    <div class="nav-right">
+      <button class="btn-login" onclick="window.location.href='login.html'">Log In</button>
+      <button class="btn-trial">Start Free Trial</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero-section">
+    <div class="hero-split">
+
+      <!-- LEFT -->
+      <div class="hero-left">
+        <h1 class="hero-headline">Meet Your <span class="orange">AI Prop Firm</span> Dashboard</h1>
+        <p class="hero-subtext">It knows your rules, watches your limits, and catches breaches before they happen &mdash; across every firm, every account, automatically.</p>
+        <div class="hero-cta-row">
+          <button class="btn-primary btn-large">Start Free Trial</button>
+          <div class="hero-trust">
+            <div class="hero-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div>
+              <div class="hero-trust-title">Excellent</div>
+              <div class="hero-trust-sub">3,000+ funded traders</div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-pills-label">EVERYTHING IN ONE PLACE &middot; 7 TOOLS</div>
+        <div class="hero-pills">
+          <div class="hero-pill">Payout Tracker</div>
+          <div class="hero-pill">Journal</div>
+          <div class="hero-pill">Calendar</div>
+          <div class="hero-pill">Tax Calculator</div>
+          <div class="hero-pill">Analytics</div>
+          <div class="hero-pill">Strategy Tracking</div><div class="hero-pill">AI Insights</div>
+        </div>
+      </div>
+
+      <!-- RIGHT: floating dashboard mocks -->
+      <div class="hero-right-visual">
+
+        <!-- Main dashboard card -->
+        <div class="hero-mock-main">
+          <div class="dash-topbar">
+            <div class="dash-logo"><span>Prop</span>Tracker</div>
+            <div class="dash-actions"><div class="dash-avatar">WE</div></div>
+          </div>
+          <div class="dash-body">
+            <div class="dash-sidebar">
+              <div class="dash-nav-item active">&#8862; Dashboard</div>
+              <div class="dash-nav-item">&#8863; Accounts</div>
+              <div class="dash-nav-item">&#9645; Calendar</div>
+              <div class="dash-nav-item">&#8853; Trade Lab</div>
+              <div class="dash-nav-item">&#9675; Coach Belfort</div>
+              <div class="dash-nav-item">$ Payouts</div>
+              <div class="dash-nav-item">&#8599; Reports</div>
+            </div>
+            <div class="dash-main">
+              <div class="stats-row">
+                <div class="stat-box"><div class="stat-label">Portfolio Value</div><div class="stat-val">$284,500</div></div>
+                <div class="stat-box"><div class="stat-label">Net PNL</div><div class="stat-val green">+$3,840</div></div>
+                <div class="stat-box"><div class="stat-label">Net Payout</div><div class="stat-val green">+$12,750</div></div>
+                <div class="stat-box"><div class="stat-label">Monthly</div><div class="stat-val yellow">+8.4%</div></div>
+              </div>
+              <div class="perf-section" style="margin-top:10px;">
+                <div class="perf-title">Performance Deep Stats</div>
+                <div class="perf-stats">
+                  <div class="perf-stat"><div class="lbl">Profit Factor</div><div class="v">312.50</div></div>
+                  <div class="perf-stat"><div class="lbl">Expectancy</div><div class="v green">$1,240</div></div>
+                  <div class="perf-stat"><div class="lbl">Avg Win</div><div class="v green">$2,180</div></div>
+                  <div class="perf-stat"><div class="lbl">Avg Loss</div><div class="v red">$14.20</div></div>
+                  <div class="perf-stat"><div class="lbl">Win Rate</div><div class="v green">74.2%</div></div>
+                  <div class="perf-stat"><div class="lbl">Trades/Day</div><div class="v">4.2</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating coach card -->
+        <div class="hero-mock-float hero-mock-float-top">
+          <div style="font-size:10px;font-weight:700;color:#f97316;margin-bottom:6px;">&#9889; COACH BELFORT</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.7);line-height:1.5;">You traded on impulse instead of setup confirmation. Focus on process, not outcome.</div>
+        </div>
+
+        <!-- Floating rule card -->
+        <div class="hero-mock-float hero-mock-float-bottom">
+          <div style="font-size:10px;font-weight:700;color:#f97316;margin-bottom:6px;">&#9675; RULE ALERT</div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="font-size:18px;font-weight:800;color:#f59e0b;">$1,050</div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.5);">of $2,500 drawdown used</div>
+          </div>
+          <div style="height:4px;background:rgba(255,255,255,0.08);border-radius:2px;margin-top:8px;overflow:hidden;">
+            <div style="height:100%;width:42%;background:#f97316;border-radius:2px;"></div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LOGOS MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <div class="marquee-item"><img src="logos/apex.png" alt="Apex Trader Funding" /></div>
+      <div class="marquee-item"><img src="logos/topstep.svg" alt="Topstep" /></div>
+      <div class="marquee-item"><img src="logos/tpt.png" alt="Take Profit Trader" /></div>
+      <div class="marquee-item"><img src="logos/tradeify.svg" alt="Tradeify" /></div>
+      <div class="marquee-item"><img src="logos/fundednext.png" alt="FundedNext" /></div>
+      <div class="marquee-item"><img src="logos/lucid.webp" alt="Lucid Trading" /></div>
+      <div class="marquee-item"><img src="logos/mff.svg" alt="My Funded Futures" /></div>
+      <!-- duplicate for seamless loop -->
+      <div class="marquee-item"><img src="logos/apex.png" alt="Apex Trader Funding" /></div>
+      <div class="marquee-item"><img src="logos/topstep.svg" alt="Topstep" /></div>
+      <div class="marquee-item"><img src="logos/tpt.png" alt="Take Profit Trader" /></div>
+      <div class="marquee-item"><img src="logos/tradeify.svg" alt="Tradeify" /></div>
+      <div class="marquee-item"><img src="logos/fundednext.png" alt="FundedNext" /></div>
+      <div class="marquee-item"><img src="logos/lucid.webp" alt="Lucid Trading" /></div>
+      <div class="marquee-item"><img src="logos/mff.svg" alt="My Funded Futures" /></div>
+    </div>
+  </div>
+
+  <!-- TOOLS TABS SECTION -->
+  <section class="tools-section">
+    <div class="tools-header">
+      <div class="section-label">THE COMPLETE PROP TRACKING PLATFORM</div>
+      <h2 class="tools-headline">All Your Tools <span class="orange">In One Place</span></h2>
+      <p class="tools-sub">Built for prop traders who are serious about getting funded, staying funded, and getting paid.</p>
+    </div>
+
+    <div class="tools-tabs" id="toolsTabs">
+      <button class="tools-tab active" onclick="switchTab('payout')">Payout Tracker</button>
+      <button class="tools-tab" onclick="switchTab('journal')">Journal</button>
+      <button class="tools-tab" onclick="switchTab('calendar')">Calendar</button>
+      <button class="tools-tab" onclick="switchTab('tax')">Tax Calculator</button>
+      <button class="tools-tab" onclick="switchTab('analytics')">Analytics</button>
+      <button class="tools-tab" onclick="switchTab('strategy')">Strategy Tracking</button>
+      <button class="tools-tab" onclick="switchTab('ai')">AI Insights</button>
+    </div>
+
+    <div class="tools-card">
+
+      <div class="tools-panel active" id="tab-payout">
+        <div class="tools-panel-left">
+          <div class="tools-panel-label">PAYOUT TRACKER</div>
+          <h3>Know your real ROI.<br>Every account, every firm.</h3>
+          <p>Stop guessing how much you've actually made. PropTracker logs every payout, calculates your true net profit after fees, and shows exactly where your edge is.</p>
+          <ul class="tools-bullets">
+            <li>Topstep, Apex, MFF + 6 more</li>
+            <li>Real-time payout tracking</li>
+            <li>Net profit after all fees</li>
+            <li>ROI by firm and by account</li>
+          </ul>
+          
+        </div>
+        <div class="tools-panel-right">
+          <div class="tools-mock-card">
+            <div class="tools-mock-title">Payout Tracker</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">
+              <div class="tools-stat"><div class="tools-stat-label">Total Invested</div><div class="tools-stat-val">$39.00</div></div>
+              <div class="tools-stat"><div class="tools-stat-label">Total Received</div><div class="tools-stat-val green">$5,000.00</div></div>
+              <div class="tools-stat"><div class="tools-stat-label">Net Profit</div><div class="tools-stat-val green">+$4,961.00</div></div>
+              <div class="tools-stat"><div class="tools-stat-label">ROI</div><div class="tools-stat-val green">+12,720%</div></div>
+            </div>
+            <div style="background:var(--bg3);border-radius:8px;overflow:hidden;border:1px solid var(--border);">
+              <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr;padding:8px 12px;font-size:10px;color:var(--orange);font-weight:700;text-transform:uppercase;border-bottom:1px solid var(--border);">
+                <span>Firm</span><span>Amount</span><span>Status</span>
+              </div>
+              <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr;padding:9px 12px;font-size:12px;color:var(--text2);border-bottom:1px solid rgba(255,255,255,0.04);align-items:center;">
+                <span>Apex Trading</span><span>$2,500</span><span style="background:var(--orange-dim);color:var(--orange);font-size:10px;padding:2px 8px;border-radius:10px;font-weight:600;display:inline-block;">Pending</span>
+              </div>
+              <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr;padding:9px 12px;font-size:12px;color:var(--text2);align-items:center;">
+                <span>Topstep</span><span>$5,000</span><span style="background:rgba(0,217,126,0.12);color:var(--green);font-size:10px;padding:2px 8px;border-radius:10px;font-weight:600;display:inline-block;">Received</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tools-panel" id="tab-journal">
+        <div class="tools-panel-left">
+          <div class="tools-panel-label">JOURNAL</div>
+          <h3>Your trading diary.<br>Automatically built.</h3>
+          <p>Log every trade with notes, emotions, and screenshots. Review patterns over time and stop making the same mistakes.</p>
+          <ul class="tools-bullets">
+            <li>Auto-populated from your trades</li>
+            <li>Tag strategies and emotions</li>
+            <li>Photo attachments per trade</li>
+            <li>Filter by date, firm, or outcome</li>
+          </ul>
+          
+        </div>
+        <div class="tools-panel-right">
+          <div class="tools-mock-card">
+            <div class="tools-mock-title">Trade Journal — May 29, 2026</div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div style="background:var(--bg3);border-radius:8px;padding:14px;border-left:3px solid var(--orange);">
+                <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;font-weight:700;color:var(--text);">NQ Long — +$2,363</span><span style="font-size:11px;color:var(--green);">A+ Setup</span></div>
+                <div style="font-size:12px;color:var(--text3);">Waited for confirmation at VWAP. Clean entry, held through first pullback. Scaled out at target.</div>
+                <div style="display:flex;gap:8px;margin-top:8px;"><span style="font-size:10px;background:var(--orange-dim);color:var(--orange);padding:2px 8px;border-radius:10px;">Breakout</span><span style="font-size:10px;background:rgba(0,217,126,0.1);color:var(--green);padding:2px 8px;border-radius:10px;">Disciplined</span></div>
+              </div>
+              <div style="background:var(--bg3);border-radius:8px;padding:14px;border-left:3px solid var(--red);">
+                <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;font-weight:700;color:var(--text);">MNQ Short — -$10</span><span style="font-size:11px;color:var(--red);">Scratched</span></div>
+                <div style="font-size:12px;color:var(--text3);">Entered too early, no confirmation. Scratched quickly. Good discipline to cut the loss.</div>
+                <div style="display:flex;gap:8px;margin-top:8px;"><span style="font-size:10px;background:var(--orange-dim);color:var(--orange);padding:2px 8px;border-radius:10px;">Impulse</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tools-panel" id="tab-calendar">
+        <div class="tools-panel-left">
+          <div class="tools-panel-label">CALENDAR</div>
+          <h3>See your trading<br>at a glance.</h3>
+          <p>A visual calendar of every trading day — green days, red days, your best sessions, and worst. Spot patterns you'd never catch in a spreadsheet.</p>
+          <ul class="tools-bullets">
+            <li>Monthly and yearly views</li>
+            <li>P&L per day at a glance</li>
+            <li>Click any day for full detail</li>
+            <li>Journal entries built in</li>
+          </ul>
+          
+        </div>
+        <div class="tools-panel-right">
+          <div class="tools-mock-card">
+            <div class="tools-mock-title">Calendar — May 2026</div>
+            <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:4px;">
+              <div style="font-size:9px;color:var(--text3);text-align:center;padding:3px 0;">S</div>
+              <div style="font-size:9px;color:var(--text3);text-align:center;padding:3px 0;">M</div>
+              <div style="font-size:9px;color:var(--text3);text-align:center;padding:3px 0;">T</div>
+              <div style="font-size:9px;color:var(--text3);text-align:center;padding:3px 0;">W</div>
+              <div style="font-size:9px;color:var(--text3);text-align:center;padding:3px 0;">T</div>
+              <div style="font-size:9px;color:var(--text3);text-align:center;padding:3px 0;">F</div>
+              <div style="font-size:9px;color:var(--text3);text-align:center;padding:3px 0;">S</div>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;">
+              <div style="height:48px;background:var(--bg3);border-radius:5px;border:1px solid var(--border);"></div>
+              <div style="height:48px;background:rgba(0,100,50,0.5);border-radius:5px;border:1px solid var(--border);display:flex;flex-direction:column;justify-content:space-between;padding:4px;"><span style="font-size:9px;color:rgba(255,255,255,0.4);">1</span><span style="font-size:10px;font-weight:700;color:#4ade80;">+$1.2k</span></div>
+              <div style="height:48px;background:rgba(0,100,50,0.5);border-radius:5px;border:1px solid var(--border);display:flex;flex-direction:column;justify-content:space-between;padding:4px;"><span style="font-size:9px;color:rgba(255,255,255,0.4);">2</span><span style="font-size:10px;font-weight:700;color:#4ade80;">+$880</span></div>
+              <div style="height:48px;background:var(--bg3);border-radius:5px;border:1px solid var(--border);display:flex;align-items:flex-start;padding:4px;"><span style="font-size:9px;color:rgba(255,255,255,0.4);">3</span></div>
+              <div style="height:48px;background:rgba(100,0,0,0.5);border-radius:5px;border:1px solid var(--border);display:flex;flex-direction:column;justify-content:space-between;padding:4px;"><span style="font-size:9px;color:rgba(255,255,255,0.4);">4</span><span style="font-size:10px;font-weight:700;color:#f87171;">-$240</span></div>
+              <div style="height:48px;background:rgba(0,100,50,0.5);border-radius:5px;border:2px solid var(--orange);display:flex;flex-direction:column;justify-content:space-between;padding:4px;"><span style="font-size:9px;color:var(--orange);">5</span><span style="font-size:10px;font-weight:700;color:#4ade80;">+$2.1k</span></div>
+              <div style="height:48px;background:var(--bg3);border-radius:5px;border:1px solid var(--border);display:flex;align-items:flex-start;padding:4px;"><span style="font-size:9px;color:rgba(255,255,255,0.4);">6</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tools-panel" id="tab-tax">
+        <div class="tools-panel-left">
+          <div class="tools-panel-label">TAX CALCULATOR</div>
+          <h3>Know what you owe<br>before April hits.</h3>
+          <p>Track your trading income, evaluation fees, and expenses in real time. Get a running estimate of your tax liability so there are no surprises.</p>
+          <ul class="tools-bullets">
+            <li>Real-time tax estimate</li>
+            <li>Deductible expense tracking</li>
+            <li>Income by firm and account</li>
+            <li>Export-ready reports</li>
+          </ul>
+          
+        </div>
+        <div class="tools-panel-right">
+          <div class="tools-mock-card">
+            <div class="tools-mock-title">Tax Summary — 2026</div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div style="display:flex;justify-content:space-between;padding:12px;background:var(--bg3);border-radius:8px;border-left:3px solid var(--orange);"><span style="font-size:13px;color:var(--text2);">Total Trading Income</span><span style="font-size:14px;font-weight:700;color:var(--green);">+$42,500</span></div>
+              <div style="display:flex;justify-content:space-between;padding:12px;background:var(--bg3);border-radius:8px;"><span style="font-size:13px;color:var(--text2);">Evaluation Fees (deductible)</span><span style="font-size:14px;font-weight:700;color:var(--red);">-$1,240</span></div>
+              <div style="display:flex;justify-content:space-between;padding:12px;background:var(--bg3);border-radius:8px;"><span style="font-size:13px;color:var(--text2);">Software & Tools</span><span style="font-size:14px;font-weight:700;color:var(--red);">-$468</span></div>
+              <div style="display:flex;justify-content:space-between;padding:12px;background:rgba(249,115,22,0.08);border-radius:8px;border:1px solid rgba(249,115,22,0.2);"><span style="font-size:13px;font-weight:700;color:var(--text);">Estimated Tax Owed (22%)</span><span style="font-size:16px;font-weight:800;color:var(--orange);">$8,975</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tools-panel" id="tab-analytics">
+        <div class="tools-panel-left">
+          <div class="tools-panel-label">ANALYTICS</div>
+          <h3>Stop guessing.<br>Start knowing.</h3>
+          <p>Deep analytics on your trading performance — by session, by setup, by time of day. Find what actually works and double down on it.</p>
+          <ul class="tools-bullets">
+            <li>Performance by session & time</li>
+            <li>Win rate by setup type</li>
+            <li>Profit factor breakdown</li>
+            <li>Best and worst day analysis</li>
+          </ul>
+          
+        </div>
+        <div class="tools-panel-right">
+          <div class="tools-mock-card">
+            <div class="tools-mock-title">Analytics Overview</div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px;">
+              <div class="tools-stat"><div class="tools-stat-label">Win Rate</div><div class="tools-stat-val green">74.2%</div></div>
+              <div class="tools-stat"><div class="tools-stat-label">Profit Factor</div><div class="tools-stat-val green">3.1x</div></div>
+              <div class="tools-stat"><div class="tools-stat-label">Avg Win</div><div class="tools-stat-val green">$2,180</div></div>
+            </div>
+            <div style="font-size:11px;color:var(--orange);font-weight:700;margin-bottom:8px;text-transform:uppercase;">Best Sessions</div>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--bg3);border-radius:6px;"><span style="font-size:12px;color:var(--text2);">New York Open</span><div style="display:flex;align-items:center;gap:8px;"><div style="height:6px;width:80px;background:rgba(255,255,255,0.08);border-radius:3px;overflow:hidden;"><div style="height:100%;width:78%;background:var(--green);border-radius:3px;"></div></div><span style="font-size:12px;font-weight:700;color:var(--green);">78%</span></div></div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--bg3);border-radius:6px;"><span style="font-size:12px;color:var(--text2);">London Open</span><div style="display:flex;align-items:center;gap:8px;"><div style="height:6px;width:80px;background:rgba(255,255,255,0.08);border-radius:3px;overflow:hidden;"><div style="height:100%;width:52%;background:var(--orange);border-radius:3px;"></div></div><span style="font-size:12px;font-weight:700;color:var(--orange);">52%</span></div></div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--bg3);border-radius:6px;"><span style="font-size:12px;color:var(--text2);">Asia Session</span><div style="display:flex;align-items:center;gap:8px;"><div style="height:6px;width:80px;background:rgba(255,255,255,0.08);border-radius:3px;overflow:hidden;"><div style="height:100%;width:30%;background:var(--red);border-radius:3px;"></div></div><span style="font-size:12px;font-weight:700;color:var(--red);">30%</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tools-panel" id="tab-strategy">
+        <div class="tools-panel-left">
+          <div class="tools-panel-label">STRATEGY TRACKING</div>
+          <h3>Find your edge.<br>Then sharpen it.</h3>
+          <p>Tag every trade with your setup type and track performance by strategy. Know which setups print and which ones drain your account.</p>
+          <ul class="tools-bullets">
+            <li>Custom strategy tags</li>
+            <li>P&L by strategy type</li>
+            <li>Win rate per setup</li>
+            <li>Kill underperforming setups fast</li>
+          </ul>
+          
+        </div>
+        <div class="tools-panel-right">
+          <div class="tools-mock-card">
+            <div class="tools-mock-title">Strategy Performance</div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div style="display:grid;grid-template-columns:1fr auto auto;gap:12px;padding:10px 12px;background:var(--bg3);border-radius:8px;align-items:center;border-left:3px solid var(--green);"><span style="font-size:13px;color:var(--text);">VWAP Bounce</span><span style="font-size:12px;color:var(--green);font-weight:700;">82% WR</span><span style="font-size:12px;color:var(--green);font-weight:700;">+$18,240</span></div>
+              <div style="display:grid;grid-template-columns:1fr auto auto;gap:12px;padding:10px 12px;background:var(--bg3);border-radius:8px;align-items:center;border-left:3px solid var(--orange);"><span style="font-size:13px;color:var(--text);">Opening Drive</span><span style="font-size:12px;color:var(--orange);font-weight:700;">67% WR</span><span style="font-size:12px;color:var(--green);font-weight:700;">+$9,800</span></div>
+              <div style="display:grid;grid-template-columns:1fr auto auto;gap:12px;padding:10px 12px;background:var(--bg3);border-radius:8px;align-items:center;border-left:3px solid var(--orange);"><span style="font-size:13px;color:var(--text);">Breakout Fade</span><span style="font-size:12px;color:var(--orange);font-weight:700;">58% WR</span><span style="font-size:12px;color:var(--green);font-weight:700;">+$4,120</span></div>
+              <div style="display:grid;grid-template-columns:1fr auto auto;gap:12px;padding:10px 12px;background:var(--bg3);border-radius:8px;align-items:center;border-left:3px solid var(--red);"><span style="font-size:13px;color:var(--text);">News Trade</span><span style="font-size:12px;color:var(--red);font-weight:700;">31% WR</span><span style="font-size:12px;color:var(--red);font-weight:700;">-$2,340</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tools-panel" id="tab-ai">
+        <div class="tools-panel-left">
+          <div class="tools-panel-label">AI INSIGHTS</div>
+          <h3>Meet Coach Belfort.<br>Your AI trading partner.</h3>
+          <p>Coach Belfort analyzes your behavior, discipline, and rule adherence in real time. Get brutally honest feedback designed to keep you funded and profitable.</p>
+          <ul class="tools-bullets">
+            <li>Daily behavioral analysis</li>
+            <li>Identifies impulse patterns</li>
+            <li>Personalized non-negotiables</li>
+            <li>Real-time rule monitoring</li>
+          </ul>
+          
+        </div>
+        <div class="tools-panel-right">
+          <div class="tools-mock-card">
+            <div class="tools-mock-title">&#9889; Coach Belfort — Today</div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div style="background:var(--bg3);border-radius:8px;padding:12px;border-left:3px solid var(--orange);">
+                <div style="font-size:11px;font-weight:700;color:var(--orange);margin-bottom:6px;">TODAY'S VERDICT</div>
+                <div style="font-size:13px;color:var(--text2);line-height:1.5;">You traded on impulse instead of setup confirmation on trade 3. It cost you discipline. Your process needs to come before the P&L.</div>
+              </div>
+              <div style="background:var(--bg3);border-radius:8px;padding:12px;">
+                <div style="font-size:11px;font-weight:700;color:var(--orange);margin-bottom:8px;text-transform:uppercase;">Non-Negotiables</div>
+                <div style="font-size:12px;color:var(--text2);padding:6px 10px;background:var(--orange-dim);border-radius:6px;border-left:2px solid var(--orange);margin-bottom:6px;">Wait for a confirmed setup before entry. No exceptions.</div>
+                <div style="font-size:12px;color:var(--text2);padding:6px 10px;background:var(--orange-dim);border-radius:6px;border-left:2px solid var(--orange);">Record your reasoning before placing every trade.</div>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;background:var(--bg3);border-radius:8px;padding:10px 12px;border:1px solid rgba(249,115,22,0.2);"><div style="width:8px;height:8px;border-radius:50%;background:var(--orange);animation:pulse 2s infinite;flex-shrink:0;"></div><span style="font-size:12px;color:var(--text3);">Active Analysis</span><span style="font-size:12px;font-weight:700;color:var(--orange);">Real-time Monitoring</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PAYOUT TRACKER -->
+  <section class="section section-alt" style="background:var(--bg); border:none; max-width:100%; padding:80px 0;">
+    <div class="payout-header-text">
+      <div class="section-label">PAYOUT TRACKER</div>
+      <h2><span class="orange">Know Your Real ROI</span><br>Every Account, Every Firm</h2>
+      <p>Stop guessing how much you've actually made. PropTracker logs every payout, calculates your true net profit, and shows you exactly where your edge is — by firm, by account, by month.</p>
+    </div>
+    <div style="max-width:1400px; margin:40px auto 0; padding:0 48px;">
+      <div style="display:grid; grid-template-columns:1.5fr 1fr; gap:40px; align-items:start;">
+
+        <!-- LEFT: main graphic with overlapping mini cards -->
+        <div class="graphic-group" style="position:relative; padding:24px 0 60px 0;">
+
+          <!-- Ambient glows -->
+          <div style="position:absolute; top:20%; left:15%; width:500px; height:300px; background:radial-gradient(ellipse, rgba(249,115,22,0.1) 0%, transparent 70%); border-radius:50%; pointer-events:none; filter:blur(40px); z-index:0;"></div>
+          <div style="position:absolute; bottom:15%; right:10%; width:300px; height:220px; background:radial-gradient(ellipse, rgba(0,217,126,0.07) 0%, transparent 70%); border-radius:50%; pointer-events:none; filter:blur(28px); z-index:0;"></div>
+
+          <!-- MAIN CARD: Topstep Dashboard (full width) -->
+          <div class="payout-graphic-card" style="position:relative; z-index:2; background:#0d0d0d; border:1px solid rgba(255,255,255,0.1); border-radius:18px; overflow:hidden; box-shadow:0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(249,115,22,0.08);">
+            <div style="padding:18px 22px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.06); background:rgba(255,255,255,0.02);">
+              <div style="display:flex; align-items:center; gap:12px;">
+                <img src="topstep.png" style="height:32px;width:auto;border-radius:5px;" />
+                <div>
+                  <div style="font-size:16px; font-weight:800; color:#fff;">Topstep</div>
+                  <div style="font-size:10px; color:rgba(255,255,255,0.3); margin-top:1px;">Last updated: 10:18:39 AM</div>
+                </div>
+              </div>
+              <button style="background:linear-gradient(135deg,#ef4444,#f97316);color:#fff;border:none;border-radius:8px;padding:9px 18px;font-size:12px;font-weight:700;cursor:pointer;">Sync Data</button>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;padding:16px;">
+              <div style="background:#111;border:1px solid rgba(249,115,22,0.3);border-radius:10px;padding:14px;">
+                <div style="font-size:9px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:7px;">Total Earned</div>
+                <div style="font-size:18px;font-weight:800;color:#00d97e;">$18,893</div>
+              </div>
+              <div style="background:#111;border:1px solid rgba(249,115,22,0.3);border-radius:10px;padding:14px;">
+                <div style="font-size:9px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:7px;">Total Spent</div>
+                <div style="font-size:18px;font-weight:800;color:#ef4444;">$7,330</div>
+              </div>
+              <div style="background:#111;border:1px solid rgba(249,115,22,0.3);border-radius:10px;padding:14px;">
+                <div style="font-size:9px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:7px;">Net Profit</div>
+                <div style="font-size:18px;font-weight:800;color:#00d97e;">$11,562</div>
+              </div>
+              <div style="background:#111;border:1px solid rgba(249,115,22,0.3);border-radius:10px;padding:14px;">
+                <div style="font-size:9px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:7px;">Combines</div>
+                <div style="font-size:18px;font-weight:800;color:#fff;">31</div>
+              </div>
+              <div style="background:#111;border:1px solid rgba(249,115,22,0.3);border-radius:10px;padding:14px;">
+                <div style="font-size:9px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:7px;">Profit Factor</div>
+                <div style="font-size:18px;font-weight:800;color:#00d97e;">2.58</div>
+              </div>
+            </div>
+            <div style="margin:0 16px 16px; background:#111; border-radius:10px; padding:16px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+                <div style="font-size:11px;font-weight:700;color:#f97316;text-transform:uppercase;letter-spacing:0.08em;">Cumulative PNL ▼</div>
+                <div id="pnl-label" style="font-size:12px;font-weight:700;color:#00d97e;background:rgba(0,217,126,0.1);padding:3px 12px;border-radius:10px;">+$0</div>
+              </div>
+              <div style="position:relative;">
+                <canvas id="pnl-chart" style="width:100%;height:130px;display:block;"></canvas>
+                <!-- Y axis labels -->
+                <div style="position:absolute;top:0;left:0;height:112px;display:flex;flex-direction:column;justify-content:space-between;pointer-events:none;">
+                  <span style="font-size:9px;color:rgba(255,255,255,0.22);">$11.8k</span>
+                  <span style="font-size:9px;color:rgba(255,255,255,0.22);">$8.7k</span>
+                  <span style="font-size:9px;color:rgba(255,255,255,0.22);">$5.5k</span>
+                  <span style="font-size:9px;color:rgba(255,255,255,0.22);">$2.4k</span>
+                </div>
+                <!-- X axis labels -->
+                <div style="display:flex;justify-content:space-between;margin-top:4px;padding:0 2px;">
+                  <span style="font-size:9px;color:rgba(255,255,255,0.22);">Nov 3</span>
+                  <span style="font-size:9px;color:rgba(255,255,255,0.22);">Apr 23</span>
+                  <span style="font-size:9px;color:rgba(255,255,255,0.22);">May 28</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- MINI CARD: ROI by Firm — top-left overlap -->
+          <div class="payout-graphic-card" style="position:absolute; top:-48px; left:24px; z-index:5; width:220px; background:#111; border:1px solid rgba(255,255,255,0.12); border-radius:12px; overflow:hidden; box-shadow:0 16px 40px rgba(0,0,0,0.8), 0 0 0 1px rgba(249,115,22,0.12); transform:scale(0.8); transform-origin:top left;">
+            <div style="padding:9px 12px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.06);">
+              <div style="font-size:9px;font-weight:700;color:#f97316;text-transform:uppercase;letter-spacing:0.08em;">ROI By Firm</div>
+              <div style="font-size:9px;color:rgba(255,255,255,0.35);">All time</div>
+            </div>
+            <div style="padding:10px 12px; display:flex; flex-direction:column; gap:8px;">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <img src="topstep.png" style="height:16px;width:16px;border-radius:3px;object-fit:cover;flex-shrink:0;" />
+                <div style="flex:1;">
+                  <div style="display:flex; justify-content:space-between; margin-bottom:3px;">
+                    <span style="font-size:9px;color:rgba(255,255,255,0.6);">Topstep</span>
+                    <span style="font-size:9px;color:#00d97e;font-weight:700;">+12,720%</span>
+                  </div>
+                  <div style="height:3px;background:rgba(255,255,255,0.07);border-radius:4px;overflow:hidden;"><div class="roi-bar" style="width:0%;height:100%;background:linear-gradient(90deg,#00d97e,#00ff99);border-radius:4px;transition:width 1.4s cubic-bezier(0.4,0,0.2,1) 0.2s;" data-width="92%" data-delay="0.2s"></div></div>
+                </div>
+              </div>
+              <div style="display:flex; align-items:center; gap:8px;">
+                <img src="mff.jpg" style="height:16px;width:16px;border-radius:3px;object-fit:cover;flex-shrink:0;" />
+                <div style="flex:1;">
+                  <div style="display:flex; justify-content:space-between; margin-bottom:3px;">
+                    <span style="font-size:9px;color:rgba(255,255,255,0.6);">MFF</span>
+                    <span style="font-size:9px;color:#00d97e;font-weight:700;">+4,380%</span>
+                  </div>
+                  <div style="height:3px;background:rgba(255,255,255,0.07);border-radius:4px;overflow:hidden;"><div class="roi-bar" style="width:0%;height:100%;background:linear-gradient(90deg,#00d97e,#00ff99);border-radius:4px;transition:width 1.4s cubic-bezier(0.4,0,0.2,1) 0.4s;" data-width="64%" data-delay="0.4s"></div></div>
+                </div>
+              </div>
+              <div style="display:flex; align-items:center; gap:8px;">
+                <img src="apex.png" style="height:16px;width:16px;border-radius:3px;object-fit:cover;flex-shrink:0;" />
+                <div style="flex:1;">
+                  <div style="display:flex; justify-content:space-between; margin-bottom:3px;">
+                    <span style="font-size:9px;color:rgba(255,255,255,0.6);">Apex</span>
+                    <span style="font-size:9px;color:#ef4444;font-weight:700;">-18%</span>
+                  </div>
+                  <div style="height:3px;background:rgba(255,255,255,0.07);border-radius:4px;overflow:hidden;"><div class="roi-bar" style="width:0%;height:100%;background:linear-gradient(90deg,#ef4444,#ff6b6b);border-radius:4px;transition:width 1.4s cubic-bezier(0.4,0,0.2,1) 0.6s;" data-width="18%" data-delay="0.6s"></div></div>
+                </div>
+              </div>
+              <div style="display:flex; align-items:center; gap:8px;">
+                <img src="lucid.png" style="height:16px;width:16px;border-radius:3px;object-fit:cover;flex-shrink:0;" />
+                <div style="flex:1;">
+                  <div style="display:flex; justify-content:space-between; margin-bottom:3px;">
+                    <span style="font-size:9px;color:rgba(255,255,255,0.6);">Lucid</span>
+                    <span style="font-size:9px;color:#00d97e;font-weight:700;">+2,100%</span>
+                  </div>
+                  <div style="height:3px;background:rgba(255,255,255,0.07);border-radius:4px;overflow:hidden;"><div class="roi-bar" style="width:0%;height:100%;background:linear-gradient(90deg,#00d97e,#00ff99);border-radius:4px;transition:width 1.4s cubic-bezier(0.4,0,0.2,1) 0.8s;" data-width="48%" data-delay="0.8s"></div></div>
+                </div>
+              </div>
+            </div>
+            <div style="margin:0 10px 10px; background:#0d0d0d; border-radius:7px; padding:8px 10px; display:flex; justify-content:space-between; border:1px solid rgba(249,115,22,0.12);">
+              <div><div style="font-size:7px;color:rgba(255,255,255,0.3);text-transform:uppercase;margin-bottom:2px;">Total Net Profit</div><div style="font-size:14px;font-weight:800;color:#00d97e;">+$28,440</div></div>
+              <div style="text-align:right;"><div style="font-size:7px;color:rgba(255,255,255,0.3);text-transform:uppercase;margin-bottom:2px;">Avg ROI</div><div style="font-size:14px;font-weight:800;color:#f97316;">+4,795%</div></div>
+            </div>
+          </div>
+
+          <!-- MINI CARD: Spending — bottom-right overlap -->
+          <div class="payout-graphic-card" style="position:absolute; bottom:-32px; right:-28px; z-index:5; width:300px; background:#0d0d0d; border:1px solid rgba(255,255,255,0.1); border-radius:12px; overflow:hidden; box-shadow:0 16px 40px rgba(0,0,0,0.8), 0 0 0 1px rgba(0,217,126,0.08); transform:scale(0.88); transform-origin:bottom right;">
+            <div style="padding:9px 12px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.05);">
+              <div style="font-size:9px;font-weight:700;color:#f97316;text-transform:uppercase;letter-spacing:0.08em;">Spending ▼</div>
+              <div style="background:#f97316;color:#fff;border-radius:20px;font-size:8px;font-weight:800;padding:1px 7px;">5</div>
+            </div>
+            <div style="display:grid;grid-template-columns:68px 1fr 60px;padding:5px 12px;border-bottom:1px solid rgba(255,255,255,0.04);">
+              <span style="font-size:7px;color:rgba(255,255,255,0.28);text-transform:uppercase;letter-spacing:0.05em;">Date</span>
+              <span style="font-size:7px;color:rgba(255,255,255,0.28);text-transform:uppercase;letter-spacing:0.05em;">Subject</span>
+              <span style="font-size:7px;color:rgba(255,255,255,0.28);text-transform:uppercase;letter-spacing:0.05em;text-align:right;">Amount</span>
+            </div>
+            <div style="display:grid;grid-template-columns:68px 1fr 60px;padding:6px 12px;border-bottom:1px solid rgba(255,255,255,0.03);">
+              <span style="font-size:9px;color:rgba(255,255,255,0.38);">4/6/2026</span>
+              <span style="font-size:9px;color:rgba(255,255,255,0.6);">Lucid - Order Processing</span>
+              <span style="font-size:9px;color:#ef4444;text-align:right;font-weight:600;">$84.00</span>
+            </div>
+            <div style="display:grid;grid-template-columns:68px 1fr 60px;padding:6px 12px;border-bottom:1px solid rgba(255,255,255,0.03);">
+              <span style="font-size:9px;color:rgba(255,255,255,0.38);">4/6/2026</span>
+              <span style="font-size:9px;color:rgba(255,255,255,0.6);">Lucid - Order Processing</span>
+              <span style="font-size:9px;color:#ef4444;text-align:right;font-weight:600;">$84.00</span>
+            </div>
+            <div style="display:grid;grid-template-columns:68px 1fr 60px;padding:6px 12px;border-bottom:1px solid rgba(255,255,255,0.03);">
+              <span style="font-size:9px;color:rgba(255,255,255,0.38);">4/2/2026</span>
+              <span style="font-size:9px;color:rgba(255,255,255,0.6);">Lucid - Order Processing</span>
+              <span style="font-size:9px;color:#ef4444;text-align:right;font-weight:600;">$70.00</span>
+            </div>
+            <div style="display:grid;grid-template-columns:68px 1fr 60px;padding:6px 12px;">
+              <span style="font-size:9px;color:rgba(255,255,255,0.38);">3/30/2026</span>
+              <span style="font-size:9px;color:rgba(255,255,255,0.6);">Lucid - Order Processing</span>
+              <span style="font-size:9px;color:#ef4444;text-align:right;font-weight:600;">$65.00</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT: feature cards -->
+        <div style="display:flex; flex-direction:column; gap:10px; padding-top:20px; padding-left:16px;">
+          <div class="mission-card" style="background:var(--bg4); border-color:var(--border); padding:16px;"><div class="mission-card-icon" style="background:var(--bg3); border-color:rgba(249,115,22,0.2); width:34px; height:34px; font-size:15px; margin-bottom:10px;">$</div><h3 style="font-size:13px; margin-bottom:5px;">Total Payout Tracking</h3><p style="font-size:12px;">Every received and pending payout logged across all your prop firm accounts in one place.</p></div>
+          <div class="mission-card" style="background:var(--bg4); border-color:var(--border); padding:16px;"><div class="mission-card-icon" style="background:var(--bg3); border-color:rgba(249,115,22,0.2); width:34px; height:34px; font-size:15px; margin-bottom:10px;">↓</div><h3 style="font-size:13px; margin-bottom:5px;">Spending Tracker</h3><p style="font-size:12px;">Track every fee, subscription, and account cost across all your prop firms to see your true net profit.</p></div>
+          <div class="mission-card" style="background:var(--bg4); border-color:var(--border); padding:16px;"><div class="mission-card-icon" style="background:var(--bg3); border-color:rgba(249,115,22,0.2); width:34px; height:34px; font-size:15px; margin-bottom:10px;">⊟</div><h3 style="font-size:13px; margin-bottom:5px;">By Firm &amp; By Account</h3><p style="font-size:12px;">Break down your payout history by firm or by account to see where your edge actually lives.</p></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div style="height:48px;"></div>
+
+  <!-- ALL-IN-ONE HEADER -->
+  <div class="allinone-header" style="padding-bottom: 24px;">
+    <div class="section-label">JOURNAL</div>
+    <h2 class="allinone-title"><span class="orange">Journal Every Trade</span><br>Master Every Pattern</h2>
+    <p class="allinone-sub">Log your trades, track your emotions, and uncover the patterns that make or break your performance.</p>
+  </div>
+
+  <!-- JOURNAL -->
+  <section style="max-width:1400px; margin:0 auto; padding:40px 48px 80px;">
+    <div style="display:flex; flex-direction:column; gap:32px;">
+
+      <!-- Top: text left + graphic right -->
+      <div class="feat-layout" style="gap:60px; align-items:start;">
+        <div class="feat-left" style="max-width:520px; flex-shrink:0;">
+
+          <h2 style="font-size:52px;">Your Psychology<br>Is Your <span class="orange">Edge</span></h2>
+          <p>Every trade tells a story. PropTracker's journal captures not just entries and exits — but how you felt, what you were thinking, and whether you followed your plan. Most traders focus on strategy. The best traders also track their mind. Over time, the emotional patterns become impossible to ignore — and impossible not to act on.</p>
+          <div class="feat-checks journal-checklist">
+            <div class="feat-check"><div class="check-icon"></div>Log emotions, mindset, and discipline scores per trade</div>
+            <div class="feat-check"><div class="check-icon"></div>Tag strategies, mistakes, and setups</div>
+            <div class="feat-check"><div class="check-icon"></div>Filter journal by emotion, tag, or outcome</div>
+            <div class="feat-check"><div class="check-icon"></div>See which mental states lead to your best results</div>
+            <div class="feat-check"><div class="check-icon"></div>Build a track record of your growth as a trader</div>
+          </div>
+        </div>
+        <div class="feat-right" style="flex:1.8;">
+          <div class="rule-mock journal-mock" style="background:#0d0d0d; border:1px solid rgba(255,255,255,0.09); padding:20px; transition:border-color 0.3s ease, box-shadow 0.3s ease; cursor:default;"
+            onmouseover="this.style.borderColor='rgba(249,115,22,0.35)';this.style.boxShadow='0 0 32px rgba(249,115,22,0.1)'"
+            onmouseout="this.style.borderColor='rgba(255,255,255,0.09)';this.style.boxShadow='none'">
+
+            <!-- Journal header -->
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+              <div>
+                <div style="font-size:18px; font-weight:800; color:#fff;">Trade Journal</div>
+                <div style="font-size:12px; color:rgba(255,255,255,0.35); margin-top:3px;">May 29, 2026 &middot; 3 entries</div>
+              </div>
+              <div style="display:flex; gap:8px;">
+                <div style="background:#111; border:1px solid rgba(255,255,255,0.09); border-radius:8px; padding:6px 14px; font-size:12px; color:rgba(255,255,255,0.5);">Filter</div>
+                <div style="background:linear-gradient(135deg,#ef4444,#f97316); border-radius:8px; padding:6px 14px; font-size:12px; color:#fff; font-weight:700;">+ New Entry</div>
+              </div>
+            </div>
+
+            <!-- Journal entry 1 -->
+            <div style="background:#111; border:1px solid rgba(255,255,255,0.07); border-radius:12px; padding:14px; margin-bottom:10px;">
+              <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;">
+                <span style="font-size:15px; font-weight:700; color:#fff;">NQ Long &middot; +$1,240</span>
+                <span style="background:rgba(0,217,126,0.12); color:#00d97e; font-size:10px; font-weight:700; padding:3px 10px; border-radius:10px;">Win</span>
+              </div>
+              <div style="font-size:12px; color:rgba(255,255,255,0.35); margin-bottom:14px;">9:42 AM &middot; Topstep 50K &middot; Breakout setup</div>
+              <div id="journal-text-1" style="font-size:13px; color:rgba(255,255,255,0.6); line-height:1.7; margin-bottom:14px;"></div>
+              <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                <span style="background:rgba(249,115,22,0.1); color:#f97316; font-size:11px; font-weight:600; padding:3px 10px; border-radius:10px; border:1px solid rgba(249,115,22,0.2);">Calm</span>
+                <span style="background:rgba(255,255,255,0.05); color:rgba(255,255,255,0.5); font-size:11px; padding:3px 10px; border-radius:10px; border:1px solid rgba(255,255,255,0.08);">Breakout</span>
+                <span style="background:rgba(255,255,255,0.05); color:rgba(255,255,255,0.5); font-size:11px; padding:3px 10px; border-radius:10px; border:1px solid rgba(255,255,255,0.08);">Followed Plan</span>
+              </div>
+            </div>
+
+            <!-- Journal entry 2 -->
+            <div style="background:#111; border:1px solid rgba(239,68,68,0.18); border-radius:12px; padding:14px; margin-bottom:10px;">
+              <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;">
+                <span style="font-size:15px; font-weight:700; color:#fff;">NQ Short &middot; -$380</span>
+                <span style="background:rgba(239,68,68,0.12); color:#ef4444; font-size:10px; font-weight:700; padding:3px 10px; border-radius:10px;">Loss</span>
+              </div>
+              <div style="font-size:12px; color:rgba(255,255,255,0.35); margin-bottom:14px;">10:15 AM &middot; Topstep 50K &middot; Revenge trade</div>
+              <div id="journal-text-2" style="font-size:13px; color:rgba(255,255,255,0.6); line-height:1.7; margin-bottom:14px;"></div>
+              <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                <span style="background:rgba(239,68,68,0.1); color:#ef4444; font-size:11px; font-weight:600; padding:3px 10px; border-radius:10px; border:1px solid rgba(239,68,68,0.2);">Revenge</span>
+                <span style="background:rgba(239,68,68,0.1); color:#ef4444; font-size:11px; font-weight:600; padding:3px 10px; border-radius:10px; border:1px solid rgba(239,68,68,0.2);">FOMO</span>
+                <span style="background:rgba(255,255,255,0.05); color:rgba(255,255,255,0.5); font-size:11px; padding:3px 10px; border-radius:10px; border:1px solid rgba(255,255,255,0.08);">Off Plan</span>
+              </div>
+            </div>
+
+            <!-- Stats row -->
+            <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:6px;">
+              <div style="background:#111; border:1px solid rgba(255,255,255,0.07); border-radius:10px; padding:16px; text-align:center;">
+                <div style="font-size:11px; color:rgba(255,255,255,0.35); margin-bottom:6px;">Avg Discipline</div>
+                <div style="font-size:20px; font-weight:800; color:#f97316;">3.4 / 5</div>
+              </div>
+              <div style="background:#111; border:1px solid rgba(255,255,255,0.07); border-radius:10px; padding:16px; text-align:center;">
+                <div style="font-size:11px; color:rgba(255,255,255,0.35); margin-bottom:6px;">Best Emotion</div>
+                <div style="font-size:20px; font-weight:800; color:#00d97e;">Calm</div>
+              </div>
+              <div style="background:#111; border:1px solid rgba(255,255,255,0.07); border-radius:10px; padding:16px; text-align:center;">
+                <div style="font-size:11px; color:rgba(255,255,255,0.35); margin-bottom:6px;">Worst Pattern</div>
+                <div style="font-size:20px; font-weight:800; color:#ef4444;">Revenge</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom: 4 cards in a single row -->
+      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:12px;">
+        <div class="mission-card" style="background:var(--bg4); border-color:var(--border); padding:16px;">
+          <div class="mission-card-icon" style="background:var(--bg3); border-color:rgba(249,115,22,0.2); width:34px; height:34px; font-size:15px; margin-bottom:10px;">✎</div>
+          <h3 style="font-size:13px;margin-bottom:5px;">Trade Notes</h3>
+          <p style="font-size:12px;">Write your reasoning before and after every trade.</p>
+        </div>
+        <div class="mission-card" style="background:var(--bg4); border-color:var(--border); padding:16px;">
+          <div class="mission-card-icon" style="background:var(--bg3); border-color:rgba(249,115,22,0.2); width:34px; height:34px; font-size:15px; margin-bottom:10px;">◎</div>
+          <h3 style="font-size:13px;margin-bottom:5px;">Emotion Tracking</h3>
+          <p style="font-size:12px;">Tag calm, revenge, FOMO and see how each affects your P&amp;L.</p>
+        </div>
+        <div class="mission-card" style="background:var(--bg4); border-color:var(--border); padding:16px;">
+          <div class="mission-card-icon" style="background:var(--bg3); border-color:rgba(249,115,22,0.2); width:34px; height:34px; font-size:15px; margin-bottom:10px;">↗</div>
+          <h3 style="font-size:13px;margin-bottom:5px;">Discipline Score</h3>
+          <p style="font-size:12px;">Rate every trade and watch your discipline improve over time.</p>
+        </div>
+        <div class="mission-card" style="background:var(--bg4); border-color:var(--border); padding:16px;">
+          <div class="mission-card-icon" style="background:var(--bg3); border-color:rgba(249,115,22,0.2); width:34px; height:34px; font-size:15px; margin-bottom:10px;">◫</div>
+          <h3 style="font-size:13px;margin-bottom:5px;">Pattern Finder</h3>
+          <p style="font-size:12px;">Filter by tag or emotion to find what's working and what's not.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CALENDAR -->
+  <section class="section section-alt" style="background:var(--bg); border:none; max-width:1350px; padding:80px 0;">
+    <!-- Section title -->
+    <div style="text-align:center; padding:0 0 64px;">
+      <div class="section-label" style="margin-bottom:20px;">CALENDAR</div>
+      <h2 style="font-size:54px; font-weight:800; line-height:1.08; letter-spacing:-1px; margin-bottom:18px;">
+        <span class="orange">See Every Trading Day</span><br>All In One Place
+      </h2>
+      <p style="color:var(--text2); font-size:17px; max-width:520px; margin:0 auto; line-height:1.7;">Track your green days, red days, payouts, and spending — laid out in a clean monthly view so patterns become obvious.</p>
+    </div>
+    <div class="feat-layout reverse" style="padding:0; max-width:100%;">
+      <div class="feat-left">
+        <h2>See Your Trading <span class="orange">Month At A Glance</span></h2>
+        <p>PropTracker's calendar gives you a visual breakdown of every trading day — green days, red days, payouts, and spending — all mapped out so you can spot patterns in your consistency before they cost you.</p>
+        <div class="feat-cards-stack" style="gap:8px;">
+          <div class="mission-card" style="background:var(--bg4); border-color:var(--border); padding:16px;" onmouseover="this.style.borderColor='var(--border)';this.style.boxShadow='0 0 16px rgba(249,115,22,0.12)'" onmouseout="this.style.borderColor='var(--border)';this.style.boxShadow='none'"><div class="mission-card-icon" style="background:var(--bg3); border-color:rgba(249,115,22,0.2); width:34px; height:34px; font-size:15px; margin-bottom:10px;">◫</div><h3 style="font-size:13px; margin-bottom:5px;">Never lose track of a day</h3><p style="font-size:12px;">Every trading day logged — wins, losses, and flat days in a clean monthly grid.</p></div>
+          <div class="mission-card" style="background:var(--bg4); border-color:var(--border); padding:16px;" onmouseover="this.style.borderColor='var(--border)';this.style.boxShadow='0 0 16px rgba(249,115,22,0.12)'" onmouseout="this.style.borderColor='var(--border)';this.style.boxShadow='none'"><div class="mission-card-icon" style="background:var(--bg3); border-color:rgba(249,115,22,0.2); width:34px; height:34px; font-size:15px; margin-bottom:10px;">↗</div><h3 style="font-size:13px; margin-bottom:5px;">Weekly breakdowns built in</h3><p style="font-size:12px;">See your total P&L and days traded for each week at a glance.</p></div>
+          <div class="mission-card" style="background:var(--bg4); border-color:var(--border); padding:16px;" onmouseover="this.style.borderColor='var(--border)';this.style.boxShadow='0 0 16px rgba(249,115,22,0.12)'" onmouseout="this.style.borderColor='var(--border)';this.style.boxShadow='none'"><div class="mission-card-icon" style="background:var(--bg3); border-color:rgba(249,115,22,0.2); width:34px; height:34px; font-size:15px; margin-bottom:10px;">$</div><h3 style="font-size:13px; margin-bottom:5px;">Monthly stats at the top</h3><p style="font-size:12px;">Payouts, spending, profit factor, and days traded — all summarized above the calendar.</p></div>
+        </div>
+      </div>
+      <div class="feat-right" style="display:flex; flex-direction:column; gap:0; position:relative; padding-bottom:40px;">
+
+        <!-- MAIN: Calendar card -->
+        <div style="position:relative; z-index:2; background:#0d0d0d; border:1px solid rgba(255,255,255,0.09); border-radius:16px; overflow:hidden; font-size:12px;
+          transition:border-color 0.3s ease, box-shadow 0.3s ease; cursor:default;"
+          onmouseover="this.style.borderColor='rgba(249,115,22,0.35)';this.style.boxShadow='0 0 32px rgba(249,115,22,0.1)'"
+          onmouseout="this.style.borderColor='rgba(255,255,255,0.09)';this.style.boxShadow='none'">
+
+          <!-- Header -->
+          <div style="padding:14px 18px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.06); background:rgba(255,255,255,0.02);">
+            <div>
+              <div style="font-size:15px; font-weight:800; color:#fff;">Calendar</div>
+              <div style="font-size:10px; color:rgba(255,255,255,0.35); margin-top:2px;">Last updated: Just Now</div>
+            </div>
+            <button style="background:linear-gradient(135deg,#ef4444,#f97316);color:#fff;border:none;border-radius:8px;padding:6px 14px;font-size:11px;font-weight:700;cursor:pointer;">Sync Data</button>
+          </div>
+
+          <!-- Nav + stat cards -->
+          <div style="padding:12px 14px 8px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+              <div style="display:flex; align-items:center; gap:10px;">
+                <span style="font-size:14px; color:rgba(255,255,255,0.4); cursor:pointer;">‹</span>
+                <span style="font-size:13px; font-weight:700; color:#fff;">April 2026</span>
+                <span style="font-size:14px; color:rgba(255,255,255,0.4); cursor:pointer;">›</span>
+              </div>
+              <div style="display:flex; gap:6px;">
+                <div style="background:rgba(249,115,22,0.15); border:1px solid rgba(249,115,22,0.3); border-radius:6px; padding:3px 10px; font-size:10px; font-weight:700; color:var(--orange);">Monthly</div>
+                <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:6px; padding:3px 10px; font-size:10px; color:rgba(255,255,255,0.4);">Yearly</div>
+              </div>
+            </div>
+            <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin-bottom:10px;">
+              <div style="background:#111; border:1px solid rgba(249,115,22,0.3); border-radius:8px; padding:8px 10px;">
+                <div style="font-size:8px; color:rgba(255,255,255,0.35); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:4px;">Total Payouts</div>
+                <div style="font-size:13px; font-weight:800; color:#00d97e;">$6,028</div>
+              </div>
+              <div style="background:#111; border:1px solid rgba(249,115,22,0.3); border-radius:8px; padding:8px 10px;">
+                <div style="font-size:8px; color:rgba(255,255,255,0.35); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:4px;">Total Spending</div>
+                <div style="font-size:13px; font-weight:800; color:#ef4444;">$1,904</div>
+              </div>
+              <div style="background:#111; border:1px solid rgba(249,115,22,0.3); border-radius:8px; padding:8px 10px;">
+                <div style="font-size:8px; color:rgba(255,255,255,0.35); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:4px;">Profit Factor</div>
+                <div style="font-size:13px; font-weight:800; color:#00d97e;">3.17</div>
+              </div>
+              <div style="background:#111; border:1px solid rgba(249,115,22,0.3); border-radius:8px; padding:8px 10px;">
+                <div style="font-size:8px; color:rgba(255,255,255,0.35); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:4px;">Days Traded</div>
+                <div style="font-size:13px; font-weight:800; color:#fff;">15</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Calendar grid -->
+          <div style="padding:0 14px 14px;">
+            <!-- Day headers -->
+            <div style="display:grid; grid-template-columns:repeat(7,1fr) 80px; gap:2px; margin-bottom:2px;">
+              <div style="font-size:9px; color:rgba(255,255,255,0.3); text-align:center; padding:4px 0;">Sun</div>
+              <div style="font-size:9px; color:rgba(255,255,255,0.3); text-align:center; padding:4px 0;">Mon</div>
+              <div style="font-size:9px; color:rgba(255,255,255,0.3); text-align:center; padding:4px 0;">Tue</div>
+              <div style="font-size:9px; color:rgba(255,255,255,0.3); text-align:center; padding:4px 0;">Wed</div>
+              <div style="font-size:9px; color:rgba(255,255,255,0.3); text-align:center; padding:4px 0;">Thu</div>
+              <div style="font-size:9px; color:rgba(255,255,255,0.3); text-align:center; padding:4px 0;">Fri</div>
+              <div style="font-size:9px; color:rgba(255,255,255,0.3); text-align:center; padding:4px 0;">Sat</div>
+              <div style="font-size:9px; color:rgba(255,255,255,0.3); text-align:right; padding:4px 4px 4px 0;">Week</div>
+            </div>
+            <!-- Row 1 -->
+            <div style="display:grid; grid-template-columns:repeat(7,1fr) 80px; gap:2px; margin-bottom:2px;">
+              <div style="background:#111; border-radius:4px; height:52px; padding:4px 5px;"><span style="font-size:9px; color:rgba(255,255,255,0.3);"></span></div>
+              <div style="background:#111; border-radius:4px; height:52px; padding:4px 5px;"></div>
+              <div style="background:#111; border-radius:4px; height:52px; padding:4px 5px;"></div>
+              <div style="background:#111; border-radius:4px; height:52px; padding:4px 5px;"></div>
+              <div style="background:rgba(180,30,30,0.55); border-radius:4px; height:52px; padding:4px 5px;"><span style="font-size:9px; color:rgba(255,255,255,0.4);">2</span><div style="font-size:10px; color:#ef4444; margin-top:2px;">$70</div></div>
+              <div style="background:#111; border-radius:4px; height:52px; padding:4px 5px;"><span style="font-size:9px; color:rgba(255,255,255,0.3);">3</span></div>
+              <div style="background:#111; border-radius:4px; height:52px; padding:4px 5px;"><span style="font-size:9px; color:rgba(255,255,255,0.3);">4</span></div>
+              <div style="background:#0d0d0d; border:1px solid rgba(249,115,22,0.15); border-radius:4px; height:52px; padding:4px 6px;"><div style="font-size:8px; color:rgba(255,255,255,0.3);">Wk 1</div><div style="font-size:11px; font-weight:700; color:#ef4444;">-$70</div><div style="font-size:8px; color:rgba(255,255,255,0.25);">1d</div></div>
+            </div>
+            <!-- Row 2 -->
+            <div style="display:grid; grid-template-columns:repeat(7,1fr) 80px; gap:2px; margin-bottom:2px;">
+              <div style="background:#111; border-radius:4px; height:52px; padding:4px 5px;"><span style="font-size:9px; color:rgba(255,255,255,0.3);">5</span></div>
+              <div style="background:rgba(20,120,60,0.55); border-radius:4px; height:52px; padding:4px 5px;"><span style="font-size:9px; color:rgba(255,255,255,0.4);">6</span><div style="font-size:10px; color:#00d97e; margin-top:2px;">$690</div></div>
+              <div style="background:rgba(180,30,30,0.55); border-radius:4px; height:52px; padding:4px 5px;"><span style="font-size:9px; color:rgba(255,255,255,0.4);">7</span><div style="font-size:10px; color:#ef4444; margin-top:2px;">$436</div></div>
+              <div style="background:#111; border-radius:4px; height:52px; padding:4px 5px;"><span style="font-size:9px; color:rgba(255,255,255,0.3);">8</span></div>
+              <div style="background:rgba(180,30,30,0.55); border-radius:4px; height:52px; padding:4px 5px;"><span style="font-size:9px; color:rgba(255,255,255,0.4);">9</span><div style="font-size:10px; color:#ef4444; margin-top:2px;">$218</div></div>
+              <div style="background:#111; border-radius:4px; height:52px; padding:4px 5px;"><span style="font-size:9px; color:rgba(255,255,255,0.3);">10</span></div>
+              <div style="background:#111; border-radius:4px; height:52px; padding:4px 5px;"><span style="font-size:9px; color:rgba(255,255,255,0.3);">11</span></div>
+              <div style="background:#0d0d0d; border:1px solid rgba(249,115,22,0.15); border-radius:4px; height:52px; padding:4px 6px;"><div style="font-size:8px; color:rgba(255,255,255,0.3);">Wk 2</div><div style="font-size:11px; font-weight:700; color:#00d97e;">+$36</div><div style="font-size:8px; color:rgba(255,255,255,0.25);">3d</div></div>
+            </div>
+            <!-- Row 3 -->
+            <div style="display:grid; grid-template-columns:repeat(7,1fr) 80px; gap:2px; margin-bottom:2px;">
+              <div style="background:#111; border-radius:4px; height:52px; padding:4px 5px;"><span style="font-size:9px; color:rgba(255,255,255,0.3);">12</span></div>
+              <div style="background:rgba(20,120,60,0.55); border-radius:4px; height:52px; padding:4px 5px;"><span style="font-size:9px; color:rgba(255,255,255,0.4);">13</span><div style="font-size:10px; color:#00d97e; margin-top:2px;">$1,674</div></div>
+              <div style="background:#111; border-radius:4px; height:52px; padding:4px 5px;"><span style="font-size:9px; color:rgba(255,255,255,0.3);">14</span></div>
+              <div style="background:rgba(180,30,30,0.55); border-radius:4px; height:52px; padding:4px 5px;"><span style="font-size:9px; color:rgba(255,255,255,0.4);">15</span><div style="font-size:10px; color:#ef4444; margin-top:2px;">$218</div></div>
+              <div style="background:#111; border-radius:4px; height:52px; padding:4px 5px;"><span style="font-size:9px; color:rgba(255,255,255,0.3);">16</span></div>
+              <div style="background:#111; border-radius:4px; height:52px; padding:4px 5px;"><span style="font-size:9px; color:rgba(255,255,255,0.3);">17</span></div>
+              <div style="background:#111; border-radius:4px; height:52px; padding:4px 5px;"><span style="font-size:9px; color:rgba(255,255,255,0.3);">18</span></div>
+              <div style="background:#0d0d0d; border:1px solid rgba(249,115,22,0.15); border-radius:4px; height:52px; padding:4px 6px;"><div style="font-size:8px; color:rgba(255,255,255,0.3);">Wk 3</div><div style="font-size:11px; font-weight:700; color:#00d97e;">+$1,456</div><div style="font-size:8px; color:rgba(255,255,255,0.25);">2d</div></div>
+            </div>
+            <!-- Row 4 -->
+            <div style="display:grid; grid-template-columns:repeat(7,1fr) 80px; gap:2px; margin-bottom:2px;">
+              <div style="background:#111; border-radius:4px; height:52px; padding:4px 5px;"><span style="font-size:9px; color:rgba(255,255,255,0.3);">19</span></div>
+              <div style="background:rgba(20,120,60,0.55); border-radius:4px; height:52px; padding:4px 5px;"><span style="font-size:9px; color:rgba(255,255,255,0.4);">20</span><div style="font-size:10px; color:#00d97e; margin-top:2px;">$178</div></div>
+              <div style="background:rgba(20,120,60,0.55); border-radius:4px; height:52px; padding:4px 5px;"><span style="font-size:9px; color:rgba(255,255,255,0.4);">21</span><div style="font-size:10px; color:#00d97e; margin-top:2px;">$1,028</div></div>
+              <div style="background:rgba(20,120,60,0.55); border-radius:4px; height:52px; padding:4px 5px;"><span style="font-size:9px; color:rgba(255,255,255,0.4);">22</span><div style="font-size:10px; color:#00d97e; margin-top:2px;">$608</div></div>
+              <div style="background:rgba(180,30,30,0.55); border-radius:4px; height:52px; padding:4px 5px;"><span style="font-size:9px; color:rgba(255,255,255,0.4);">23</span><div style="font-size:10px; color:#ef4444; margin-top:2px;">$376</div></div>
+              <div style="background:#111; border-radius:4px; height:52px; padding:4px 5px;"><span style="font-size:9px; color:rgba(255,255,255,0.3);">24</span></div>
+              <div style="background:#111; border-radius:4px; height:52px; padding:4px 5px;"><span style="font-size:9px; color:rgba(255,255,255,0.3);">25</span></div>
+              <div style="background:#0d0d0d; border:1px solid rgba(249,115,22,0.15); border-radius:4px; height:52px; padding:4px 6px;"><div style="font-size:8px; color:rgba(255,255,255,0.3);">Wk 4</div><div style="font-size:11px; font-weight:700; color:#00d97e;">+$1,082</div><div style="font-size:8px; color:rgba(255,255,255,0.25);">4d</div></div>
+            </div>
+            <!-- Row 5 -->
+            <div style="display:grid; grid-template-columns:repeat(7,1fr) 80px; gap:2px;">
+              <div style="background:rgba(180,30,30,0.55); border-radius:4px; height:52px; padding:4px 5px;"><span style="font-size:9px; color:rgba(255,255,255,0.4);">26</span><div style="font-size:10px; color:#ef4444; margin-top:2px;">$109</div></div>
+              <div style="background:rgba(20,120,60,0.55); border-radius:4px; height:52px; padding:4px 5px;"><span style="font-size:9px; color:rgba(255,255,255,0.4);">27</span><div style="font-size:10px; color:#00d97e; margin-top:2px;">$897</div></div>
+              <div style="background:rgba(180,30,30,0.55); border-radius:4px; height:52px; padding:4px 5px;"><span style="font-size:9px; color:rgba(255,255,255,0.4);">28</span><div style="font-size:10px; color:#ef4444; margin-top:2px;">$109</div></div>
+              <div style="background:rgba(20,120,60,0.55); border-radius:4px; height:52px; padding:4px 5px;"><span style="font-size:9px; color:rgba(255,255,255,0.4);">29</span><div style="font-size:10px; color:#00d97e; margin-top:2px;">$190</div></div>
+              <div style="background:rgba(20,120,60,0.55); border-radius:4px; height:52px; padding:4px 5px;"><span style="font-size:9px; color:rgba(255,255,255,0.4);">30</span><div style="font-size:10px; color:#00d97e; margin-top:2px;">$1,131</div></div>
+              <div style="background:#111; border-radius:4px; height:52px; padding:4px 5px;"></div>
+              <div style="background:#111; border-radius:4px; height:52px; padding:4px 5px;"></div>
+              <div style="background:#0d0d0d; border:1px solid rgba(249,115,22,0.15); border-radius:4px; height:52px; padding:4px 6px;"><div style="font-size:8px; color:rgba(255,255,255,0.3);">Wk 5</div><div style="font-size:11px; font-weight:700; color:#00d97e;">+$1,620</div><div style="font-size:8px; color:rgba(255,255,255,0.25);">5d</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONSISTENCY CARD -->
+        <div style="margin-top:12px; position:relative; z-index:3; background:#0d0d0d; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; box-shadow:0 12px 32px rgba(0,0,0,0.8);
+          transition:border-color 0.3s ease, box-shadow 0.3s ease; cursor:default;"
+          onmouseover="this.style.borderColor='rgba(249,115,22,0.35)';this.style.boxShadow='0 0 24px rgba(249,115,22,0.12)'"
+          onmouseout="this.style.borderColor='rgba(255,255,255,0.09)';this.style.boxShadow='0 12px 32px rgba(0,0,0,0.8)'">
+          <div style="font-size:11px; font-weight:700; color:#f97316; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:20px;">Consistency</div>
+          <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:0; border-left:1px solid rgba(255,255,255,0.06);">
+            <div style="padding:0 24px; border-right:1px solid rgba(255,255,255,0.06);">
+              <div style="font-size:12px; color:rgba(255,255,255,0.45); margin-bottom:8px;">Current Green Streak</div>
+              <div style="font-size:26px; font-weight:800; color:#00d97e;">3 days</div>
+            </div>
+            <div style="padding:0 24px; border-right:1px solid rgba(255,255,255,0.06);">
+              <div style="font-size:12px; color:rgba(255,255,255,0.45); margin-bottom:8px;">Best Streak This Month</div>
+              <div style="font-size:26px; font-weight:800; color:#f97316;">4 days</div>
+            </div>
+            <div style="padding:0 24px; border-right:1px solid rgba(255,255,255,0.06);">
+              <div style="font-size:12px; color:rgba(255,255,255,0.45); margin-bottom:8px;">Days Traded</div>
+              <div style="font-size:26px; font-weight:800; color:#fff;">15</div>
+            </div>
+            <div style="padding:0 24px;">
+              <div style="font-size:12px; color:rgba(255,255,255,0.45); margin-bottom:8px;">Avg Daily P&amp;L</div>
+              <div style="font-size:26px; font-weight:800; color:#00d97e;">+$402</div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <section class="section section-alt" style="background:var(--bg); border:none; max-width:100%; padding:80px 48px;">
+    <div style="text-align:center; margin-bottom:64px;">
+      <div class="section-label">TAX CALCULATOR</div>
+      <h2 style="font-size:54px; font-weight:800; line-height:1.08; letter-spacing:-1px; margin-bottom:18px;"><span class="orange">Know What You Owe</span><br>Before You File</h2>
+      <p style="color:var(--text2); font-size:17px; max-width:520px; margin:0 auto; line-height:1.7;">Stop guessing what you'll owe at tax time. PropTracker calculates your full liability in real time, including deductions, self-employment tax, and quarterly estimates.</p>
+    </div>
+    <div class="feat-layout" style="max-width:1440px; margin:0 auto; gap:60px; align-items:center;">
+      <div class="feat-left">
+        <div style="display:flex; flex-direction:column; gap:14px; margin-bottom:32px; margin-top:-16px;">
+          <div class="mission-card" style="background:var(--bg4); border-color:var(--border); padding:20px 16px; display:flex; align-items:flex-start; gap:14px;">
+            <div class="mission-card-icon" style="background:var(--bg3); border-color:rgba(249,115,22,0.2); width:34px; height:34px; font-size:14px; flex-shrink:0;">$</div>
+            <div><h3 style="font-size:13px; margin-bottom:4px;">Challenge Fee Deductions</h3><p style="font-size:12px;">Automatically deducts evaluation fees as a business expense to lower your taxable income.</p></div>
+          </div>
+          <div class="mission-card" style="background:var(--bg4); border-color:var(--border); padding:20px 16px; display:flex; align-items:flex-start; gap:14px;">
+            <div class="mission-card-icon" style="background:var(--bg3); border-color:rgba(249,115,22,0.2); width:34px; height:34px; font-size:14px; flex-shrink:0;">◷</div>
+            <div><h3 style="font-size:13px; margin-bottom:4px;">Quarterly Estimates</h3><p style="font-size:12px;">See exactly how much to set aside each quarter so you're never caught off guard at tax time.</p></div>
+          </div>
+          <div class="mission-card" style="background:var(--bg4); border-color:var(--border); padding:20px 16px; display:flex; align-items:flex-start; gap:14px;">
+            <div class="mission-card-icon" style="background:var(--bg3); border-color:rgba(249,115,22,0.2); width:34px; height:34px; font-size:14px; flex-shrink:0;">◈</div>
+            <div><h3 style="font-size:13px; margin-bottom:4px;">State Tax Support</h3><p style="font-size:12px;">Accounts for your state of residence so your total liability is always accurate.</p></div>
+          </div>
+          <div class="mission-card" style="background:var(--bg4); border-color:var(--border); padding:20px 16px; display:flex; align-items:flex-start; gap:14px;">
+            <div class="mission-card-icon" style="background:var(--bg3); border-color:rgba(249,115,22,0.2); width:34px; height:34px; font-size:14px; flex-shrink:0;">↓</div>
+            <div><h3 style="font-size:13px; margin-bottom:4px;">Downloadable Tax Document</h3><p style="font-size:12px;">Export a clean tax summary to share with your CPA — organized and ready to file.</p></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="feat-right" style="position:relative; padding-bottom:60px; transition:transform 0.3s ease; cursor:default;"
+        onmouseover="this.style.transform='scale(1.02)'; this.querySelector('#tax-graphic').style.boxShadow='0 0 18px rgba(249,115,22,0.12)'; this.querySelector('#tax-graphic').style.borderColor='rgba(249,115,22,0.32)'; this.querySelector('#tax-mini').style.boxShadow='0 0 14px rgba(249,115,22,0.15)'; this.querySelector('#tax-mini').style.borderColor='rgba(249,115,22,0.35)'"
+        onmouseout="this.style.transform='scale(1)'; this.querySelector('#tax-graphic').style.boxShadow='none'; this.querySelector('#tax-graphic').style.borderColor='var(--border)'; this.querySelector('#tax-mini').style.boxShadow='0 12px 40px rgba(0,0,0,0.7)'; this.querySelector('#tax-mini').style.borderColor='rgba(249,115,22,0.2)'">
+
+        <!-- Floating bottom-right: complex tax summary card -->
+        <div id="tax-mini" style="position:absolute; top:-130px; right:15px; z-index:10; background:#111; border:1px solid rgba(249,115,22,0.2); border-radius:12px; padding:10px 12px; box-shadow:0 12px 40px rgba(0,0,0,0.7); width:170px; transition:box-shadow 0.3s ease, border-color 0.3s ease;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <div style="font-size:9px; font-weight:700; color:var(--orange); text-transform:uppercase; letter-spacing:0.07em;">Tax Summary</div>
+            <div style="display:flex; align-items:center; gap:4px;"><div style="width:5px; height:5px; border-radius:50%; background:#00d97e;"></div><span style="font-size:8px; color:var(--text3);">Live</span></div>
+          </div>
+          <!-- Mini donut-style ring -->
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px;">
+            <svg width="40" height="40" viewBox="0 0 52 52">
+              <circle cx="26" cy="26" r="20" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="6"/>
+              <circle cx="26" cy="26" r="20" fill="none" stroke="#ef4444" stroke-width="6" stroke-dasharray="75 125" stroke-dashoffset="31" stroke-linecap="round"/>
+              <circle cx="26" cy="26" r="20" fill="none" stroke="#f97316" stroke-width="6" stroke-dasharray="50 125" stroke-dashoffset="-44" stroke-linecap="round"/>
+              <circle cx="26" cy="26" r="20" fill="none" stroke="#00d97e" stroke-width="6" stroke-dasharray="31 125" stroke-dashoffset="-94" stroke-linecap="round"/>
+            </svg>
+            <div>
+              <div style="font-size:8px; color:var(--text3); margin-bottom:1px;">Total Owed</div>
+              <div style="font-size:15px; font-weight:800; color:#ef4444;">$9,004</div>
+              <div style="font-size:8px; color:var(--text3);">of $19,864 earned</div>
+            </div>
+          </div>
+          <!-- Legend rows -->
+          <div style="display:flex; flex-direction:column; gap:5px; border-top:1px solid rgba(255,255,255,0.06); padding-top:8px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div style="display:flex; align-items:center; gap:5px;"><div style="width:7px; height:7px; border-radius:2px; background:#ef4444; flex-shrink:0;"></div><span style="font-size:9px; color:var(--text2);">Federal Tax</span></div>
+              <span style="font-size:9px; font-weight:700; color:#ef4444;">$7,543</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div style="display:flex; align-items:center; gap:5px;"><div style="width:7px; height:7px; border-radius:2px; background:#f97316; flex-shrink:0;"></div><span style="font-size:9px; color:var(--text2);">Self-Employment</span></div>
+              <span style="font-size:9px; font-weight:700; color:#f97316;">$1,462</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div style="display:flex; align-items:center; gap:5px;"><div style="width:7px; height:7px; border-radius:2px; background:#00d97e; flex-shrink:0;"></div><span style="font-size:9px; color:var(--text2);">Deductions Saved</span></div>
+              <span style="font-size:9px; font-weight:700; color:#00d97e;">-$7,711</span>
+            </div>
+          </div>
+          <!-- Q2 due date pill -->
+          <div style="margin-top:8px; background:rgba(249,115,22,0.08); border:1px solid rgba(249,115,22,0.18); border-radius:7px; padding:5px 8px; display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:9px; color:var(--text2);">Q2 Due Date</span>
+            <span style="font-size:9px; font-weight:700; color:var(--orange);">Jun 15, 2026</span>
+          </div>
+        </div>
+        <div class="coach-mock" style="padding:0; overflow:hidden; box-shadow:none; background:#0d0d0d; transition:box-shadow 0.3s ease, border-color 0.3s ease;" id="tax-graphic">
+          <!-- Header -->
+          <div style="padding:14px 18px; border-bottom:1px solid rgba(255,255,255,0.07); display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <div style="font-size:13px; font-weight:700; color:var(--text);">Tax Calculator</div>
+              <div style="font-size:10px; color:var(--text3);">Last updated: Just Now</div>
+            </div>
+            <button style="background:linear-gradient(135deg,#ef4444,#f97316); color:#fff; border:none; border-radius:8px; padding:7px 14px; font-size:11px; font-weight:700; cursor:pointer;">↓ Download Tax Doc</button>
+          </div>
+
+          <!-- 3 key stat cards -->
+          <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(255,255,255,0.06); border-bottom:1px solid rgba(255,255,255,0.07);">
+            <div style="background:#0d0d0d; padding:14px 16px;">
+              <div style="font-size:9px; font-weight:700; color:var(--text3); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:6px;">Total Tax Owed</div>
+              <div class="tax-count" data-target="9004" style="font-size:18px; font-weight:800; color:#ef4444;">$0</div>
+            </div>
+            <div style="background:#0d0d0d; padding:14px 16px;">
+              <div style="font-size:9px; font-weight:700; color:var(--text3); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:6px;">Quarterly Payment</div>
+              <div class="tax-count" data-target="2251" style="font-size:18px; font-weight:800; color:var(--text);">$0</div>
+            </div>
+            <div style="background:#0d0d0d; padding:14px 16px;">
+              <div style="font-size:9px; font-weight:700; color:var(--text3); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:6px;">Set Aside / Payout</div>
+              <div class="tax-count" data-target="474" style="font-size:18px; font-weight:800; color:var(--orange);">$0</div>
+            </div>
+          </div>
+
+          <!-- Tax breakdown animated bars -->
+          <div style="padding:16px 18px; border-bottom:1px solid rgba(255,255,255,0.07);">
+            <div style="font-size:10px; font-weight:700; color:var(--orange); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:14px;">Tax Breakdown</div>
+            <div style="display:flex; flex-direction:column; gap:10px;">
+              <div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
+                  <span style="font-size:11px; color:var(--text2);">Self-Employment Tax</span>
+                  <span class="tax-count" data-target="1462" style="font-size:11px; font-weight:700; color:#ef4444;">$0</span>
+                </div>
+                <div style="height:5px; background:rgba(255,255,255,0.07); border-radius:3px; overflow:hidden;">
+                  <div class="tax-bar" data-width="16" style="height:100%; width:0%; background:#ef4444; border-radius:3px; transition:width 1.2s ease;"></div>
+                </div>
+              </div>
+              <div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
+                  <span style="font-size:11px; color:var(--text2);">Federal Income Tax</span>
+                  <span class="tax-count" data-target="7543" style="font-size:11px; font-weight:700; color:#ef4444;">$0</span>
+                </div>
+                <div style="height:5px; background:rgba(255,255,255,0.07); border-radius:3px; overflow:hidden;">
+                  <div class="tax-bar" data-width="84" style="height:100%; width:0%; background:linear-gradient(90deg,#ef4444,#f97316); border-radius:3px; transition:width 1.4s ease;"></div>
+                </div>
+              </div>
+              <div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
+                  <span style="font-size:11px; color:var(--text2);">Challenge Fee Deductions Saved</span>
+                  <span style="font-size:11px; font-weight:700; color:#00d97e;">-$7,711</span>
+                </div>
+                <div style="height:5px; background:rgba(255,255,255,0.07); border-radius:3px; overflow:hidden;">
+                  <div class="tax-bar" data-width="70" style="height:100%; width:0%; background:#00d97e; border-radius:3px; transition:width 1.6s ease;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Breakdown table -->
+          <div style="padding:12px 18px;">
+            <div style="display:flex; flex-direction:column; gap:0;">
+              <div style="display:flex; justify-content:space-between; padding:7px 0; border-bottom:1px solid rgba(255,255,255,0.05); font-size:11px;"><span style="color:var(--text2);">Gross Prop Income</span><span style="color:#00d97e; font-weight:700;">$19,864</span></div>
+              <div style="display:flex; justify-content:space-between; padding:7px 0; border-bottom:1px solid rgba(255,255,255,0.05); font-size:11px;"><span style="color:var(--text2);">Challenge Fees Deduction</span><span style="color:#ef4444; font-weight:700;">-$7,711</span></div>
+              <div style="display:flex; justify-content:space-between; padding:7px 0; border-bottom:1px solid rgba(255,255,255,0.05); font-size:11px;"><span style="color:var(--orange); font-weight:700;">Net Prop Income</span><span style="color:var(--orange); font-weight:700;">$9,554</span></div>
+              <div style="display:flex; justify-content:space-between; padding:7px 0; font-size:11px;"><span style="color:var(--orange); font-weight:700;">Total Taxable Income</span><span style="color:var(--text); font-weight:700;">$58,323</span></div>
+            </div>
+          </div>
+
+          <!-- Disclaimer -->
+          <div style="margin:0 14px 14px; background:rgba(249,115,22,0.05); border:1px solid rgba(249,115,22,0.12); border-radius:8px; padding:8px 12px; font-size:10px; color:var(--text3); line-height:1.5;">
+            ⚠ Estimate for educational purposes only. Consult a qualified CPA before filing.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function() {
+      const graphic = document.getElementById('tax-graphic');
+      if (!graphic) return;
+      let animated = false;
+      function animateTax() {
+        if (animated) return;
+        animated = true;
+        // Animate bars
+        graphic.querySelectorAll('.tax-bar').forEach(bar => {
+          bar.style.width = bar.dataset.width + '%';
+        });
+        // Count up numbers
+        graphic.querySelectorAll('.tax-count').forEach(el => {
+          const target = parseInt(el.dataset.target);
+          const duration = 1400;
+          const start = performance.now();
+          function step(now) {
+            const p = Math.min((now - start) / duration, 1);
+            const ease = p < 0.5 ? 2*p*p : -1+(4-2*p)*p;
+            el.textContent = '$' + Math.round(ease * target).toLocaleString();
+            if (p < 1) requestAnimationFrame(step);
+          }
+          requestAnimationFrame(step);
+        });
+      }
+      const observer = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) animateTax();
+      }, { threshold: 0.3 });
+      observer.observe(graphic);
+    })();
+  </script>
+
+  <!-- REPORTS -->
+  <section class="section">
+    <div class="reports-header-text">
+      <div class="section-label">▦ REPORTS</div>
+      <h2>Your trading, <span class="orange">on paper.</span></h2>
+      <p>Six deep-dive reports that tell you exactly how good you really are — capital efficiency, win rate, profit factor, risk, accountability, and growth. Share the ones that make you proud.</p>
+    </div>
+    <div class="reports-mock">
+      <div class="report-tabs">
+        <div class="report-tab">Capital Efficiency</div>
+        <div class="report-tab active">Performance Overview</div>
+        <div class="report-tab">Risk Analysis</div>
+        <div class="report-tab">Trading Efficiency</div>
+        <div class="report-tab">Accountability</div>
+        <div class="report-tab">Growth Tracker</div>
+      </div>
+      <div class="report-body">
+        <div class="report-title">Performance Overview</div>
+        <div class="report-sub">Your best "brag sheet" — shareable snapshot</div>
+        <div class="report-cards">
+          <div class="report-card green-card">
+            <div class="rc-label">Total P&amp;L</div>
+            <div class="rc-val green">+$4,854</div>
+            <div class="rc-sub">6 trades</div>
+          </div>
+          <div class="report-card dark-card donut-card">
+            <div class="rc-label center">Win Rate</div>
+            <div class="donut-wrap">
+              <div class="donut-ring">
+                <div class="donut-inner">67%</div>
+              </div>
+            </div>
+            <div class="pf-badge">Excellent</div>
+          </div>
+          <div class="report-card dark-card">
+            <div class="rc-label">Profit Factor</div>
+            <div class="rc-val green large">239.9x</div>
+            <div class="pf-badge">Excellent</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-tag">START FOR FREE</div>
+    <h2>The edge every <span class="orange">prop trader needs.</span></h2>
+    <button class="btn-primary btn-large">Start Free Trial</button>
+    <div class="cta-sub">No credit card required</div>
+    <div class="stats-trio">
+      <div class="trio-stat"><div class="num">18,000+</div><div class="lbl">Rules monitored</div></div>
+      <div class="trio-stat"><div class="num">3,000+</div><div class="lbl">Accounts tracked</div></div>
+      <div class="trio-stat"><div class="num">9+</div><div class="lbl">Prop firms</div></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo" style="display:flex; align-items:center; margin-bottom:10px;">
+          <span style="font-family:'Bebas Neue',sans-serif; font-size:28px; color:#fff; letter-spacing:1px;">PROP</span>
+          <span style="font-family:'Bebas Neue',sans-serif; font-size:28px; background:linear-gradient(90deg,#ef4444,#f97316); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; letter-spacing:1px;">DESK</span>
+        </div>
+        <div class="footer-desc">The all in one platform for funded traders<br><span style="display:inline-block;margin-top:6px;color:rgba(255,255,255,0.35);font-size:15px;line-height:1.7;">Track rules &middot; Monitor drawdowns<br>Log payouts &middot; Analyze performance</span></div>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="login.html">Log In</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="features.html">Features</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="tos.html">Terms of Service</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="about.html">Contact</a>
+        <a href="partners.html">Partners</a>
+      </div>
+    </div>
+    <div class="footer-disclaimer">
+      <div class="disc-title">Risk Disclosure:</div>
+      Futures and forex trading contains substantial risk and is not for every investor. An investor could potentially lose all or more than the initial investment. Risk capital is money that can be lost without jeopardizing one's financial security or lifestyle. Only risk capital should be used for trading and only those with sufficient risk capital should consider trading. Past performance is not necessarily indicative of future results.
+      <div class="disc-title">Hypothetical Performance Disclosure:</div>
+      Hypothetical performance results have inherent limitations. No representation is being made that any account will achieve profits or losses similar to those shown. Hypothetical trading does not involve financial risk, and no hypothetical trading record can completely account for the impact of financial risk of actual trading.
+    </div>
+  </footer>
+
+  <script>
+    // ── PNL Chart Animation ──
+    const canvas = document.getElementById('pnl-chart');
+    const label = document.getElementById('pnl-label');
+    let chartAnimated = false;
+
+    function drawChart(progressOverride) {
+      const dpr = window.devicePixelRatio || 1;
+      const container = canvas.parentElement;
+      const W = container.offsetWidth || 600;
+      const H = 130;
+      canvas.width = W * dpr;
+      canvas.height = H * dpr;
+      canvas.style.width = W + 'px';
+      canvas.style.height = H + 'px';
+      const ctx = canvas.getContext('2d');
+      ctx.scale(dpr, dpr);
+
+      const rawPts = [
+        0.00, 0.01, 0.04, 0.06, 0.09, 0.13, 0.16, 0.22,
+        0.27, 0.33, 0.40, 0.48, 0.55, 0.58, 0.63, 0.68,
+        0.73, 0.78, 0.82, 0.87, 0.92, 0.96, 1.00
+      ];
+      const maxVal = 11563;
+      const padL = 36, padR = 8, padT = 8, padB = 18;
+      const chartW = W - padL - padR;
+      const chartH = H - padT - padB;
+
+      const pts = rawPts.map((v, i) => ({
+        x: padL + (i / (rawPts.length - 1)) * chartW,
+        y: padT + (1 - v) * chartH
+      }));
+
+      // If already animated, just draw final state immediately
+      if (progressOverride === 1) {
+        renderFrame(ctx, pts, rawPts, 1, chartH, padT, padL, maxVal, W);
+        label.textContent = '+$11,563';
+        return;
+      }
+
+      const duration = 2400;
+      let startTime = null;
+
+      function easeInOut(t) {
+        return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+      }
+
+      function animate(timestamp) {
+        if (!startTime) startTime = timestamp;
+        const p = Math.min(easeInOut((timestamp - startTime) / duration), 1);
+        renderFrame(ctx, pts, rawPts, p, chartH, padT, padL, maxVal, W);
+
+        const fullIdx = Math.floor(p * (rawPts.length - 1));
+        const frac = p * (rawPts.length - 1) - fullIdx;
+        const v0 = rawPts[Math.min(fullIdx, rawPts.length - 1)];
+        const v1 = rawPts[Math.min(fullIdx + 1, rawPts.length - 1)];
+        const currentVal = Math.round((v0 + (v1 - v0) * frac) * maxVal);
+        label.textContent = '+$' + currentVal.toLocaleString();
+
+        if (p < 1) {
+          requestAnimationFrame(animate);
+        } else {
+          chartAnimated = true;
+          label.textContent = '+$11,563';
+        }
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    function renderFrame(ctx, pts, rawPts, progress, chartH, padT, padL, maxVal, W) {
+      const padR = 8;
+      ctx.clearRect(0, 0, W, 130);
+
+      // Dashed baseline
+      ctx.setLineDash([4, 4]);
+      ctx.strokeStyle = 'rgba(255,255,255,0.07)';
+      ctx.lineWidth = 0.5;
+      ctx.beginPath();
+      ctx.moveTo(padL, padT + chartH);
+      ctx.lineTo(W - padR, padT + chartH);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      const maxIdx = progress * (pts.length - 1);
+      const fullIdx = Math.floor(maxIdx);
+      const frac = maxIdx - fullIdx;
+
+      const endPt = fullIdx >= pts.length - 1
+        ? pts[pts.length - 1]
+        : {
+            x: pts[fullIdx].x + (pts[fullIdx + 1].x - pts[fullIdx].x) * frac,
+            y: pts[fullIdx].y + (pts[fullIdx + 1].y - pts[fullIdx].y) * frac
+          };
+
+      const visiblePts = [...pts.slice(0, fullIdx + 1), endPt];
+
+      // Fill
+      const grad = ctx.createLinearGradient(0, padT, 0, padT + chartH);
+      grad.addColorStop(0, 'rgba(0,217,126,0.28)');
+      grad.addColorStop(1, 'rgba(0,217,126,0)');
+      ctx.beginPath();
+      ctx.moveTo(visiblePts[0].x, visiblePts[0].y);
+      visiblePts.forEach(p => ctx.lineTo(p.x, p.y));
+      ctx.lineTo(endPt.x, padT + chartH);
+      ctx.lineTo(padL, padT + chartH);
+      ctx.closePath();
+      ctx.fillStyle = grad;
+      ctx.fill();
+
+      // Line
+      ctx.beginPath();
+      ctx.moveTo(visiblePts[0].x, visiblePts[0].y);
+      visiblePts.forEach(p => ctx.lineTo(p.x, p.y));
+      ctx.strokeStyle = '#00d97e';
+      ctx.lineWidth = 2.2;
+      ctx.lineJoin = 'round';
+      ctx.stroke();
+
+      // Dot
+      ctx.beginPath();
+      ctx.arc(endPt.x, endPt.y, 4, 0, Math.PI * 2);
+      ctx.fillStyle = '#00d97e';
+      ctx.fill();
+    }
+
+    // Only trigger animation once when section is in view
+    const chartObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => drawChart(0), 200);
+        } else {
+          // Reset label when out of view so it's ready to animate again
+          label.textContent = '+$0';
+          chartAnimated = false;
+        }
+      });
+    }, { threshold: 0.3 });
+
+    if (canvas) chartObs.observe(canvas);
+
+    // On resize, redraw final state if already animated, else do nothing
+    window.addEventListener('resize', () => {
+      if (canvas && chartAnimated) drawChart(1);
+    });
+
+    // ── ROI Bar Animation ──
+    const barObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.roi-bar').forEach(bar => {
+            bar.style.transition = 'none';
+            bar.style.width = '0%';
+            requestAnimationFrame(() => {
+              bar.style.transition = bar.style.transition || '';
+              bar.style.transition = `width 1.4s cubic-bezier(0.4,0,0.2,1) ${bar.dataset.delay || '0s'}`;
+              requestAnimationFrame(() => { bar.style.width = bar.dataset.width; });
+            });
+          });
+        } else {
+          entry.target.querySelectorAll('.roi-bar').forEach(bar => {
+            bar.style.transition = 'none';
+            bar.style.width = '0%';
+          });
+        }
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('.payout-graphic-card').forEach(card => {
+      barObs.observe(card);
+    });
+  </script>
+
+  <script>
+    // ── Typewriter Animation ──
+    const journalTexts = [
+      { id: 'journal-text-1', text: 'Waited patiently for the setup. Entered on confirmation, held through the first pullback. Took profit at target — no early exit.', delay: 0 },
+      { id: 'journal-text-2', text: 'Jumped in after the loss. No setup. Just wanted to make it back. Knew it was wrong while doing it.', delay: 900 }
+    ];
+
+    function typeWriter(el, text, speed, onDone) {
+      el.textContent = '';
+      let i = 0;
+      const cursor = document.createElement('span');
+      cursor.textContent = '|';
+      cursor.style.cssText = 'color:#f97316;animation:twblink 0.7s step-end infinite;margin-left:1px;';
+      el.appendChild(cursor);
+      const interval = setInterval(() => {
+        el.insertBefore(document.createTextNode(text[i]), cursor);
+        i++;
+        if (i >= text.length) {
+          clearInterval(interval);
+          setTimeout(() => { cursor.remove(); if (onDone) onDone(); }, 500);
+        }
+      }, speed);
+    }
+
+    function startJournalTypewriter() {
+      journalTexts.forEach(({ id, text, delay }) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.textContent = '';
+        setTimeout(() => typeWriter(el, text, 18, null), delay);
+      });
+    }
+
+    const twStyle = document.createElement('style');
+    twStyle.textContent = '@keyframes twblink { 0%,100%{opacity:1} 50%{opacity:0} }';
+    document.head.appendChild(twStyle);
+
+    const journalObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          startJournalTypewriter();
+        } else {
+          journalTexts.forEach(({ id }) => {
+            const el = document.getElementById(id);
+            if (el) el.textContent = '';
+          });
+        }
+      });
+    }, { threshold: 0.4 });
+
+    const journalMock = document.querySelector('.journal-mock');
+    if (journalMock) journalObs.observe(journalMock);
+  </script>
+</body>
+</html>
+
+<script>
+function switchTab(id) {
+  document.querySelectorAll('.tools-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tools-panel').forEach(p => p.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  document.getElementById('tab-' + id).classList.add('active');
+}
+</script>
