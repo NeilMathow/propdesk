@@ -79,7 +79,7 @@
       <p>Start tracking your prop firms for free</p>
     </div>
 
-    <div id="alert" class="alert"></div>
+    <div id="alert" class="alert" style="display:none;"></div>
 
     <button class="btn-google" type="button" onclick="signUpWithGoogle()">
       <svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
@@ -212,8 +212,9 @@
         btn.disabled = false;
         btn.innerHTML = 'Create Account';
       } else {
-        showAlert('Account created! Check your email to confirm your account.', 'success');
-        btn.innerHTML = '✓ Account Created';
+        // Sign in immediately after signup (works when email confirmation is off)
+        await _supabase.auth.signInWithPassword({ email, password });
+        window.location.replace('index.html');
       }
     }
 
