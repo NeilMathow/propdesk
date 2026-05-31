@@ -104,9 +104,9 @@
       <a href="pricing.html">Pricing</a>
       <a href="features.html">Features</a>
     </div>
-    <div class="nav-right">
+    <div class="nav-right" id="nav-right">
       <button class="btn-login" onclick="window.location.href='login.html'">Log In</button>
-      <button class="btn-trial" onclick="window.location.href='signup.html'">Start Free Trial</button>
+      <button class="btn-trial" onclick="window.location.href='signup.html'">Get Started</button>
     </div>
   </nav>
 
@@ -277,5 +277,45 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    (function() {
+      const { createClient } = supabase;
+      const _supabase = createClient(
+        'https://klwdnnotnehjgafkatwm.supabase.co',
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtsd2Rubm90bmVoamdhZmthdHdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAxNzIzMjUsImV4cCI6MjA5NTc0ODMyNX0.JWzre0ERniU1O75evSWITUd9Oorax5Kj0Qwvlo0TjkI'
+      );
+      _supabase.auth.getSession().then(({ data: { session } }) => {
+        const navRight = document.getElementById('nav-right');
+        if (!navRight) return;
+        if (session && session.user) {
+          const user = session.user;
+          const isGoogle = user.app_metadata?.provider === 'google';
+          const name = user.user_metadata?.first_name || user.user_metadata?.full_name?.split(' ')[0] || user.email.split('@')[0];
+          const avatar = isGoogle
+            ? `<img src="${user.user_metadata.avatar_url}" style="width:32px;height:32px;border-radius:50%;border:2px solid rgba(249,115,22,0.4);" />`
+            : '';
+          navRight.innerHTML = `
+            <div style="display:flex;align-items:center;gap:10px;">
+              ${avatar}
+              <span style="font-size:14px;font-weight:600;color:#fff;">${name}</span>
+              <button onclick="window.signOut()" style="
+                background:none;border:1px solid rgba(255,255,255,0.15);
+                color:rgba(255,255,255,0.5);border-radius:8px;
+                padding:7px 14px;font-size:13px;cursor:pointer;
+                font-family:inherit;transition:all 0.2s;
+              " onmouseover="this.style.borderColor='#f97316';this.style.color='#f97316'"
+                 onmouseout="this.style.borderColor='rgba(255,255,255,0.15)';this.style.color='rgba(255,255,255,0.5)'">
+                Log Out
+              </button>
+            </div>`;
+        }
+      });
+      window.signOut = async function() {
+        await _supabase.auth.signOut();
+        window.location.reload();
+      };
+    })();
+  </script>
 </body>
 </html>
