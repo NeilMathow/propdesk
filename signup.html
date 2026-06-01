@@ -135,62 +135,107 @@
   </div>
 
   <script>
-    const { createClient } = supabase;
-    const _supabase = createClient(
-      'https://klwdnnotnehjgafkatwm.supabase.co',
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtsd2Rubm90bmVoamdhZmthdHdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAxNzIzMjUsImV4cCI6MjA5NTc0ODMyNX0.JWzre0ERniU1O75evSWITUd9Oorax5Kj0Qwvlo0TjkI'
-    );
+    // ── Init Supabase ──
+    let _supabase;
+    try {
+      const { createClient } = supabase;
+      _supabase = createClient(
+        'https://klwdnnotnehjgafkatwm.supabase.co',
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtsd2Rubm90bmVoamdhZmthdHdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAxNzIzMjUsImV4cCI6MjA5NTc0ODMyNX0.JWzre0ERniU1O75evSWITUd9Oorax5Kj0Qwvlo0TjkI'
+      );
+    } catch(err) {
+      console.error('Supabase failed to init:', err);
+    }
 
+    // ── Eye icons ──
     const eyeIcon = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`;
     const eyeOffIcon = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>`;
-    const pwBtn = document.getElementById('su-pw-btn');
-    pwBtn.innerHTML = eyeIcon;
-    pwBtn.addEventListener('click', () => {
-      const i = document.getElementById('su-pw');
-      i.type = i.type === 'password' ? 'text' : 'password';
-      pwBtn.innerHTML = i.type === 'password' ? eyeIcon : eyeOffIcon;
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const pwBtn = document.getElementById('su-pw-btn');
+      if (pwBtn) {
+        pwBtn.innerHTML = eyeIcon;
+        pwBtn.addEventListener('click', () => {
+          const i = document.getElementById('su-pw');
+          i.type = i.type === 'password' ? 'text' : 'password';
+          pwBtn.innerHTML = i.type === 'password' ? eyeIcon : eyeOffIcon;
+        });
+      }
+
+      // Input listeners to clear errors
+      [['su-fname','fname-err'],['su-lname','lname-err'],['su-email','su-email-err'],['su-pw','su-pw-err']].forEach(([id,err]) => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('input', () => { clearError(id, err); hideAlert(); });
+      });
+
+      // Wire up the form directly (belt AND suspenders alongside onsubmit)
+      const form = document.getElementById('signup-form');
+      if (form) form.addEventListener('submit', handleSignup);
+
+      // Redirect if already logged in
+      if (_supabase) {
+        _supabase.auth.getSession().then(({ data: { session } }) => {
+          if (session) window.location.href = 'https://trackingprops.vercel.app/?autoLogin=1';
+        });
+      }
     });
 
+    // ── Alert helpers ──
     function showAlert(msg, type = 'error') {
       const el = document.getElementById('alert');
+      if (!el) return;
       el.textContent = msg;
       el.className = `alert alert-${type} visible`;
+      el.style.display = 'block';
     }
-    function hideAlert() { document.getElementById('alert').className = 'alert'; }
+    function hideAlert() {
+      const el = document.getElementById('alert');
+      if (el) { el.className = 'alert'; el.style.display = 'none'; }
+    }
 
+    // ── Field helpers ──
     function setError(inputId, errId, msg) {
-      document.getElementById(inputId).classList.add('invalid');
-      const e = document.getElementById(errId);
-      e.textContent = msg; e.classList.add('visible');
+      const input = document.getElementById(inputId);
+      const errEl = document.getElementById(errId);
+      if (input) input.classList.add('invalid');
+      if (errEl) { errEl.textContent = msg; errEl.classList.add('visible'); }
     }
     function clearError(inputId, errId) {
-      document.getElementById(inputId).classList.remove('invalid');
-      document.getElementById(errId).classList.remove('visible');
+      const input = document.getElementById(inputId);
+      const errEl = document.getElementById(errId);
+      if (input) input.classList.remove('invalid');
+      if (errEl) errEl.classList.remove('visible');
     }
 
-    [['su-fname','fname-err'],['su-lname','lname-err'],['su-email','su-email-err'],['su-pw','su-pw-err']].forEach(([id,err]) => {
-      document.getElementById(id).addEventListener('input', () => { clearError(id, err); hideAlert(); });
-    });
-
+    // ── Main signup handler ──
     async function handleSignup(e) {
       e.preventDefault();
       hideAlert();
-      const fname = document.getElementById('su-fname').value.trim();
-      const lname = document.getElementById('su-lname').value.trim();
-      const email = document.getElementById('su-email').value.trim();
+
+      if (!_supabase) {
+        showAlert('Connection error — please refresh and try again.');
+        return;
+      }
+
+      const fname    = document.getElementById('su-fname').value.trim();
+      const lname    = document.getElementById('su-lname').value.trim();
+      const email    = document.getElementById('su-email').value.trim();
       const password = document.getElementById('su-pw').value;
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const emailRx  = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       let valid = true;
 
-      if (!fname) { setError('su-fname','fname-err','First name is required'); valid = false; }
+      if (!fname)  { setError('su-fname','fname-err','First name is required'); valid = false; }
       else clearError('su-fname','fname-err');
-      if (!lname) { setError('su-lname','lname-err','Last name is required'); valid = false; }
+
+      if (!lname)  { setError('su-lname','lname-err','Last name is required'); valid = false; }
       else clearError('su-lname','lname-err');
-      if (!email) { setError('su-email','su-email-err','Email is required'); valid = false; }
-      else if (!emailRegex.test(email)) { setError('su-email','su-email-err','Enter a valid email'); valid = false; }
+
+      if (!email)              { setError('su-email','su-email-err','Email is required'); valid = false; }
+      else if (!emailRx.test(email)) { setError('su-email','su-email-err','Enter a valid email'); valid = false; }
       else clearError('su-email','su-email-err');
-      if (!password) { setError('su-pw','su-pw-err','Password is required'); valid = false; }
-      else if (password.length < 6) { setError('su-pw','su-pw-err','Password must be at least 6 characters'); valid = false; }
+
+      if (!password)           { setError('su-pw','su-pw-err','Password is required'); valid = false; }
+      else if (password.length < 6) { setError('su-pw','su-pw-err','Minimum 6 characters'); valid = false; }
       else clearError('su-pw','su-pw-err');
 
       if (!valid) return;
@@ -199,49 +244,49 @@
       btn.disabled = true;
       btn.innerHTML = '<div class="spinner"></div> Creating account…';
 
-      const { error } = await _supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          data: { first_name: fname, last_name: lname, full_name: `${fname} ${lname}` }
-        }
-      });
+      try {
+        // Step 1: Create account
+        const { data: signUpData, error: signUpError } = await _supabase.auth.signUp({
+          email,
+          password,
+          options: { data: { first_name: fname, last_name: lname, full_name: `${fname} ${lname}` } }
+        });
 
-      if (error) {
-        showAlert(error.message);
+        if (signUpError) {
+          showAlert(signUpError.message);
+          btn.disabled = false;
+          btn.innerHTML = 'Create Account';
+          return;
+        }
+
+        // Step 2: Auto login
+        const { data: signInData, error: signInError } = await _supabase.auth.signInWithPassword({ email, password });
+
+        if (signInError) {
+          showAlert('Account created! Check your email to confirm it, then log in.', 'success');
+          setTimeout(() => window.location.href = 'login.html', 3000);
+          return;
+        }
+
+        // Step 3: Success — send to pricing
+        window.location.href = 'pricing.html';
+
+      } catch (err) {
+        console.error('Signup error:', err);
+        showAlert('Something went wrong. Please try again.');
         btn.disabled = false;
         btn.innerHTML = 'Create Account';
-      } else {
-        // Sign in immediately after signup (works when email confirmation is off)
-        await _supabase.auth.signInWithPassword({ email, password });
-        redirectAfterLogin();
       }
     }
 
+    // ── Google OAuth ──
     async function signUpWithGoogle() {
+      if (!_supabase) return;
       await _supabase.auth.signInWithOAuth({
         provider: 'google',
-        options: { redirectTo: window.location.origin + '/login.html?googleCallback=1' }
+        options: { redirectTo: window.location.origin + '/pricing.html' }
       });
     }
-
-    // Check plan and redirect
-    async function redirectAfterLogin() {
-      const { data: { session } } = await _supabase.auth.getSession();
-      if (!session) return;
-      const { data: profile } = await _supabase
-        .from('profiles')
-        .select('plan, subscription_status')
-        .eq('id', session.user.id)
-        .single();
-      const hasPlan = profile && profile.plan && profile.plan !== 'none' && profile.subscription_status === 'active';
-      window.location.href = hasPlan ? 'https://trackingprops.vercel.app/?autoLogin=1' : 'pricing.html';
-    }
-
-    // Redirect if already logged in
-    _supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session) window.location.href = 'https://trackingprops.vercel.app/?autoLogin=1';
-    });
   </script>
 </body>
 </html>
