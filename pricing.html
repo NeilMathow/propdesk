@@ -112,7 +112,7 @@
         <li class="dim"><span class="ck">✕</span> Strategy Tracking</li>
         <li class="dim"><span class="ck">✕</span> Tax Calculator</li>
       </ul>
-      <button class="plan-btn outline">Get Started</button>
+      <button class="plan-btn outline" onclick="checkout('starter')">Get Started</button>
     </div>
 
     <!-- PRO (featured) -->
@@ -137,7 +137,7 @@
         <li><span class="ck">✓</span> Full Payout Tracker & ROI</li>
         <li><span class="ck">✓</span> 2-Year Trade History</li>
       </ul>
-      <button class="plan-btn gradient">Get Started</button>
+      <button class="plan-btn gradient" onclick="checkout('pro')">Get Started</button>
     </div>
 
     <!-- ELITE -->
@@ -163,7 +163,7 @@
         <li><span class="ck">✓</span> Full Trade History</li>
         <li><span class="ck">✓</span> Analytics & Deep Reports</li>
       </ul>
-      <button class="plan-btn outline">Get Started</button>
+      <button class="plan-btn outline" onclick="checkout('elite')">Get Started</button>
     </div>
 
   </div>
@@ -434,6 +434,38 @@
   .faq-item.open .faq-icon { transform: rotate(45deg); }
 </style>
 <script>
+// Stripe checkout
+const LINKS = {
+  starter: { monthly: 'https://buy.stripe.com/28EdR80PvggM1iGaRMds400', yearly: '' },
+  pro:     { monthly: 'https://buy.stripe.com/6oUfZg55Lc0w0eC4tods401', yearly: '' },
+  elite:   { monthly: 'https://buy.stripe.com/6oU3cueGlaWsd1o9NIds402', yearly: '' },
+};
+
+const { createClient } = supabase;
+const _supabaseCheckout = createClient(
+  'https://klwdnnotnehjgafkatwm.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtsd2Rubm90bmVoamdhZmthdHdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAxNzIzMjUsImV4cCI6MjA5NTc0ODMyNX0.JWzre0ERniU1O75evSWITUd9Oorax5Kj0Qwvlo0TjkI'
+);
+
+async function checkout(plan) {
+  const mode = document.getElementById('monthlyBtn').classList.contains('active') ? 'monthly' : 'yearly';
+  const link = LINKS[plan][mode];
+
+  if (!link) {
+    alert('This plan is coming soon!');
+    return;
+  }
+
+  const { data: { session } } = await _supabaseCheckout.auth.getSession();
+
+  if (!session) {
+    window.location.href = 'signup.html?plan=' + plan + '&billing=' + mode;
+    return;
+  }
+
+  window.location.href = link;
+}
+
 function toggleFaq(el) {
   el.parentElement.classList.toggle('open');
 }
