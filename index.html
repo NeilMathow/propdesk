@@ -1392,7 +1392,7 @@
         if (session && session.user) {
           const user = session.user;
           const isGoogle = user.app_metadata?.provider === 'google';
-          const name = user.user_metadata?.first_name || user.user_metadata?.full_name?.split(' ')[0] || user.email.split('@')[0];
+          const name = (user.user_metadata?.full_name || user.user_metadata?.name || '').split(' ')[0] || user.user_metadata?.first_name || user.email.split('@')[0];
           const avatar = isGoogle
             ? `<img src="${user.user_metadata.avatar_url}" style="width:32px;height:32px;border-radius:50%;border:2px solid rgba(249,115,22,0.4);" />`
             : '';
