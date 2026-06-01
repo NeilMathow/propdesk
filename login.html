@@ -225,6 +225,19 @@
       else showAlert('Password reset email sent! Check your inbox.', 'success');
     }
 
+    // ── Check plan and redirect accordingly ──
+    async function redirectAfterLogin() {
+      const { data: { session } } = await _supabase.auth.getSession();
+      if (!session) return;
+      const { data: profile } = await _supabase
+        .from('profiles')
+        .select('plan, subscription_status')
+        .eq('id', session.user.id)
+        .single();
+      const hasPlan = profile && profile.plan && profile.plan !== 'none' && profile.subscription_status === 'active';
+      window.location.href = hasPlan ? 'https://trackingprops.vercel.app/?autoLogin=1' : 'pricing.html';
+    }
+
     // ── Redirect if already logged in ──
     _supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) window.location.href = 'https://trackingprops.vercel.app/?autoLogin=1';
