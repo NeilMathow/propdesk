@@ -1386,7 +1386,7 @@
         'https://klwdnnotnehjgafkatwm.supabase.co',
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtsd2Rubm90bmVoamdhZmthdHdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAxNzIzMjUsImV4cCI6MjA5NTc0ODMyNX0.JWzre0ERniU1O75evSWITUd9Oorax5Kj0Qwvlo0TjkI'
       );
-      _supabase.auth.getSession().then(({ data: { session } }) => {
+      _supabase.auth.getSession().then(async ({ data: { session } }) => {
         const navRight = document.getElementById('nav-right');
         if (!navRight) return;
         if (session && session.user) {
@@ -1396,18 +1396,31 @@
           const avatar = isGoogle
             ? `<img src="${user.user_metadata.avatar_url}" style="width:32px;height:32px;border-radius:50%;border:2px solid rgba(249,115,22,0.4);" />`
             : '';
+
+          // Check if user has an active plan in Supabase
+          const { data: profile } = await _supabase
+            .from('profiles')
+            .select('plan, subscription_status')
+            .eq('id', user.id)
+            .single();
+
+          const hasPlan = profile && profile.plan && profile.plan !== 'none' && profile.subscription_status === 'active';
+          const dashboardUrl = hasPlan
+            ? 'https://trackingprops.vercel.app/?autoLogin=1'
+            : 'pricing.html';
+
           navRight.innerHTML = `
             <div style="display:flex;align-items:center;gap:10px;">
               ${avatar}
               <span style="font-size:14px;font-weight:600;color:#fff;">${name}</span>
-              <button onclick="window.location.href='https://trackingprops.vercel.app/?autoLogin=1'" style="
+              <button onclick="window.location.href='${dashboardUrl}'" style="
                 background:linear-gradient(135deg,#ef4444,#f97316);border:none;
                 color:#fff;border-radius:10px;
                 padding:10px 24px;font-size:15px;cursor:pointer;font-weight:700;
                 font-family:inherit;transition:all 0.2s;
               " onmouseover="this.style.opacity='0.85'"
                  onmouseout="this.style.opacity='1'">
-                Go to Dashboard
+                ${hasPlan ? 'Go to Dashboard' : 'Choose a Plan'}
               </button>
             </div>`;
         }
