@@ -1508,7 +1508,7 @@
       </div>
 
       <!-- RIGHT: Dashboard mock -->
-      <div>
+      <div style="min-width:0;overflow:hidden;">
       <style>
         @keyframes tickerScroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
         @keyframes pricePulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
@@ -1525,8 +1525,8 @@
         <div style="position:relative;z-index:1;background:#0a0a0a;border:1px solid rgba(255,255,255,0.1);border-radius:18px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,0.7),0 0 0 1px rgba(249,115,22,0.06);">
 
           <!-- TICKER TAPE -->
-          <div style="background:#111;border-bottom:1px solid rgba(255,255,255,0.06);overflow:hidden;height:34px;display:flex;align-items:center;">
-            <div class="st-ticker-inner" style="white-space:nowrap;">
+          <div style="background:#111;border-bottom:1px solid rgba(255,255,255,0.06);overflow:hidden;height:34px;display:flex;align-items:center;max-width:100%;">
+            <div class="st-ticker-inner" style="white-space:nowrap;flex-shrink:0;">
               <!-- duplicated for seamless loop -->
               <span style="display:inline-flex;align-items:center;gap:8px;padding:0 24px;font-size:11px;border-right:1px solid rgba(255,255,255,0.06);height:34px;"><span style="background:#ef4444;color:#fff;font-size:9px;font-weight:800;padding:1px 5px;border-radius:3px;">500</span><span style="color:rgba(255,255,255,0.8);font-weight:700;">ES | S&amp;P 500</span><span style="color:rgba(255,255,255,0.5);">5,619.3</span><span style="color:#00d97e;">+13.00 (+0.17%)</span></span>
               <span style="display:inline-flex;align-items:center;gap:8px;padding:0 24px;font-size:11px;border-right:1px solid rgba(255,255,255,0.06);height:34px;"><span style="background:#3b82f6;color:#fff;font-size:9px;font-weight:800;padding:1px 5px;border-radius:3px;">30</span><span style="color:rgba(255,255,255,0.8);font-weight:700;">YM | Dow Jones</span><span style="color:rgba(255,255,255,0.5);">41,177.8</span><span style="color:#00d97e;">+130.80 (+0.26%)</span></span>
