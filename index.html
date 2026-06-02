@@ -74,7 +74,7 @@
           <div class="hero-pill" onclick="scrollToSection('section-tax')" style="cursor:pointer;">Tax Calculator</div>
           <div class="hero-pill" onclick="scrollToSection('section-analytics')" style="cursor:pointer;">Analytics</div>
           <div class="hero-pill" onclick="scrollToSection('section-strategy')" style="cursor:pointer;">Strategy Tracking</div>
-          <div class="hero-pill">AI Insights</div>
+          <div class="hero-pill" onclick="scrollToSection('section-analytics')" style="cursor:pointer;">AI Insights</div>
         </div>
       </div>
 
@@ -426,24 +426,91 @@
       <div class="tools-panel" id="tab-strategy">
         <div class="tools-panel-left">
           <div class="tools-panel-label">STRATEGY TRACKING</div>
-          <h3>Know Which Setups<br>Actually Print</h3>
-          <p>Tag every trade by setup type and track performance across strategies. Know exactly which setups are profitable — and cut the ones draining your account.</p>
+          <h3>Trade Smarter With<br>Live Market Context</h3>
+          <p>Strategy Tracking gives you a full-screen charting environment with auto-detected volatility, live market session indicators, and a macro watchlist — all in one place.</p>
           <ul class="tools-bullets">
-            <li>Custom strategy & setup tags</li>
-            <li>P&L and win rate per strategy</li>
-            <li>Spot underperforming setups fast</li>
-            <li>Double down on what works</li>
+            <li>Live TradingView chart with full drawing tools</li>
+            <li>Auto-detected volatility: LOW / NORMAL / HIGH / EXTREME</li>
+            <li>Asia, London & New York session indicators</li>
+            <li>Macro watchlist + economic calendar</li>
           </ul>
-          
         </div>
         <div class="tools-panel-right">
-          <div class="tools-mock-card">
-            <div class="tools-mock-title">Strategy Performance</div>
-            <div style="display:flex;flex-direction:column;gap:8px;">
-              <div style="display:grid;grid-template-columns:1fr auto auto;gap:12px;padding:10px 12px;background:var(--bg3);border-radius:8px;align-items:center;border-left:3px solid var(--green);"><span style="font-size:13px;color:var(--text);">VWAP Bounce</span><span style="font-size:12px;color:var(--green);font-weight:700;">82% WR</span><span style="font-size:12px;color:var(--green);font-weight:700;">+$18,240</span></div>
-              <div style="display:grid;grid-template-columns:1fr auto auto;gap:12px;padding:10px 12px;background:var(--bg3);border-radius:8px;align-items:center;border-left:3px solid var(--orange);"><span style="font-size:13px;color:var(--text);">Opening Drive</span><span style="font-size:12px;color:var(--orange);font-weight:700;">67% WR</span><span style="font-size:12px;color:var(--green);font-weight:700;">+$9,800</span></div>
-              <div style="display:grid;grid-template-columns:1fr auto auto;gap:12px;padding:10px 12px;background:var(--bg3);border-radius:8px;align-items:center;border-left:3px solid var(--orange);"><span style="font-size:13px;color:var(--text);">Breakout Fade</span><span style="font-size:12px;color:var(--orange);font-weight:700;">58% WR</span><span style="font-size:12px;color:var(--green);font-weight:700;">+$4,120</span></div>
-              <div style="display:grid;grid-template-columns:1fr auto auto;gap:12px;padding:10px 12px;background:var(--bg3);border-radius:8px;align-items:center;border-left:3px solid var(--red);"><span style="font-size:13px;color:var(--text);">News Trade</span><span style="font-size:12px;color:var(--red);font-weight:700;">31% WR</span><span style="font-size:12px;color:var(--red);font-weight:700;">-$2,340</span></div>
+          <div class="tools-mock-card" style="padding:10px;gap:8px;display:flex;flex-direction:column;">
+            <!-- Session indicators row -->
+            <div style="display:flex;gap:6px;align-items:center;">
+              <div style="font-size:9px;font-weight:700;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-right:4px;">Sessions</div>
+              <div style="display:flex;align-items:center;gap:5px;background:rgba(0,217,126,0.12);border:1px solid rgba(0,217,126,0.3);border-radius:20px;padding:3px 10px;">
+                <div style="width:6px;height:6px;border-radius:50%;background:#00d97e;"></div>
+                <span style="font-size:10px;font-weight:700;color:#00d97e;">New York</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:5px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:3px 10px;">
+                <div style="width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.2);"></div>
+                <span style="font-size:10px;color:rgba(255,255,255,0.35);">London</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:5px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:3px 10px;">
+                <div style="width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.2);"></div>
+                <span style="font-size:10px;color:rgba(255,255,255,0.35);">Asia</span>
+              </div>
+            </div>
+            <!-- Chart mock with orange border/glow -->
+            <div style="border:1.5px solid #f97316;border-radius:10px;box-shadow:0 0 18px rgba(249,115,22,0.35),0 0 50px rgba(249,115,22,0.1);background:#0d0d0d;overflow:hidden;height:130px;position:relative;">
+              <!-- Fake candlestick chart -->
+              <svg viewBox="0 0 280 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+                <!-- Grid lines -->
+                <line x1="0" y1="30" x2="280" y2="30" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+                <line x1="0" y1="60" x2="280" y2="60" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+                <line x1="0" y1="90" x2="280" y2="90" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+                <!-- Price line -->
+                <polyline points="0,95 20,88 40,75 60,80 80,65 100,70 120,55 140,48 160,52 180,40 200,35 220,42 240,30 260,25 280,20" fill="none" stroke="#f97316" stroke-width="1.5" stroke-linejoin="round"/>
+                <!-- Gradient fill -->
+                <defs>
+                  <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#f97316" stop-opacity="0.15"/>
+                    <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <polygon points="0,95 20,88 40,75 60,80 80,65 100,70 120,55 140,48 160,52 180,40 200,35 220,42 240,30 260,25 280,20 280,120 0,120" fill="url(#chartFill)"/>
+                <!-- Symbol label -->
+                <text x="8" y="15" font-size="9" fill="rgba(255,255,255,0.5)" font-family="monospace">NQ · 15m</text>
+                <text x="230" y="15" font-size="9" fill="#00d97e" font-family="monospace">21,847</text>
+              </svg>
+            </div>
+            <!-- Volatility context bar -->
+            <div style="background:var(--bg3);border-radius:8px;padding:8px 10px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+                <span style="font-size:9px;font-weight:700;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.5px;">Volatility Context</span>
+                <span style="font-size:9px;font-weight:800;color:#f97316;background:rgba(249,115,22,0.12);border:1px solid rgba(249,115,22,0.25);padding:1px 7px;border-radius:10px;">HIGH</span>
+              </div>
+              <div style="background:rgba(255,255,255,0.07);border-radius:4px;height:6px;overflow:hidden;">
+                <div style="width:70%;height:100%;background:linear-gradient(90deg,#00d97e,#f97316);border-radius:4px;"></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;margin-top:4px;">
+                <span style="font-size:8px;color:rgba(255,255,255,0.25);">LOW</span>
+                <span style="font-size:8px;color:rgba(255,255,255,0.25);">NORMAL</span>
+                <span style="font-size:8px;color:var(--orange);">HIGH</span>
+                <span style="font-size:8px;color:rgba(255,255,255,0.25);">EXTREME</span>
+              </div>
+              <div style="font-size:8px;color:rgba(255,255,255,0.3);margin-top:3px;">VIX 22.4</div>
+            </div>
+            <!-- Macro watchlist -->
+            <div style="display:flex;flex-direction:column;gap:4px;">
+              <div style="font-size:9px;font-weight:700;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-bottom:2px;">Macro Watchlist</div>
+              <div style="display:grid;grid-template-columns:1fr auto auto;gap:6px;align-items:center;padding:5px 8px;background:var(--bg3);border-radius:6px;">
+                <span style="font-size:10px;color:rgba(255,255,255,0.7);">10Y Treasury</span>
+                <span style="font-size:10px;color:var(--text2);">4.42%</span>
+                <span style="font-size:10px;color:#ef4444;">▼ 0.03</span>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr auto auto;gap:6px;align-items:center;padding:5px 8px;background:var(--bg3);border-radius:6px;">
+                <span style="font-size:10px;color:rgba(255,255,255,0.7);">DXY</span>
+                <span style="font-size:10px;color:var(--text2);">104.2</span>
+                <span style="font-size:10px;color:#00d97e;">▲ 0.18</span>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr auto auto;gap:6px;align-items:center;padding:5px 8px;background:var(--bg3);border-radius:6px;">
+                <span style="font-size:10px;color:rgba(255,255,255,0.7);">Gold</span>
+                <span style="font-size:10px;color:var(--text2);">2,318</span>
+                <span style="font-size:10px;color:#00d97e;">▲ 4.2</span>
+              </div>
             </div>
           </div>
         </div>
@@ -464,7 +531,7 @@
         </div>
         <div class="tools-panel-right">
           <div class="tools-mock-card">
-            <div class="tools-mock-title">&#9889; AI Insights — Today</div>
+            <div class="tools-mock-title">AI Insights</div>
             <div style="display:flex;flex-direction:column;gap:10px;">
               <div style="background:var(--bg3);border-radius:8px;padding:12px;border-left:3px solid var(--orange);">
                 <div style="font-size:11px;font-weight:700;color:var(--orange);margin-bottom:6px;">TODAY'S VERDICT</div>
@@ -1388,39 +1455,192 @@
 
   <!-- STRATEGY TRACKING -->
   <section id="section-strategy" class="section section-alt" style="background:var(--bg); border:none; max-width:100%; padding:80px 48px;">
-    <div style="text-align:center; margin-bottom:64px;">
-      <div class="section-label">STRATEGY TRACKING</div>
-      <h2 style="font-size:54px; font-weight:800; line-height:1.08; letter-spacing:-1px; margin-bottom:18px;">Know Which Setups<br><span class="orange">Actually Print</span></h2>
-      <p style="color:var(--text2); font-size:17px; max-width:520px; margin:0 auto; line-height:1.7;">Tag every trade by setup type and track performance across strategies. Know exactly which setups are profitable — and cut the ones draining your account.</p>
-    </div>
-    <div style="max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr 1fr; gap:24px;">
-      <div class="mission-card" style="padding:28px;">
-        <div style="font-size:11px;font-weight:700;color:var(--orange);letter-spacing:.1em;margin-bottom:12px;">BREAKOUT SETUP</div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-          <div style="font-size:28px;font-weight:800;color:#00d97e;">+$8,432</div>
-          <div style="font-size:12px;color:var(--text3);background:rgba(0,217,126,0.1);border-radius:20px;padding:3px 10px;">68% Win Rate</div>
+    <div style="max-width:1300px; margin:0 auto; display:grid; grid-template-columns:1fr 1.6fr; gap:64px; align-items:center;">
+
+      <!-- LEFT: copy -->
+      <div>
+        <div class="section-label">STRATEGY TRACKING</div>
+        <h2 style="font-size:48px; font-weight:800; line-height:1.1; letter-spacing:-1px; margin-bottom:20px;">Trade With Full<br><span class="orange">Market Context</span></h2>
+        <p style="color:var(--text2); font-size:16px; max-width:420px; line-height:1.75; margin-bottom:32px;">A dedicated charting environment with live volatility detection, session tracking, and a macro watchlist — so you always know what the market is doing before you trade.</p>
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div style="display:flex;gap:14px;align-items:flex-start;">
+            <div style="width:8px;height:8px;border-radius:50%;background:var(--orange);flex-shrink:0;margin-top:5px;"></div>
+            <div><div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:2px;">Live TradingView Chart</div><div style="font-size:13px;color:var(--text3);">Full charting tools, multiple intervals, all major futures symbols.</div></div>
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-start;">
+            <div style="width:8px;height:8px;border-radius:50%;background:var(--orange);flex-shrink:0;margin-top:5px;"></div>
+            <div><div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:2px;">Auto Volatility Detection</div><div style="font-size:13px;color:var(--text3);">VIX, GVZ, and OVX pulled live — rated LOW to EXTREME per instrument.</div></div>
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-start;">
+            <div style="width:8px;height:8px;border-radius:50%;background:var(--orange);flex-shrink:0;margin-top:5px;"></div>
+            <div><div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:2px;">Session & Macro Awareness</div><div style="font-size:13px;color:var(--text3);">Asia, London, and New York sessions tracked live alongside key macro indicators.</div></div>
+          </div>
         </div>
-        <div style="height:4px;background:rgba(255,255,255,0.06);border-radius:3px;margin-bottom:12px;"><div style="height:100%;width:68%;background:linear-gradient(90deg,#00d97e,#22c55e);border-radius:3px;"></div></div>
-        <div style="font-size:12px;color:var(--text3);">42 trades · Avg $200/trade · Profit Factor 2.8x</div>
       </div>
-      <div class="mission-card" style="padding:28px;">
-        <div style="font-size:11px;font-weight:700;color:var(--orange);letter-spacing:.1em;margin-bottom:12px;">VWAP RECLAIM</div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-          <div style="font-size:28px;font-weight:800;color:#00d97e;">+$5,217</div>
-          <div style="font-size:12px;color:var(--text3);background:rgba(0,217,126,0.1);border-radius:20px;padding:3px 10px;">74% Win Rate</div>
+
+      <!-- RIGHT: dashboard mock -->
+      <div style="position:relative;">
+        <!-- Ambient glow -->
+        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(249,115,22,0.1) 0%,transparent 70%);filter:blur(40px);pointer-events:none;z-index:0;"></div>
+
+        <div style="position:relative;z-index:1;background:#0d0d0d;border:1px solid rgba(255,255,255,0.08);border-radius:16px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,0.6);">
+
+          <!-- Top bar: symbol + interval tabs + sessions -->
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-bottom:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.02);">
+            <div style="display:flex;gap:6px;">
+              <div style="background:rgba(249,115,22,0.15);border:1px solid rgba(249,115,22,0.4);border-radius:6px;padding:3px 10px;font-size:10px;font-weight:800;color:var(--orange);">NQ</div>
+              <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:3px 10px;font-size:10px;color:rgba(255,255,255,0.35);">ES</div>
+              <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:3px 10px;font-size:10px;color:rgba(255,255,255,0.35);">GC</div>
+              <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:3px 10px;font-size:10px;color:rgba(255,255,255,0.35);">CL</div>
+            </div>
+            <div style="display:flex;gap:5px;align-items:center;">
+              <div style="display:flex;align-items:center;gap:4px;background:rgba(0,217,126,0.1);border:1px solid rgba(0,217,126,0.25);border-radius:20px;padding:2px 9px;">
+                <div style="width:5px;height:5px;border-radius:50%;background:#00d97e;"></div>
+                <span style="font-size:9px;font-weight:700;color:#00d97e;">New York</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:4px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:2px 9px;">
+                <div style="width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,0.2);"></div>
+                <span style="font-size:9px;color:rgba(255,255,255,0.3);">London</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:4px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:2px 9px;">
+                <div style="width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,0.2);"></div>
+                <span style="font-size:9px;color:rgba(255,255,255,0.3);">Asia</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main body: chart + right sidebar -->
+          <div style="display:grid;grid-template-columns:1fr 200px;">
+
+            <!-- Chart -->
+            <div style="padding:10px 12px 10px 16px;">
+              <div style="border:2px solid #f97316;border-radius:10px;box-shadow:0 0 20px rgba(249,115,22,0.4),0 0 60px rgba(249,115,22,0.12);background:#0a0a0a;overflow:hidden;">
+                <svg viewBox="0 0 480 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+                  <!-- Grid -->
+                  <line x1="0" y1="55" x2="480" y2="55" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+                  <line x1="0" y1="110" x2="480" y2="110" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+                  <line x1="0" y1="165" x2="480" y2="165" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+                  <line x1="120" y1="0" x2="120" y2="220" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+                  <line x1="240" y1="0" x2="240" y2="220" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+                  <line x1="360" y1="0" x2="360" y2="220" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+                  <!-- Candlesticks -->
+                  <!-- green candles -->
+                  <rect x="12" y="160" width="8" height="30" fill="#00d97e" rx="1"/>
+                  <line x1="16" y1="155" x2="16" y2="195" stroke="#00d97e" stroke-width="1"/>
+                  <rect x="28" y="145" width="8" height="35" fill="#00d97e" rx="1"/>
+                  <line x1="32" y1="140" x2="32" y2="185" stroke="#00d97e" stroke-width="1"/>
+                  <rect x="44" y="138" width="8" height="28" fill="#ef4444" rx="1"/>
+                  <line x1="48" y1="133" x2="48" y2="170" stroke="#ef4444" stroke-width="1"/>
+                  <rect x="60" y="130" width="8" height="32" fill="#00d97e" rx="1"/>
+                  <line x1="64" y1="124" x2="64" y2="168" stroke="#00d97e" stroke-width="1"/>
+                  <rect x="76" y="118" width="8" height="28" fill="#00d97e" rx="1"/>
+                  <line x1="80" y1="113" x2="80" y2="150" stroke="#00d97e" stroke-width="1"/>
+                  <rect x="92" y="122" width="8" height="22" fill="#ef4444" rx="1"/>
+                  <line x1="96" y1="118" x2="96" y2="148" stroke="#ef4444" stroke-width="1"/>
+                  <rect x="108" y="108" width="8" height="30" fill="#00d97e" rx="1"/>
+                  <line x1="112" y1="102" x2="112" y2="142" stroke="#00d97e" stroke-width="1"/>
+                  <rect x="124" y="95" width="8" height="28" fill="#00d97e" rx="1"/>
+                  <line x1="128" y1="90" x2="128" y2="127" stroke="#00d97e" stroke-width="1"/>
+                  <rect x="140" y="100" width="8" height="20" fill="#ef4444" rx="1"/>
+                  <line x1="144" y1="96" x2="144" y2="124" stroke="#ef4444" stroke-width="1"/>
+                  <rect x="156" y="86" width="8" height="28" fill="#00d97e" rx="1"/>
+                  <line x1="160" y1="81" x2="160" y2="118" stroke="#00d97e" stroke-width="1"/>
+                  <rect x="172" y="78" width="8" height="24" fill="#00d97e" rx="1"/>
+                  <line x1="176" y1="73" x2="176" y2="106" stroke="#00d97e" stroke-width="1"/>
+                  <rect x="188" y="82" width="8" height="18" fill="#ef4444" rx="1"/>
+                  <line x1="192" y1="78" x2="192" y2="104" stroke="#ef4444" stroke-width="1"/>
+                  <rect x="204" y="68" width="8" height="26" fill="#00d97e" rx="1"/>
+                  <line x1="208" y1="63" x2="208" y2="98" stroke="#00d97e" stroke-width="1"/>
+                  <rect x="220" y="58" width="8" height="24" fill="#00d97e" rx="1"/>
+                  <line x1="224" y1="53" x2="224" y2="86" stroke="#00d97e" stroke-width="1"/>
+                  <rect x="236" y="62" width="8" height="16" fill="#ef4444" rx="1"/>
+                  <line x1="240" y1="58" x2="240" y2="82" stroke="#ef4444" stroke-width="1"/>
+                  <rect x="252" y="50" width="8" height="22" fill="#00d97e" rx="1"/>
+                  <line x1="256" y1="45" x2="256" y2="76" stroke="#00d97e" stroke-width="1"/>
+                  <rect x="268" y="42" width="8" height="24" fill="#00d97e" rx="1"/>
+                  <line x1="272" y1="37" x2="272" y2="70" stroke="#00d97e" stroke-width="1"/>
+                  <rect x="284" y="46" width="8" height="18" fill="#ef4444" rx="1"/>
+                  <line x1="288" y1="42" x2="288" y2="68" stroke="#ef4444" stroke-width="1"/>
+                  <rect x="300" y="35" width="8" height="26" fill="#00d97e" rx="1"/>
+                  <line x1="304" y1="30" x2="304" y2="65" stroke="#00d97e" stroke-width="1"/>
+                  <!-- Price label -->
+                  <text x="10" y="18" font-size="11" fill="rgba(255,255,255,0.5)" font-family="monospace">NQ  ·  15m</text>
+                  <text x="370" y="18" font-size="11" fill="#00d97e" font-family="monospace" font-weight="bold">21,847.25</text>
+                  <text x="430" y="18" font-size="10" fill="#00d97e" font-family="monospace">+0.42%</text>
+                  <!-- Interval tabs -->
+                  <rect x="10" y="198" width="20" height="14" rx="3" fill="rgba(255,255,255,0.04)"/>
+                  <text x="14" y="208" font-size="7" fill="rgba(255,255,255,0.3)" font-family="monospace">1m</text>
+                  <rect x="34" y="198" width="20" height="14" rx="3" fill="rgba(255,255,255,0.04)"/>
+                  <text x="38" y="208" font-size="7" fill="rgba(255,255,255,0.3)" font-family="monospace">5m</text>
+                  <rect x="58" y="198" width="22" height="14" rx="3" fill="rgba(249,115,22,0.15)" stroke="#f97316" stroke-width="0.5"/>
+                  <text x="62" y="208" font-size="7" fill="#f97316" font-family="monospace">15m</text>
+                  <rect x="84" y="198" width="20" height="14" rx="3" fill="rgba(255,255,255,0.04)"/>
+                  <text x="88" y="208" font-size="7" fill="rgba(255,255,255,0.3)" font-family="monospace">1h</text>
+                  <rect x="108" y="198" width="20" height="14" rx="3" fill="rgba(255,255,255,0.04)"/>
+                  <text x="112" y="208" font-size="7" fill="rgba(255,255,255,0.3)" font-family="monospace">4h</text>
+                  <rect x="132" y="198" width="20" height="14" rx="3" fill="rgba(255,255,255,0.04)"/>
+                  <text x="136" y="208" font-size="7" fill="rgba(255,255,255,0.3)" font-family="monospace">1D</text>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Right sidebar -->
+            <div style="border-left:1px solid rgba(255,255,255,0.06);padding:12px;display:flex;flex-direction:column;gap:10px;">
+
+              <!-- Volatility context -->
+              <div style="background:#111;border-radius:8px;padding:10px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                  <span style="font-size:8px;font-weight:700;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:.5px;">Volatility</span>
+                  <span style="font-size:8px;font-weight:800;color:#f97316;background:rgba(249,115,22,0.12);border:1px solid rgba(249,115,22,0.25);padding:1px 6px;border-radius:8px;">HIGH</span>
+                </div>
+                <div style="background:rgba(255,255,255,0.07);border-radius:4px;height:5px;overflow:hidden;margin-bottom:5px;">
+                  <div style="width:72%;height:100%;background:linear-gradient(90deg,#00d97e,#f97316);border-radius:4px;"></div>
+                </div>
+                <div style="display:flex;justify-content:space-between;">
+                  <span style="font-size:7px;color:rgba(255,255,255,0.2);">LOW</span>
+                  <span style="font-size:7px;color:rgba(255,255,255,0.2);">NOR</span>
+                  <span style="font-size:7px;color:#f97316;">HIGH</span>
+                  <span style="font-size:7px;color:rgba(255,255,255,0.2);">EXT</span>
+                </div>
+                <div style="font-size:7px;color:rgba(255,255,255,0.25);margin-top:4px;">VIX 22.4</div>
+              </div>
+
+              <!-- Macro watchlist -->
+              <div>
+                <div style="font-size:8px;font-weight:700;color:rgba(255,255,255,0.3);text-transform:uppercase;margin-bottom:6px;letter-spacing:.5px;">Macro Watchlist</div>
+                <div style="display:flex;flex-direction:column;gap:4px;">
+                  <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 7px;background:#111;border-radius:5px;">
+                    <span style="font-size:9px;color:rgba(255,255,255,0.6);">10Y Yield</span>
+                    <span style="font-size:9px;color:#ef4444;">4.42% ▼</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 7px;background:#111;border-radius:5px;">
+                    <span style="font-size:9px;color:rgba(255,255,255,0.6);">DXY</span>
+                    <span style="font-size:9px;color:#00d97e;">104.2 ▲</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 7px;background:#111;border-radius:5px;">
+                    <span style="font-size:9px;color:rgba(255,255,255,0.6);">Gold</span>
+                    <span style="font-size:9px;color:#00d97e;">2,318 ▲</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 7px;background:#111;border-radius:5px;">
+                    <span style="font-size:9px;color:rgba(255,255,255,0.6);">Crude Oil</span>
+                    <span style="font-size:9px;color:#ef4444;">78.4 ▼</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 7px;background:#111;border-radius:5px;">
+                    <span style="font-size:9px;color:rgba(255,255,255,0.6);">BTC</span>
+                    <span style="font-size:9px;color:#00d97e;">67,420 ▲</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 7px;background:#111;border-radius:5px;">
+                    <span style="font-size:9px;color:rgba(255,255,255,0.6);">EUR/USD</span>
+                    <span style="font-size:9px;color:#ef4444;">1.082 ▼</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
         </div>
-        <div style="height:4px;background:rgba(255,255,255,0.06);border-radius:3px;margin-bottom:12px;"><div style="height:100%;width:74%;background:linear-gradient(90deg,#00d97e,#22c55e);border-radius:3px;"></div></div>
-        <div style="font-size:12px;color:var(--text3);">31 trades · Avg $168/trade · Profit Factor 3.4x</div>
       </div>
-      <div class="mission-card" style="padding:28px;">
-        <div style="font-size:11px;font-weight:700;color:var(--orange);letter-spacing:.1em;margin-bottom:12px;">IMPULSE TRADE</div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-          <div style="font-size:28px;font-weight:800;color:#ef4444;">-$1,840</div>
-          <div style="font-size:12px;color:var(--text3);background:rgba(239,68,68,0.1);border-radius:20px;padding:3px 10px;">29% Win Rate</div>
-        </div>
-        <div style="height:4px;background:rgba(255,255,255,0.06);border-radius:3px;margin-bottom:12px;"><div style="height:100%;width:29%;background:linear-gradient(90deg,#ef4444,#f97316);border-radius:3px;"></div></div>
-        <div style="font-size:12px;color:var(--text3);">17 trades · Avg -$108/trade · Cut This Setup</div>
-      </div>
+
     </div>
   </section>
 
