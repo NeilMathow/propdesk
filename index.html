@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PropTracker — Prop Firm Dashboard. Track Rules, Drawdowns & Payouts.</title>
+  <title>PropDesk — Prop Firm Dashboard. Track Rules, Drawdowns & Payouts.</title>
   <meta name="description" content="Auto-track Apex, Topstep, Take Profit Trader, MyFundedFutures & more — rules, daily loss limits, drawdowns & payouts in one dashboard. Start your free trial." />
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
@@ -56,24 +56,25 @@
       <div class="hero-left">
         <h1 class="hero-headline">Meet Your <span class="orange">AI Prop Firm</span> Dashboard</h1>
         <p class="hero-subtext">It knows your rules, watches your limits, and catches breaches before they happen &mdash; across every firm, every account, automatically.</p>
-        <div class="hero-cta-row">
-          <button class="btn-primary btn-large">Get Started</button>
+        <div class="hero-cta-row" style="position:relative;z-index:10;">
+          <button class="btn-primary btn-large" onclick="window.location.href='signup.html'" type="button">Get Started</button>
           <div class="hero-trust">
             <div class="hero-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <div>
               <div class="hero-trust-title">Excellent</div>
-              <div class="hero-trust-sub">3,000+ funded traders</div>
+              <div class="hero-trust-sub">100+ traders</div>
             </div>
           </div>
         </div>
         <div class="hero-pills-label">EVERYTHING IN ONE PLACE &middot; 7 TOOLS</div>
         <div class="hero-pills">
-          <div class="hero-pill">Payout Tracker</div>
-          <div class="hero-pill">Journal</div>
-          <div class="hero-pill">Calendar</div>
-          <div class="hero-pill">Tax Calculator</div>
-          <div class="hero-pill">Analytics</div>
-          <div class="hero-pill">Strategy Tracking</div><div class="hero-pill">AI Insights</div>
+          <div class="hero-pill" onclick="scrollToSection('section-payout')" style="cursor:pointer;">Payout Tracker</div>
+          <div class="hero-pill" onclick="scrollToSection('section-journal')" style="cursor:pointer;">Journal</div>
+          <div class="hero-pill" onclick="scrollToSection('section-calendar')" style="cursor:pointer;">Calendar</div>
+          <div class="hero-pill" onclick="scrollToSection('section-tax')" style="cursor:pointer;">Tax Calculator</div>
+          <div class="hero-pill" onclick="scrollToSection('section-analytics')" style="cursor:pointer;">Analytics</div>
+          <div class="hero-pill" onclick="scrollToSection('section-strategy')" style="cursor:pointer;">Strategy Tracking</div>
+          <div class="hero-pill">AI Insights</div>
         </div>
       </div>
 
@@ -163,7 +164,7 @@
   </div>
 
   <!-- TOOLS TABS SECTION -->
-  <section class="tools-section">
+  <section class="tools-section" id="tools-section">
     <div class="tools-header">
       <div class="section-label">THE COMPLETE PROP TRACKING PLATFORM</div>
       <h2 class="tools-headline">All Your Tools <span class="orange">In One Place</span></h2>
@@ -185,13 +186,13 @@
       <div class="tools-panel active" id="tab-payout">
         <div class="tools-panel-left">
           <div class="tools-panel-label">PAYOUT TRACKER</div>
-          <h3>Know your real ROI.<br>Every account, every firm.</h3>
-          <p>Stop guessing how much you've actually made. PropTracker logs every payout, calculates your true net profit after fees, and shows exactly where your edge is.</p>
+          <h3>Know Your Real ROI<br>Every Account, Every Firm</h3>
+          <p>PropDesk logs every payout across all your firms, calculates true net profit after fees, and shows your ROI by firm, by account, and by month.</p>
           <ul class="tools-bullets">
-            <li>Topstep, Apex, MFF + 6 more</li>
-            <li>Real-time payout tracking</li>
-            <li>Net profit after all fees</li>
-            <li>ROI by firm and by account</li>
+            <li>8+ prop firms supported</li>
+            <li>Track payouts in real-time</li>
+            <li>Net profit after all fees & costs</li>
+            <li>ROI breakdown by firm and account</li>
           </ul>
           
         </div>
@@ -222,13 +223,13 @@
       <div class="tools-panel" id="tab-journal">
         <div class="tools-panel-left">
           <div class="tools-panel-label">JOURNAL</div>
-          <h3>Your trading diary.<br>Automatically built.</h3>
-          <p>Log every trade with notes, emotions, and screenshots. Review patterns over time and stop making the same mistakes.</p>
+          <h3>Journal Every Trade<br>Master Every Pattern</h3>
+          <p>Log trades with notes, emotions, and setups. Uncover the patterns that make or break your performance — before they cost you an account.</p>
           <ul class="tools-bullets">
-            <li>Auto-populated from your trades</li>
-            <li>Tag strategies and emotions</li>
-            <li>Photo attachments per trade</li>
+            <li>Log notes and emotions per trade</li>
+            <li>Tag strategies and setups</li>
             <li>Filter by date, firm, or outcome</li>
+            <li>Spot losing patterns before they repeat</li>
           </ul>
           
         </div>
@@ -236,7 +237,7 @@
           <div class="tools-mock-card">
             <div class="tools-mock-title">Trade Journal — May 29, 2026</div>
             <div style="display:flex;flex-direction:column;gap:10px;">
-              <div style="background:var(--bg3);border-radius:8px;padding:14px;border-left:3px solid var(--orange);">
+              <div style="background:var(--bg3);border-radius:8px;padding:14px;border-left:3px solid var(--green);">
                 <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;font-weight:700;color:var(--text);">NQ Long — +$2,363</span><span style="font-size:11px;color:var(--green);">A+ Setup</span></div>
                 <div style="font-size:12px;color:var(--text3);">Waited for confirmation at VWAP. Clean entry, held through first pullback. Scaled out at target.</div>
                 <div style="display:flex;gap:8px;margin-top:8px;"><span style="font-size:10px;background:var(--orange-dim);color:var(--orange);padding:2px 8px;border-radius:10px;">Breakout</span><span style="font-size:10px;background:rgba(0,217,126,0.1);color:var(--green);padding:2px 8px;border-radius:10px;">Disciplined</span></div>
@@ -254,36 +255,82 @@
       <div class="tools-panel" id="tab-calendar">
         <div class="tools-panel-left">
           <div class="tools-panel-label">CALENDAR</div>
-          <h3>See your trading<br>at a glance.</h3>
-          <p>A visual calendar of every trading day — green days, red days, your best sessions, and worst. Spot patterns you'd never catch in a spreadsheet.</p>
+          <h3>See Every Trading Day<br>All In One Place</h3>
+          <p>Green days, red days, payouts, and spending — all laid out in a clean monthly view so patterns become obvious before they cost you.</p>
           <ul class="tools-bullets">
-            <li>Monthly and yearly views</li>
-            <li>P&L per day at a glance</li>
+            <li>Monthly P&L calendar view</li>
+            <li>Green & red day tracking</li>
             <li>Click any day for full detail</li>
-            <li>Journal entries built in</li>
+            <li>Weekly breakdowns built in</li>
           </ul>
           
         </div>
         <div class="tools-panel-right">
-          <div class="tools-mock-card">
-            <div class="tools-mock-title">Calendar — May 2026</div>
-            <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:4px;">
-              <div style="font-size:9px;color:var(--text3);text-align:center;padding:3px 0;">S</div>
-              <div style="font-size:9px;color:var(--text3);text-align:center;padding:3px 0;">M</div>
-              <div style="font-size:9px;color:var(--text3);text-align:center;padding:3px 0;">T</div>
-              <div style="font-size:9px;color:var(--text3);text-align:center;padding:3px 0;">W</div>
-              <div style="font-size:9px;color:var(--text3);text-align:center;padding:3px 0;">T</div>
-              <div style="font-size:9px;color:var(--text3);text-align:center;padding:3px 0;">F</div>
-              <div style="font-size:9px;color:var(--text3);text-align:center;padding:3px 0;">S</div>
+          <div class="tools-mock-card" style="padding:0;overflow:hidden;">
+            <div style="padding:10px 14px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.02);">
+              <div style="font-size:13px;font-weight:800;color:#fff;">Calendar</div>
+              <div style="display:flex;gap:5px;">
+                <div style="background:rgba(249,115,22,0.15);border:1px solid rgba(249,115,22,0.3);border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700;color:var(--orange);">Monthly</div>
+                <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:5px;padding:2px 8px;font-size:9px;color:rgba(255,255,255,0.4);">Yearly</div>
+              </div>
             </div>
-            <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;">
-              <div style="height:48px;background:var(--bg3);border-radius:5px;border:1px solid var(--border);"></div>
-              <div style="height:48px;background:rgba(0,100,50,0.5);border-radius:5px;border:1px solid var(--border);display:flex;flex-direction:column;justify-content:space-between;padding:4px;"><span style="font-size:9px;color:rgba(255,255,255,0.4);">1</span><span style="font-size:10px;font-weight:700;color:#4ade80;">+$1.2k</span></div>
-              <div style="height:48px;background:rgba(0,100,50,0.5);border-radius:5px;border:1px solid var(--border);display:flex;flex-direction:column;justify-content:space-between;padding:4px;"><span style="font-size:9px;color:rgba(255,255,255,0.4);">2</span><span style="font-size:10px;font-weight:700;color:#4ade80;">+$880</span></div>
-              <div style="height:48px;background:var(--bg3);border-radius:5px;border:1px solid var(--border);display:flex;align-items:flex-start;padding:4px;"><span style="font-size:9px;color:rgba(255,255,255,0.4);">3</span></div>
-              <div style="height:48px;background:rgba(100,0,0,0.5);border-radius:5px;border:1px solid var(--border);display:flex;flex-direction:column;justify-content:space-between;padding:4px;"><span style="font-size:9px;color:rgba(255,255,255,0.4);">4</span><span style="font-size:10px;font-weight:700;color:#f87171;">-$240</span></div>
-              <div style="height:48px;background:rgba(0,100,50,0.5);border-radius:5px;border:2px solid var(--orange);display:flex;flex-direction:column;justify-content:space-between;padding:4px;"><span style="font-size:9px;color:var(--orange);">5</span><span style="font-size:10px;font-weight:700;color:#4ade80;">+$2.1k</span></div>
-              <div style="height:48px;background:var(--bg3);border-radius:5px;border:1px solid var(--border);display:flex;align-items:flex-start;padding:4px;"><span style="font-size:9px;color:rgba(255,255,255,0.4);">6</span></div>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:10px 12px 6px;">
+              <div style="background:#111;border:1px solid rgba(249,115,22,0.3);border-radius:6px;padding:6px 8px;"><div style="font-size:7px;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-bottom:3px;">Payouts</div><div style="font-size:11px;font-weight:800;color:#00d97e;">$6,028</div></div>
+              <div style="background:#111;border:1px solid rgba(249,115,22,0.3);border-radius:6px;padding:6px 8px;"><div style="font-size:7px;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-bottom:3px;">Spending</div><div style="font-size:11px;font-weight:800;color:#ef4444;">$1,904</div></div>
+              <div style="background:#111;border:1px solid rgba(249,115,22,0.3);border-radius:6px;padding:6px 8px;"><div style="font-size:7px;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-bottom:3px;">Prof. Factor</div><div style="font-size:11px;font-weight:800;color:#00d97e;">3.17</div></div>
+              <div style="background:#111;border:1px solid rgba(249,115,22,0.3);border-radius:6px;padding:6px 8px;"><div style="font-size:7px;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-bottom:3px;">Days</div><div style="font-size:11px;font-weight:800;color:#fff;">15</div></div>
+            </div>
+            <div style="padding:0 12px 10px;">
+              <div style="display:grid;grid-template-columns:repeat(7,1fr) 50px;gap:2px;margin-bottom:2px;">
+                <div style="font-size:8px;color:rgba(255,255,255,0.3);text-align:center;">Sun</div><div style="font-size:8px;color:rgba(255,255,255,0.3);text-align:center;">Mon</div><div style="font-size:8px;color:rgba(255,255,255,0.3);text-align:center;">Tue</div><div style="font-size:8px;color:rgba(255,255,255,0.3);text-align:center;">Wed</div><div style="font-size:8px;color:rgba(255,255,255,0.3);text-align:center;">Thu</div><div style="font-size:8px;color:rgba(255,255,255,0.3);text-align:center;">Fri</div><div style="font-size:8px;color:rgba(255,255,255,0.3);text-align:center;">Sat</div><div style="font-size:8px;color:rgba(255,255,255,0.3);text-align:right;padding-right:2px;">Wk</div>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(7,1fr) 50px;gap:2px;margin-bottom:2px;">
+                <div style="background:#111;border-radius:3px;height:52px;padding:4px 5px;"></div><div style="background:#111;border-radius:3px;height:52px;"></div><div style="background:#111;border-radius:3px;height:52px;"></div><div style="background:#111;border-radius:3px;height:52px;"></div>
+                <div style="background:rgba(180,30,30,0.55);border-radius:3px;height:52px;padding:4px 5px;"><span style="font-size:9px;color:rgba(255,255,255,0.4);">2</span><div style="font-size:10px;color:#ef4444;">-$70</div></div>
+                <div style="background:#111;border-radius:3px;height:52px;padding:4px 5px;"><span style="font-size:9px;color:rgba(255,255,255,0.3);">3</span></div>
+                <div style="background:#111;border-radius:3px;height:52px;padding:4px 5px;"><span style="font-size:9px;color:rgba(255,255,255,0.3);">4</span></div>
+                <div style="background:#0d0d0d;border:1px solid rgba(249,115,22,0.15);border-radius:3px;height:52px;padding:4px 5px;"><div style="font-size:8px;color:rgba(255,255,255,0.3);">Wk1</div><div style="font-size:10px;font-weight:700;color:#ef4444;">-$70</div></div>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(7,1fr) 50px;gap:2px;margin-bottom:2px;">
+                <div style="background:#111;border-radius:3px;height:52px;padding:4px 5px;"><span style="font-size:9px;color:rgba(255,255,255,0.3);">5</span></div>
+                <div style="background:rgba(20,120,60,0.55);border-radius:3px;height:52px;padding:4px 5px;"><span style="font-size:9px;color:rgba(255,255,255,0.4);">6</span><div style="font-size:10px;color:#00d97e;">$690</div></div>
+                <div style="background:rgba(180,30,30,0.55);border-radius:3px;height:52px;padding:4px 5px;"><span style="font-size:9px;color:rgba(255,255,255,0.4);">7</span><div style="font-size:10px;color:#ef4444;">$436</div></div>
+                <div style="background:#111;border-radius:3px;height:52px;padding:4px 5px;"><span style="font-size:9px;color:rgba(255,255,255,0.3);">8</span></div>
+                <div style="background:rgba(180,30,30,0.55);border-radius:3px;height:52px;padding:4px 5px;"><span style="font-size:9px;color:rgba(255,255,255,0.4);">9</span><div style="font-size:10px;color:#ef4444;">$218</div></div>
+                <div style="background:#111;border-radius:3px;height:52px;padding:4px 5px;"><span style="font-size:9px;color:rgba(255,255,255,0.3);">10</span></div>
+                <div style="background:#111;border-radius:3px;height:52px;padding:4px 5px;"><span style="font-size:9px;color:rgba(255,255,255,0.3);">11</span></div>
+                <div style="background:#0d0d0d;border:1px solid rgba(249,115,22,0.15);border-radius:3px;height:52px;padding:4px 5px;"><div style="font-size:8px;color:rgba(255,255,255,0.3);">Wk2</div><div style="font-size:10px;font-weight:700;color:#00d97e;">+$36</div></div>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(7,1fr) 50px;gap:2px;">
+                <div style="background:#111;border-radius:3px;height:52px;padding:4px 5px;"><span style="font-size:9px;color:rgba(255,255,255,0.3);">12</span></div>
+                <div style="background:rgba(20,120,60,0.55);border-radius:3px;height:52px;padding:4px 5px;"><span style="font-size:9px;color:rgba(255,255,255,0.4);">13</span><div style="font-size:10px;color:#00d97e;">$1.6k</div></div>
+                <div style="background:#111;border-radius:3px;height:52px;padding:4px 5px;"><span style="font-size:9px;color:rgba(255,255,255,0.3);">14</span></div>
+                <div style="background:rgba(180,30,30,0.55);border-radius:3px;height:52px;padding:4px 5px;"><span style="font-size:9px;color:rgba(255,255,255,0.4);">15</span><div style="font-size:10px;color:#ef4444;">$218</div></div>
+                <div style="background:#111;border-radius:3px;height:52px;padding:4px 5px;"><span style="font-size:9px;color:rgba(255,255,255,0.3);">16</span></div>
+                <div style="background:#111;border-radius:3px;height:52px;padding:4px 5px;"><span style="font-size:9px;color:rgba(255,255,255,0.3);">17</span></div>
+                <div style="background:#111;border-radius:3px;height:52px;padding:4px 5px;"><span style="font-size:9px;color:rgba(255,255,255,0.3);">18</span></div>
+                <div style="background:#0d0d0d;border:1px solid rgba(249,115,22,0.15);border-radius:3px;height:52px;padding:4px 5px;"><div style="font-size:8px;color:rgba(255,255,255,0.3);">Wk3</div><div style="font-size:10px;font-weight:700;color:#00d97e;">+$1.4k</div></div>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(7,1fr) 50px;gap:2px;margin-bottom:2px;margin-top:2px;">
+                <div style="background:#111;border-radius:3px;height:52px;padding:4px 5px;"><span style="font-size:9px;color:rgba(255,255,255,0.3);">19</span></div>
+                <div style="background:rgba(20,120,60,0.55);border-radius:3px;height:52px;padding:4px 5px;"><span style="font-size:9px;color:rgba(255,255,255,0.4);">20</span><div style="font-size:10px;color:#00d97e;">$178</div></div>
+                <div style="background:rgba(20,120,60,0.55);border-radius:3px;height:52px;padding:4px 5px;"><span style="font-size:9px;color:rgba(255,255,255,0.4);">21</span><div style="font-size:10px;color:#00d97e;">$1k</div></div>
+                <div style="background:rgba(20,120,60,0.55);border-radius:3px;height:52px;padding:4px 5px;"><span style="font-size:9px;color:rgba(255,255,255,0.4);">22</span><div style="font-size:10px;color:#00d97e;">$608</div></div>
+                <div style="background:rgba(180,30,30,0.55);border-radius:3px;height:52px;padding:4px 5px;"><span style="font-size:9px;color:rgba(255,255,255,0.4);">23</span><div style="font-size:10px;color:#ef4444;">$376</div></div>
+                <div style="background:#111;border-radius:3px;height:52px;padding:4px 5px;"><span style="font-size:9px;color:rgba(255,255,255,0.3);">24</span></div>
+                <div style="background:#111;border-radius:3px;height:52px;padding:4px 5px;"><span style="font-size:9px;color:rgba(255,255,255,0.3);">25</span></div>
+                <div style="background:#0d0d0d;border:1px solid rgba(249,115,22,0.15);border-radius:3px;height:52px;padding:4px 5px;"><div style="font-size:8px;color:rgba(255,255,255,0.3);">Wk4</div><div style="font-size:10px;font-weight:700;color:#00d97e;">+$1k</div></div>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(7,1fr) 50px;gap:2px;margin-top:2px;">
+                <div style="background:rgba(180,30,30,0.55);border-radius:3px;height:52px;padding:4px 5px;"><span style="font-size:9px;color:rgba(255,255,255,0.4);">26</span><div style="font-size:10px;color:#ef4444;">$109</div></div>
+                <div style="background:rgba(20,120,60,0.55);border-radius:3px;height:52px;padding:4px 5px;"><span style="font-size:9px;color:rgba(255,255,255,0.4);">27</span><div style="font-size:10px;color:#00d97e;">$897</div></div>
+                <div style="background:rgba(180,30,30,0.55);border-radius:3px;height:52px;padding:4px 5px;"><span style="font-size:9px;color:rgba(255,255,255,0.4);">28</span><div style="font-size:10px;color:#ef4444;">$109</div></div>
+                <div style="background:rgba(20,120,60,0.55);border-radius:3px;height:52px;padding:4px 5px;"><span style="font-size:9px;color:rgba(255,255,255,0.4);">29</span><div style="font-size:10px;color:#00d97e;">$190</div></div>
+                <div style="background:rgba(20,120,60,0.55);border-radius:3px;height:52px;padding:4px 5px;"><span style="font-size:9px;color:rgba(255,255,255,0.4);">30</span><div style="font-size:10px;color:#00d97e;">$1.1k</div></div>
+                <div style="background:#111;border-radius:3px;height:52px;padding:4px 5px;"></div>
+                <div style="background:#111;border-radius:3px;height:52px;padding:4px 5px;"></div>
+                <div style="background:#0d0d0d;border:1px solid rgba(249,115,22,0.15);border-radius:3px;height:52px;padding:4px 5px;"><div style="font-size:8px;color:rgba(255,255,255,0.3);">Wk5</div><div style="font-size:10px;font-weight:700;color:#00d97e;">+$1.6k</div></div>
+              </div>
             </div>
           </div>
         </div>
@@ -292,24 +339,39 @@
       <div class="tools-panel" id="tab-tax">
         <div class="tools-panel-left">
           <div class="tools-panel-label">TAX CALCULATOR</div>
-          <h3>Know what you owe<br>before April hits.</h3>
-          <p>Track your trading income, evaluation fees, and expenses in real time. Get a running estimate of your tax liability so there are no surprises.</p>
+          <h3>Know What You Owe<br>Before You File</h3>
+          <p>PropDesk calculates your full tax liability in real time — including deductions, self-employment tax, and quarterly estimates. No surprises at tax time.</p>
           <ul class="tools-bullets">
-            <li>Real-time tax estimate</li>
-            <li>Deductible expense tracking</li>
-            <li>Income by firm and account</li>
-            <li>Export-ready reports</li>
+            <li>Real-time tax liability estimate</li>
+            <li>Deductible fee & expense tracking</li>
+            <li>Self-employment tax included</li>
+            <li>Quarterly estimate breakdowns</li>
           </ul>
           
         </div>
         <div class="tools-panel-right">
-          <div class="tools-mock-card">
-            <div class="tools-mock-title">Tax Summary — 2026</div>
-            <div style="display:flex;flex-direction:column;gap:10px;">
-              <div style="display:flex;justify-content:space-between;padding:12px;background:var(--bg3);border-radius:8px;border-left:3px solid var(--orange);"><span style="font-size:13px;color:var(--text2);">Total Trading Income</span><span style="font-size:14px;font-weight:700;color:var(--green);">+$42,500</span></div>
-              <div style="display:flex;justify-content:space-between;padding:12px;background:var(--bg3);border-radius:8px;"><span style="font-size:13px;color:var(--text2);">Evaluation Fees (deductible)</span><span style="font-size:14px;font-weight:700;color:var(--red);">-$1,240</span></div>
-              <div style="display:flex;justify-content:space-between;padding:12px;background:var(--bg3);border-radius:8px;"><span style="font-size:13px;color:var(--text2);">Software & Tools</span><span style="font-size:14px;font-weight:700;color:var(--red);">-$468</span></div>
-              <div style="display:flex;justify-content:space-between;padding:12px;background:rgba(249,115,22,0.08);border-radius:8px;border:1px solid rgba(249,115,22,0.2);"><span style="font-size:13px;font-weight:700;color:var(--text);">Estimated Tax Owed (22%)</span><span style="font-size:16px;font-weight:800;color:var(--orange);">$8,975</span></div>
+          <div class="tools-mock-card" style="padding:0;overflow:hidden;">
+            <div style="padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.07);display:flex;justify-content:space-between;align-items:center;">
+              <div><div style="font-size:13px;font-weight:700;color:var(--text);">Tax Calculator</div><div style="font-size:9px;color:var(--text3);">Last updated: Just Now</div></div>
+              <button style="background:linear-gradient(135deg,#ef4444,#f97316);color:#fff;border:none;border-radius:6px;padding:5px 10px;font-size:10px;font-weight:700;cursor:pointer;">↓ Download</button>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.07);">
+              <div style="padding:10px 12px;"><div style="font-size:8px;color:var(--text3);text-transform:uppercase;margin-bottom:4px;">Total Tax Owed</div><div style="font-size:15px;font-weight:800;color:#ef4444;">$9,004</div></div>
+              <div style="padding:10px 12px;"><div style="font-size:8px;color:var(--text3);text-transform:uppercase;margin-bottom:4px;">Quarterly</div><div style="font-size:15px;font-weight:800;color:var(--text);">$2,251</div></div>
+              <div style="padding:10px 12px;"><div style="font-size:8px;color:var(--text3);text-transform:uppercase;margin-bottom:4px;">Per Payout</div><div style="font-size:15px;font-weight:800;color:var(--orange);">$474</div></div>
+            </div>
+            <div style="padding:12px 14px;border-bottom:1px solid rgba(255,255,255,0.07);">
+              <div style="font-size:9px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;">Tax Breakdown</div>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <div><div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:11px;color:var(--text2);">Self-Employment Tax</span><span style="font-size:11px;font-weight:700;color:#ef4444;">$1,462</span></div><div style="height:4px;background:rgba(255,255,255,0.07);border-radius:3px;overflow:hidden;"><div style="height:100%;width:16%;background:#ef4444;border-radius:3px;"></div></div></div>
+                <div><div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:11px;color:var(--text2);">Federal Income Tax</span><span style="font-size:11px;font-weight:700;color:#ef4444;">$7,543</span></div><div style="height:4px;background:rgba(255,255,255,0.07);border-radius:3px;overflow:hidden;"><div style="height:100%;width:84%;background:linear-gradient(90deg,#ef4444,#f97316);border-radius:3px;"></div></div></div>
+                <div><div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:11px;color:var(--text2);">Fee Deductions Saved</span><span style="font-size:11px;font-weight:700;color:#00d97e;">-$7,711</span></div><div style="height:4px;background:rgba(255,255,255,0.07);border-radius:3px;overflow:hidden;"><div style="height:100%;width:70%;background:#00d97e;border-radius:3px;"></div></div></div>
+              </div>
+            </div>
+            <div style="padding:10px 14px;">
+              <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:11px;"><span style="color:var(--text2);">Gross Prop Income</span><span style="color:#00d97e;font-weight:700;">$19,864</span></div>
+              <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:11px;"><span style="color:var(--text2);">Challenge Fee Deductions</span><span style="color:#ef4444;font-weight:700;">-$7,711</span></div>
+              <div style="display:flex;justify-content:space-between;padding:5px 0;font-size:11px;"><span style="color:var(--orange);font-weight:700;">Total Taxable Income</span><span style="color:var(--text);font-weight:700;">$58,323</span></div>
             </div>
           </div>
         </div>
@@ -318,29 +380,44 @@
       <div class="tools-panel" id="tab-analytics">
         <div class="tools-panel-left">
           <div class="tools-panel-label">ANALYTICS</div>
-          <h3>Stop guessing.<br>Start knowing.</h3>
-          <p>Deep analytics on your trading performance — by session, by setup, by time of day. Find what actually works and double down on it.</p>
+          <h3>Your Data<br>Your Edge</h3>
+          <p>Deep analytics on every aspect of your trading — P&L curves, win rate, profit factor, duration analysis, and AI-powered insights to sharpen your edge.</p>
           <ul class="tools-bullets">
-            <li>Performance by session & time</li>
-            <li>Win rate by setup type</li>
-            <li>Profit factor breakdown</li>
-            <li>Best and worst day analysis</li>
+            <li>Cumulative P&L curve</li>
+            <li>Win rate & profit factor</li>
+            <li>P&L by day of week</li>
+            <li>Trade duration analysis</li>
           </ul>
           
         </div>
         <div class="tools-panel-right">
-          <div class="tools-mock-card">
-            <div class="tools-mock-title">Analytics Overview</div>
-            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px;">
-              <div class="tools-stat"><div class="tools-stat-label">Win Rate</div><div class="tools-stat-val green">74.2%</div></div>
-              <div class="tools-stat"><div class="tools-stat-label">Profit Factor</div><div class="tools-stat-val green">3.1x</div></div>
-              <div class="tools-stat"><div class="tools-stat-label">Avg Win</div><div class="tools-stat-val green">$2,180</div></div>
+          <div class="tools-mock-card" style="padding:0;overflow:hidden;">
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid rgba(255,255,255,0.06);">
+              <div style="padding:12px 14px;border-right:1px solid rgba(255,255,255,0.06);"><div style="font-size:8px;letter-spacing:.08em;color:rgba(255,255,255,0.35);margin-bottom:4px;">TOTAL P&L</div><div style="font-size:18px;font-weight:700;color:#22c55e;">$5,423</div></div>
+              <div style="padding:12px 14px;border-right:1px solid rgba(255,255,255,0.06);"><div style="font-size:8px;letter-spacing:.08em;color:rgba(255,255,255,0.35);margin-bottom:4px;">PROFIT FACTOR</div><div style="font-size:18px;font-weight:700;color:#fff;">2.96x</div></div>
+              <div style="padding:12px 14px;"><div style="font-size:8px;letter-spacing:.08em;color:rgba(255,255,255,0.35);margin-bottom:4px;">WIN RATE</div><div style="font-size:18px;font-weight:700;color:#22c55e;">69.52%</div></div>
             </div>
-            <div style="font-size:11px;color:var(--orange);font-weight:700;margin-bottom:8px;text-transform:uppercase;">Best Sessions</div>
-            <div style="display:flex;flex-direction:column;gap:6px;">
-              <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--bg3);border-radius:6px;"><span style="font-size:12px;color:var(--text2);">New York Open</span><div style="display:flex;align-items:center;gap:8px;"><div style="height:6px;width:80px;background:rgba(255,255,255,0.08);border-radius:3px;overflow:hidden;"><div style="height:100%;width:78%;background:var(--green);border-radius:3px;"></div></div><span style="font-size:12px;font-weight:700;color:var(--green);">78%</span></div></div>
-              <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--bg3);border-radius:6px;"><span style="font-size:12px;color:var(--text2);">London Open</span><div style="display:flex;align-items:center;gap:8px;"><div style="height:6px;width:80px;background:rgba(255,255,255,0.08);border-radius:3px;overflow:hidden;"><div style="height:100%;width:52%;background:var(--orange);border-radius:3px;"></div></div><span style="font-size:12px;font-weight:700;color:var(--orange);">52%</span></div></div>
-              <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--bg3);border-radius:6px;"><span style="font-size:12px;color:var(--text2);">Asia Session</span><div style="display:flex;align-items:center;gap:8px;"><div style="height:6px;width:80px;background:rgba(255,255,255,0.08);border-radius:3px;overflow:hidden;"><div style="height:100%;width:30%;background:var(--red);border-radius:3px;"></div></div><span style="font-size:12px;font-weight:700;color:var(--red);">30%</span></div></div>
+            <div style="padding:12px 14px;border-bottom:1px solid rgba(255,255,255,0.06);">
+              <div style="font-size:9px;color:#f97316;font-weight:700;letter-spacing:.1em;margin-bottom:8px;">DAILY NET CUMULATIVE P&L</div>
+              <svg width="100%" height="60" viewBox="0 0 400 60" preserveAspectRatio="none">
+                <defs><linearGradient id="tgl" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#22c55e" stop-opacity="0.2"/><stop offset="100%" stop-color="#22c55e" stop-opacity="0"/></linearGradient></defs>
+                <path d="M0,55 L50,50 L100,44 L150,36 L200,26 L250,22 L300,12 L350,6 L400,2" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round"/>
+                <path d="M0,55 L50,50 L100,44 L150,36 L200,26 L250,22 L300,12 L350,6 L400,2 L400,60 L0,60Z" fill="url(#tgl)"/>
+              </svg>
+            </div>
+            <div style="padding:12px 14px;border-bottom:1px solid rgba(255,255,255,0.06);">
+              <div style="font-size:9px;color:#f97316;font-weight:700;letter-spacing:.1em;margin-bottom:8px;">TRADE DURATION</div>
+              <div style="display:flex;flex-direction:column;gap:5px;">
+                <div style="display:flex;align-items:center;gap:6px;"><span style="font-size:9px;color:rgba(255,255,255,0.35);width:46px;text-align:right;">2-5 min</span><div style="flex:1;height:6px;background:rgba(255,255,255,0.05);border-radius:3px;overflow:hidden;"><div style="height:100%;width:100%;background:linear-gradient(90deg,#c2410c,#ea580c);border-radius:3px;"></div></div></div>
+                <div style="display:flex;align-items:center;gap:6px;"><span style="font-size:9px;color:rgba(255,255,255,0.35);width:46px;text-align:right;">5-10 min</span><div style="flex:1;height:6px;background:rgba(255,255,255,0.05);border-radius:3px;overflow:hidden;"><div style="height:100%;width:55%;background:linear-gradient(90deg,#c2410c,#ea580c);border-radius:3px;"></div></div></div>
+                <div style="display:flex;align-items:center;gap:6px;"><span style="font-size:9px;color:rgba(255,255,255,0.35);width:46px;text-align:right;">1-2 min</span><div style="flex:1;height:6px;background:rgba(255,255,255,0.05);border-radius:3px;overflow:hidden;"><div style="height:100%;width:28%;background:linear-gradient(90deg,#c2410c,#ea580c);border-radius:3px;"></div></div></div>
+              </div>
+            </div>
+            <div style="padding:10px 14px;">
+              <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;"><div style="font-size:9px;color:#f97316;font-weight:700;letter-spacing:.1em;">TRADE LOG</div><span style="background:linear-gradient(90deg,#ef4444,#f97316);color:#fff;font-size:8px;font-weight:700;padding:1px 7px;border-radius:20px;">Top 10</span></div>
+              <div style="font-size:10px;display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04);"><span style="color:rgba(255,255,255,0.5);">May 17 · NQM6 Short</span><span style="color:#22c55e;font-weight:600;">+$1,195</span></div>
+              <div style="font-size:10px;display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04);"><span style="color:rgba(255,255,255,0.5);">May 25 · NQM6 Short</span><span style="color:#22c55e;font-weight:600;">+$1,025</span></div>
+              <div style="font-size:10px;display:flex;justify-content:space-between;padding:5px 0;"><span style="color:rgba(255,255,255,0.5);">May 19 · NQM6 Long</span><span style="color:#22c55e;font-weight:600;">+$385</span></div>
             </div>
           </div>
         </div>
@@ -349,13 +426,13 @@
       <div class="tools-panel" id="tab-strategy">
         <div class="tools-panel-left">
           <div class="tools-panel-label">STRATEGY TRACKING</div>
-          <h3>Find your edge.<br>Then sharpen it.</h3>
-          <p>Tag every trade with your setup type and track performance by strategy. Know which setups print and which ones drain your account.</p>
+          <h3>Know Which Setups<br>Actually Print</h3>
+          <p>Tag every trade by setup type and track performance across strategies. Know exactly which setups are profitable — and cut the ones draining your account.</p>
           <ul class="tools-bullets">
-            <li>Custom strategy tags</li>
-            <li>P&L by strategy type</li>
-            <li>Win rate per setup</li>
-            <li>Kill underperforming setups fast</li>
+            <li>Custom strategy & setup tags</li>
+            <li>P&L and win rate per strategy</li>
+            <li>Spot underperforming setups fast</li>
+            <li>Double down on what works</li>
           </ul>
           
         </div>
@@ -375,13 +452,13 @@
       <div class="tools-panel" id="tab-ai">
         <div class="tools-panel-left">
           <div class="tools-panel-label">AI INSIGHTS</div>
-          <h3>Meet AI Insights.<br>Your AI trading partner.</h3>
-          <p>AI Insights analyzes your behavior, discipline, and rule adherence in real time. Get brutally honest feedback designed to keep you funded and profitable.</p>
+          <h3>Brutally Honest Feedback<br>Built To Keep You Funded</h3>
+          <p>PropDesk's AI analyzes your behavior, discipline, and rule adherence in real time — and tells you exactly what's costing you accounts before it's too late.</p>
           <ul class="tools-bullets">
             <li>Daily behavioral analysis</li>
-            <li>Identifies impulse patterns</li>
-            <li>Personalized non-negotiables</li>
-            <li>Real-time rule monitoring</li>
+            <li>Identifies impulse trading patterns</li>
+            <li>Personalized rules & non-negotiables</li>
+            <li>Real-time rule breach monitoring</li>
           </ul>
           
         </div>
@@ -408,11 +485,11 @@
   </section>
 
   <!-- PAYOUT TRACKER -->
-  <section class="section section-alt" style="background:var(--bg); border:none; max-width:100%; padding:80px 0;">
+  <section id="section-payout" class="section section-alt" style="background:var(--bg); border:none; max-width:100%; padding:80px 0;">
     <div class="payout-header-text">
       <div class="section-label">PAYOUT TRACKER</div>
-      <h2><span class="orange">Know Your Real ROI</span><br>Every Account, Every Firm</h2>
-      <p>Stop guessing how much you've actually made. PropTracker logs every payout, calculates your true net profit, and shows you exactly where your edge is — by firm, by account, by month.</p>
+      <h2 style="font-size:54px; font-weight:800; line-height:1.08; letter-spacing:-1px; margin-bottom:18px;"><span class="orange">Know Your Real ROI</span><br>Every Account, Every Firm</h2>
+      <p style="color:var(--text2); font-size:17px; max-width:520px; margin:0 auto; line-height:1.7;">Stop guessing how much you've actually made. PropDesk logs every payout, calculates your true net profit, and shows you exactly where your edge is — by firm, by account, by month.</p>
     </div>
     <div style="max-width:1400px; margin:40px auto 0; padding:0 48px;">
       <div style="display:grid; grid-template-columns:1.5fr 1fr; gap:40px; align-items:start;">
@@ -587,12 +664,12 @@
   <!-- ALL-IN-ONE HEADER -->
   <div class="allinone-header" style="padding-bottom: 24px;">
     <div class="section-label">JOURNAL</div>
-    <h2 class="allinone-title"><span class="orange">Journal Every Trade</span><br>Master Every Pattern</h2>
+    <h2 style="font-size:54px; font-weight:800; line-height:1.08; letter-spacing:-1px; margin-bottom:18px;"><span class="orange">Journal Every Trade</span><br>Master Every Pattern</h2>
     <p class="allinone-sub">Log your trades, track your emotions, and uncover the patterns that make or break your performance.</p>
   </div>
 
   <!-- JOURNAL -->
-  <section style="max-width:1400px; margin:0 auto; padding:40px 48px 80px;">
+  <section id="section-journal" style="max-width:1400px; margin:0 auto; padding:40px 48px 80px;">
     <div style="display:flex; flex-direction:column; gap:32px;">
 
       <!-- Top: text left + graphic right -->
@@ -600,7 +677,7 @@
         <div class="feat-left" style="max-width:520px; flex-shrink:0;">
 
           <h2 style="font-size:52px;">Your Psychology<br>Is Your <span class="orange">Edge</span></h2>
-          <p>Every trade tells a story. PropTracker's journal captures not just entries and exits — but how you felt, what you were thinking, and whether you followed your plan. Most traders focus on strategy. The best traders also track their mind. Over time, the emotional patterns become impossible to ignore — and impossible not to act on.</p>
+          <p>Every trade tells a story. PropDesk's journal captures not just entries and exits — but how you felt, what you were thinking, and whether you followed your plan. Most traders focus on strategy. The best traders also track their mind. Over time, the emotional patterns become impossible to ignore — and impossible not to act on.</p>
           <div class="feat-checks journal-checklist">
             <div class="feat-check"><div class="check-icon"></div>Log emotions, mindset, and discipline scores per trade</div>
             <div class="feat-check"><div class="check-icon"></div>Tag strategies, mistakes, and setups</div>
@@ -704,7 +781,7 @@
   </section>
 
   <!-- CALENDAR -->
-  <section class="section section-alt" style="background:var(--bg); border:none; max-width:1350px; padding:80px 0;">
+  <section id="section-calendar" class="section section-alt" style="background:var(--bg); border:none; max-width:1350px; padding:80px 0;">
     <!-- Section title -->
     <div style="text-align:center; padding:0 0 64px;">
       <div class="section-label" style="margin-bottom:20px;">CALENDAR</div>
@@ -716,7 +793,7 @@
     <div class="feat-layout reverse" style="padding:0; max-width:100%;">
       <div class="feat-left">
         <h2>See Your Trading <span class="orange">Month At A Glance</span></h2>
-        <p>PropTracker's calendar gives you a visual breakdown of every trading day — green days, red days, payouts, and spending — all mapped out so you can spot patterns in your consistency before they cost you.</p>
+        <p>PropDesk's calendar gives you a visual breakdown of every trading day — green days, red days, payouts, and spending — all mapped out so you can spot patterns in your consistency before they cost you.</p>
         <div class="feat-cards-stack" style="gap:8px;">
           <div class="mission-card" style="background:var(--bg4); border-color:var(--border); padding:16px;" onmouseover="this.style.borderColor='var(--border)';this.style.boxShadow='0 0 16px rgba(249,115,22,0.12)'" onmouseout="this.style.borderColor='var(--border)';this.style.boxShadow='none'"><div class="mission-card-icon" style="background:var(--bg3); border-color:rgba(249,115,22,0.2); width:34px; height:34px; font-size:15px; margin-bottom:10px;">◫</div><h3 style="font-size:13px; margin-bottom:5px;">Never lose track of a day</h3><p style="font-size:12px;">Every trading day logged — wins, losses, and flat days in a clean monthly grid.</p></div>
           <div class="mission-card" style="background:var(--bg4); border-color:var(--border); padding:16px;" onmouseover="this.style.borderColor='var(--border)';this.style.boxShadow='0 0 16px rgba(249,115,22,0.12)'" onmouseout="this.style.borderColor='var(--border)';this.style.boxShadow='none'"><div class="mission-card-icon" style="background:var(--bg3); border-color:rgba(249,115,22,0.2); width:34px; height:34px; font-size:15px; margin-bottom:10px;">↗</div><h3 style="font-size:13px; margin-bottom:5px;">Weekly breakdowns built in</h3><p style="font-size:12px;">See your total P&L and days traded for each week at a glance.</p></div>
@@ -874,11 +951,11 @@
       </div>
     </div>
   </section>
-  <section class="section section-alt" style="background:var(--bg); border:none; max-width:100%; padding:80px 48px;">
+  <section id="section-tax" class="section section-alt" style="background:var(--bg); border:none; max-width:100%; padding:80px 48px;">
     <div style="text-align:center; margin-bottom:64px;">
       <div class="section-label">TAX CALCULATOR</div>
       <h2 style="font-size:54px; font-weight:800; line-height:1.08; letter-spacing:-1px; margin-bottom:18px;"><span class="orange">Know What You Owe</span><br>Before You File</h2>
-      <p style="color:var(--text2); font-size:17px; max-width:520px; margin:0 auto; line-height:1.7;">Stop guessing what you'll owe at tax time. PropTracker calculates your full liability in real time, including deductions, self-employment tax, and quarterly estimates.</p>
+      <p style="color:var(--text2); font-size:17px; max-width:520px; margin:0 auto; line-height:1.7;">Stop guessing what you'll owe at tax time. PropDesk calculates your full liability in real time, including deductions, self-employment tax, and quarterly estimates.</p>
     </div>
     <div class="feat-layout" style="max-width:1440px; margin:0 auto; gap:60px; align-items:center;">
       <div class="feat-left">
@@ -1059,61 +1136,304 @@
     })();
   </script>
 
-  <!-- REPORTS -->
-  <section class="section">
+  <!-- ANALYTICS -->
+  <style>
+    @keyframes floatUp { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+    @keyframes floatDown { 0%,100%{transform:translateY(0)} 50%{transform:translateY(8px)} }
+    @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.7)} }
+    @keyframes fadeSlideIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes shimmer { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
+    .afc1 { animation: floatUp 4s ease-in-out infinite; }
+    .afc2 { animation: floatDown 4s ease-in-out infinite; animation-delay:-2s; }
+    .bar-row { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+    .bar-label { font-size:10px; color:rgba(255,255,255,0.35); width:54px; text-align:right; flex-shrink:0; }
+    .bar-track { flex:1; height:9px; background:rgba(255,255,255,0.05); border-radius:3px; overflow:hidden; }
+    .bar-fill { height:100%; border-radius:3px; width:0; transition:width 1.1s cubic-bezier(.4,0,.2,1); }
+    .bf-o { background:linear-gradient(90deg,#c2410c,#ea580c); }
+    .bf-g { background:#22c55e; opacity:.85; }
+    .bf-r { background:#ef4444; opacity:.85; }
+    .bcol { display:flex; flex-direction:column; align-items:center; gap:3px; flex:1; }
+    .bbar { width:100%; border-radius:3px 3px 0 0; transition:height 1s cubic-bezier(.4,0,.2,1); }
+    .pulse-dot { display:inline-block;width:6px;height:6px;border-radius:50%;background:#22c55e;animation:pulse-dot 1.8s ease-in-out infinite; }
+    .tr-anim { opacity:0; }
+    .tr-anim.visible { animation: fadeSlideIn 0.5s ease forwards; }
+    .stat-num { transition: all 0.1s; }
+    #pnl-line { stroke-dasharray: 600; stroke-dashoffset: 600; transition: stroke-dashoffset 1.8s cubic-bezier(.4,0,.2,1); }
+    #pnl-line.drawn { stroke-dashoffset: 0; }
+    #pnl-area { opacity:0; transition: opacity 1s ease 0.8s; }
+    #pnl-area.drawn { opacity:1; }
+  </style>
+  <section id="section-analytics" class="section" style="overflow:visible;padding-left:20px;padding-right:20px;padding-top:40px;">
     <div class="reports-header-text">
-      <div class="section-label">▦ REPORTS</div>
-      <h2>Your trading, <span class="orange">on paper.</span></h2>
-      <p>Six deep-dive reports that tell you exactly how good you really are — capital efficiency, win rate, profit factor, risk, accountability, and growth. Share the ones that make you proud.</p>
+      <div class="section-label">ANALYTICS</div>
+      <h2 style="font-size:54px; font-weight:800; line-height:1.08; letter-spacing:-1px; margin-bottom:18px;">Your Data <span class="orange">Your Edge</span></h2>
+      <p style="color:var(--text2); font-size:17px; max-width:520px; margin:0 auto; line-height:1.7;">Deep analytics on every aspect of your trading — P&L curves, win rate, profit factor, duration analysis, and AI-powered insights.</p>
     </div>
-    <div class="reports-mock">
-      <div class="report-tabs">
-        <div class="report-tab">Capital Efficiency</div>
-        <div class="report-tab active">Performance Overview</div>
-        <div class="report-tab">Risk Analysis</div>
-        <div class="report-tab">Trading Efficiency</div>
-        <div class="report-tab">Accountability</div>
-        <div class="report-tab">Growth Tracker</div>
+
+    <!-- Two column layout: graphic left, features right -->
+    <div style="display:grid;grid-template-columns:1fr 380px;gap:32px;align-items:start;margin-top:48px;margin-left:-96px;">
+    <div><!-- LEFT: graphic column -->
+
+    <!-- Row 1: main dashboard card + floating badge -->
+    <div style="position:relative; margin-bottom:16px;">
+      <!-- floating badge top-right -->
+      <div class="afc1" style="position:absolute;top:-18px;right:16px;background:#1a1614;border:1px solid rgba(34,197,94,0.25);border-radius:12px;padding:12px 16px;box-shadow:0 16px 48px rgba(0,0,0,0.5);z-index:10;min-width:140px;">
+        <div style="font-size:9px;color:rgba(255,255,255,0.4);letter-spacing:.08em;margin-bottom:4px;">WIN RATE</div>
+        <div style="font-size:20px;font-weight:700;color:#22c55e;">69.52%</div>
+        <div style="display:flex;gap:3px;margin-top:6px;">
+          <span style="width:7px;height:7px;border-radius:50%;background:#22c55e;display:inline-block;"></span>
+          <span style="width:7px;height:7px;border-radius:50%;background:#22c55e;display:inline-block;"></span>
+          <span style="width:7px;height:7px;border-radius:50%;background:#22c55e;display:inline-block;"></span>
+          <span style="width:7px;height:7px;border-radius:50%;background:#22c55e;display:inline-block;"></span>
+          <span style="width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.12);display:inline-block;"></span>
+        </div>
       </div>
-      <div class="report-body">
-        <div class="report-title">Performance Overview</div>
-        <div class="report-sub">Your best "brag sheet" — shareable snapshot</div>
-        <div class="report-cards">
-          <div class="report-card green-card">
-            <div class="rc-label">Total P&amp;L</div>
-            <div class="rc-val green">+$4,854</div>
-            <div class="rc-sub">6 trades</div>
+
+      <div id="analyticsMock" style="background:#121110;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,0.07);box-shadow:0 32px 80px rgba(0,0,0,0.5);transition:border-color 0.2s,box-shadow 0.2s;" onmouseover="this.style.borderColor='rgba(249,115,22,0.35)';this.style.boxShadow='0 32px 80px rgba(0,0,0,0.5),0 0 30px rgba(249,115,22,0.12)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.07)';this.style.boxShadow='0 32px 80px rgba(0,0,0,0.5)'">
+        <!-- Stat row -->
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid rgba(255,255,255,0.06);">
+          <div style="padding:18px 22px;border-right:1px solid rgba(255,255,255,0.06);">
+            <div style="font-size:10px;letter-spacing:.08em;color:rgba(255,255,255,0.35);margin-bottom:6px;display:flex;align-items:center;gap:6px;">TOTAL P&L <span class="pulse-dot"></span></div>
+            <div id="stat-pnl" class="stat-num" style="font-size:24px;font-weight:700;color:#22c55e;">$0</div>
+            <div style="height:2px;background:linear-gradient(90deg,#ef4444,#f97316);border-radius:2px;margin-top:12px;"></div>
           </div>
-          <div class="report-card dark-card donut-card">
-            <div class="rc-label center">Win Rate</div>
-            <div class="donut-wrap">
-              <div class="donut-ring">
-                <div class="donut-inner">67%</div>
-              </div>
+          <div style="padding:18px 22px;border-right:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;align-items:center;">
+            <div>
+              <div style="font-size:10px;letter-spacing:.08em;color:rgba(255,255,255,0.35);margin-bottom:6px;">PROFIT FACTOR</div>
+              <div id="stat-pf" class="stat-num" style="font-size:24px;font-weight:700;color:#fff;">0x</div>
+              <div style="height:2px;background:linear-gradient(90deg,#ef4444,#f97316);border-radius:2px;margin-top:12px;"></div>
             </div>
-            <div class="pf-badge">Excellent</div>
+            <svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="16" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="5"/><circle cx="22" cy="22" r="16" fill="none" stroke="#22c55e" stroke-width="5" stroke-dasharray="72 29" stroke-dashoffset="25" stroke-linecap="round"/><circle cx="22" cy="22" r="16" fill="none" stroke="#ef4444" stroke-width="5" stroke-dasharray="29 72" stroke-dashoffset="-47" stroke-linecap="round"/></svg>
           </div>
-          <div class="report-card dark-card">
-            <div class="rc-label">Profit Factor</div>
-            <div class="rc-val green large">239.9x</div>
-            <div class="pf-badge">Excellent</div>
+          <div style="padding:18px 22px;display:flex;justify-content:space-between;align-items:center;">
+            <div>
+              <div style="font-size:10px;letter-spacing:.08em;color:rgba(255,255,255,0.35);margin-bottom:6px;">DAY WIN %</div>
+              <div id="stat-win" class="stat-num" style="font-size:24px;font-weight:700;color:#22c55e;">0%</div>
+              <div style="height:2px;background:linear-gradient(90deg,#ef4444,#f97316);border-radius:2px;margin-top:12px;"></div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end;">
+              <div style="color:#22c55e;font-size:11px;font-weight:600;">$112 avg win</div>
+              <div style="width:64px;height:2px;background:#22c55e;border-radius:2px;"></div>
+              <div style="width:44px;height:2px;background:#ef4444;border-radius:2px;"></div>
+              <div style="color:#ef4444;font-size:11px;font-weight:600;">$86 avg loss</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts: P&L line + P&L by day bars -->
+        <div style="display:grid;grid-template-columns:3fr 2fr;border-bottom:1px solid rgba(255,255,255,0.06);">
+          <div style="padding:18px 22px;border-right:1px solid rgba(255,255,255,0.06);">
+            <div style="font-size:10px;letter-spacing:.1em;color:#f97316;margin-bottom:12px;display:flex;align-items:center;gap:5px;"><span style="display:inline-block;width:3px;height:11px;background:#f97316;border-radius:2px;"></span>DAILY NET CUMULATIVE P&L</div>
+            <svg width="100%" height="90" viewBox="0 0 400 90" preserveAspectRatio="none">
+              <defs><linearGradient id="gl2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#22c55e" stop-opacity="0.25"/><stop offset="100%" stop-color="#22c55e" stop-opacity="0"/></linearGradient></defs>
+              <path id="pnl-line" d="M0,82 L50,76 L100,68 L150,58 L200,42 L250,38 L300,22 L350,12 L400,4" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path id="pnl-area" d="M0,82 L50,76 L100,68 L150,58 L200,42 L250,38 L300,22 L350,12 L400,4 L400,90 L0,90Z" fill="url(#gl2)"/>
+            </svg>
+            <div style="display:flex;justify-content:space-between;font-size:9px;color:rgba(255,255,255,0.22);margin-top:4px;"><span>05-17</span><span>05-21</span><span>05-26</span><span>05-28</span></div>
+          </div>
+          <div style="padding:18px 22px;">
+            <div style="font-size:10px;letter-spacing:.1em;color:#f97316;margin-bottom:12px;display:flex;align-items:center;gap:5px;"><span style="display:inline-block;width:3px;height:11px;background:#f97316;border-radius:2px;"></span>P&L BY DAY OF WEEK</div>
+            <div style="display:flex;align-items:flex-end;gap:5px;height:70px;">
+              <div class="bcol"><div class="bbar" style="background:rgba(34,197,94,0.15);height:1px;"></div><span style="font-size:8px;color:rgba(255,255,255,0.25);">Sun</span></div>
+              <div class="bcol"><div class="bbar" style="background:#22c55e;height:54px;"></div><span style="font-size:8px;color:rgba(255,255,255,0.25);">Mon</span></div>
+              <div class="bcol"><div class="bbar" style="background:#22c55e;height:50px;"></div><span style="font-size:8px;color:rgba(255,255,255,0.25);">Tue</span></div>
+              <div class="bcol"><div class="bbar" style="background:#22c55e;height:10px;"></div><span style="font-size:8px;color:rgba(255,255,255,0.25);">Wed</span></div>
+              <div class="bcol"><div class="bbar" style="background:#22c55e;height:8px;"></div><span style="font-size:8px;color:rgba(255,255,255,0.25);">Thu</span></div>
+              <div class="bcol"><div class="bbar" style="background:#22c55e;height:9px;"></div><span style="font-size:8px;color:rgba(255,255,255,0.25);">Fri</span></div>
+              <div class="bcol"><div class="bbar" style="background:rgba(34,197,94,0.15);height:1px;"></div><span style="font-size:8px;color:rgba(255,255,255,0.25);">Sat</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trade log (compact, 3 rows) -->
+        <div style="padding:16px 22px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+            <div style="font-size:10px;letter-spacing:.1em;color:#f97316;display:flex;align-items:center;gap:5px;"><span style="display:inline-block;width:3px;height:11px;background:#f97316;border-radius:2px;"></span>TRADE LOG</div>
+            <span style="background:linear-gradient(90deg,#ef4444,#f97316);color:#fff;font-size:9px;font-weight:700;padding:2px 10px;border-radius:20px;">Top 10</span>
+          </div>
+          <table style="width:100%;border-collapse:collapse;font-size:11px;">
+            <thead><tr style="background:rgba(255,255,255,0.03);">
+              <th style="padding:7px 10px;text-align:left;color:rgba(255,255,255,0.3);font-size:9px;letter-spacing:.07em;font-weight:500;">DATE</th>
+              <th style="padding:7px 10px;text-align:left;color:rgba(255,255,255,0.3);font-size:9px;letter-spacing:.07em;font-weight:500;">CONTRACT</th>
+              <th style="padding:7px 10px;text-align:left;color:rgba(255,255,255,0.3);font-size:9px;letter-spacing:.07em;font-weight:500;">TYPE</th>
+              <th style="padding:7px 10px;text-align:right;color:rgba(255,255,255,0.3);font-size:9px;letter-spacing:.07em;font-weight:500;">ENTRY</th>
+              <th style="padding:7px 10px;text-align:right;color:rgba(255,255,255,0.3);font-size:9px;letter-spacing:.07em;font-weight:500;">EXIT</th>
+              <th style="padding:7px 10px;text-align:right;color:rgba(255,255,255,0.3);font-size:9px;letter-spacing:.07em;font-weight:500;">P&L</th>
+            </tr></thead>
+            <tbody>
+              <tr class="tr-anim" style="border-top:1px solid rgba(255,255,255,0.04);animation-delay:0.1s"><td style="padding:8px 10px;color:rgba(255,255,255,0.55);">May 17</td><td style="padding:8px 10px;color:rgba(255,255,255,0.75);">NQM6</td><td style="padding:8px 10px;"><span style="background:rgba(239,68,68,0.15);color:#ef4444;font-size:9px;padding:2px 7px;border-radius:8px;">Short</span></td><td style="padding:8px 10px;text-align:right;color:rgba(255,255,255,0.45);">29241.5</td><td style="padding:8px 10px;text-align:right;color:rgba(255,255,255,0.45);">29181.8</td><td style="padding:8px 10px;text-align:right;color:#22c55e;font-weight:600;">$1,195</td></tr>
+              <tr class="tr-anim" style="border-top:1px solid rgba(255,255,255,0.04);animation-delay:0.25s"><td style="padding:8px 10px;color:rgba(255,255,255,0.55);">May 25</td><td style="padding:8px 10px;color:rgba(255,255,255,0.75);">NQM6</td><td style="padding:8px 10px;"><span style="background:rgba(239,68,68,0.15);color:#ef4444;font-size:9px;padding:2px 7px;border-radius:8px;">Short</span></td><td style="padding:8px 10px;text-align:right;color:rgba(255,255,255,0.45);">29869.5</td><td style="padding:8px 10px;text-align:right;color:rgba(255,255,255,0.45);">29818.3</td><td style="padding:8px 10px;text-align:right;color:#22c55e;font-weight:600;">$1,025</td></tr>
+              <tr class="tr-anim" style="border-top:1px solid rgba(255,255,255,0.04);animation-delay:0.4s"><td style="padding:8px 10px;color:rgba(255,255,255,0.55);">May 19</td><td style="padding:8px 10px;color:rgba(255,255,255,0.75);">NQM6</td><td style="padding:8px 10px;"><span style="background:rgba(34,197,94,0.12);color:#22c55e;font-size:9px;padding:2px 7px;border-radius:8px;">Long</span></td><td style="padding:8px 10px;text-align:right;color:rgba(255,255,255,0.45);">28936.3</td><td style="padding:8px 10px;text-align:right;color:rgba(255,255,255,0.45);">28955.5</td><td style="padding:8px 10px;text-align:right;color:#22c55e;font-weight:600;">$385</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2: Duration bars — smaller, overlapping float -->
+    <div style="position:relative;margin-top:8px;">
+      <!-- floating badge bottom-left -->
+      <div class="afc2" style="position:absolute;bottom:-16px;left:16px;background:#1a1614;border:1px solid rgba(255,120,50,0.25);border-radius:12px;padding:12px 16px;box-shadow:0 16px 48px rgba(0,0,0,0.5);z-index:10;min-width:150px;">
+        <div style="font-size:9px;color:rgba(255,255,255,0.4);letter-spacing:.08em;margin-bottom:4px;">TOP TRADE</div>
+        <div style="font-size:18px;font-weight:700;color:#22c55e;">+$1,195</div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.5);margin-top:2px;">May 17 · NQM6 Short</div>
+        <div style="height:2px;background:linear-gradient(90deg,#ef4444,#f97316);border-radius:2px;margin-top:8px;"></div>
+      </div>
+
+      <div style="background:#121110;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,0.07);box-shadow:0 20px 60px rgba(0,0,0,0.4);transition:border-color 0.2s,box-shadow 0.2s;" onmouseover="this.style.borderColor='rgba(249,115,22,0.35)';this.style.boxShadow='0 20px 60px rgba(0,0,0,0.4),0 0 30px rgba(249,115,22,0.12)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.07)';this.style.boxShadow='0 20px 60px rgba(0,0,0,0.4)'">
+        <div style="display:grid;grid-template-columns:1fr 1fr;">
+          <div style="padding:18px 22px;border-right:1px solid rgba(255,255,255,0.06);">
+            <div style="font-size:10px;letter-spacing:.1em;color:#f97316;margin-bottom:12px;display:flex;align-items:center;gap:5px;"><span style="display:inline-block;width:3px;height:11px;background:#f97316;border-radius:2px;"></span>TRADE DURATION</div>
+            <div class="bar-row"><span class="bar-label">&lt; 15 sec</span><div class="bar-track"><div class="bar-fill bf-o" data-w="25"></div></div></div>
+            <div class="bar-row"><span class="bar-label">15-45 sec</span><div class="bar-track"><div class="bar-fill bf-o" data-w="30"></div></div></div>
+            <div class="bar-row"><span class="bar-label">1-2 min</span><div class="bar-track"><div class="bar-fill bf-o" data-w="28"></div></div></div>
+            <div class="bar-row"><span class="bar-label">2-5 min</span><div class="bar-track"><div class="bar-fill bf-o" data-w="100"></div></div></div>
+            <div class="bar-row"><span class="bar-label">5-10 min</span><div class="bar-track"><div class="bar-fill bf-o" data-w="55"></div></div></div>
+            <div class="bar-row"><span class="bar-label">10-30 min</span><div class="bar-track"><div class="bar-fill bf-o" data-w="27"></div></div></div>
+          </div>
+          <div style="padding:18px 22px;">
+            <div style="font-size:10px;letter-spacing:.1em;color:#f97316;margin-bottom:12px;display:flex;align-items:center;gap:5px;"><span style="display:inline-block;width:3px;height:11px;background:#f97316;border-radius:2px;"></span>WIN RATE BY DURATION</div>
+            <div class="bar-row"><span class="bar-label">&lt; 15 sec</span><div class="bar-track"><div class="bar-fill bf-g" data-w="80"></div></div></div>
+            <div class="bar-row"><span class="bar-label">15-45 sec</span><div class="bar-track"><div class="bar-fill bf-g" data-w="92"></div></div></div>
+            <div class="bar-row"><span class="bar-label">1-2 min</span><div class="bar-track"><div class="bar-fill bf-g" data-w="65"></div></div></div>
+            <div class="bar-row"><span class="bar-label">2-5 min</span><div class="bar-track"><div class="bar-fill bf-g" data-w="78"></div></div></div>
+            <div class="bar-row"><span class="bar-label">5-10 min</span><div class="bar-track"><div class="bar-fill bf-g" data-w="50"></div></div></div>
+            <div class="bar-row"><span class="bar-label">10-30 min</span><div class="bar-track"><div class="bar-fill bf-g" data-w="68"></div></div></div>
           </div>
         </div>
       </div>
     </div>
+    </div><!-- end left graphic column -->
+
+    <!-- RIGHT: feature panel -->
+    <div style="padding-top:8px;">
+      <h2 style="font-size:38px;font-weight:800;line-height:1.15;margin-bottom:16px;letter-spacing:-0.5px;">Know Every Edge <span class="orange">In Your Trading</span></h2>
+      <p style="color:var(--text2);font-size:15px;line-height:1.65;margin-bottom:24px;">PropDesk breaks down your performance across every dimension — so you know exactly where your profits come from.</p>
+
+      <div class="feat-cards-stack" style="gap:8px;">
+        <div class="mission-card" style="background:var(--bg4);border-color:var(--border);padding:19px;" onmouseover="this.style.boxShadow='0 0 16px rgba(249,115,22,0.12)'" onmouseout="this.style.boxShadow='none'">
+          <div class="mission-card-icon" style="background:var(--bg3);border-color:rgba(249,115,22,0.2);width:36px;height:36px;font-size:16px;margin-bottom:11px;">↗</div>
+          <h3 style="font-size:14px;margin-bottom:5px;">Cumulative P&L curve</h3>
+          <p style="font-size:13px;">See your equity curve grow in real time — spot drawdowns and streaks instantly.</p>
+        </div>
+        <div class="mission-card" style="background:var(--bg4);border-color:var(--border);padding:19px;" onmouseover="this.style.boxShadow='0 0 16px rgba(249,115,22,0.12)'" onmouseout="this.style.boxShadow='none'">
+          <div class="mission-card-icon" style="background:var(--bg3);border-color:rgba(249,115,22,0.2);width:36px;height:36px;font-size:16px;margin-bottom:11px;">◫</div>
+          <h3 style="font-size:14px;margin-bottom:5px;">P&L by day of week</h3>
+          <p style="font-size:13px;">Find your best and worst days so you can trade when your edge is highest.</p>
+        </div>
+        <div class="mission-card" style="background:var(--bg4);border-color:var(--border);padding:19px;" onmouseover="this.style.boxShadow='0 0 16px rgba(249,115,22,0.12)'" onmouseout="this.style.boxShadow='none'">
+          <div class="mission-card-icon" style="background:var(--bg3);border-color:rgba(249,115,22,0.2);width:36px;height:36px;font-size:16px;margin-bottom:11px;">⏱</div>
+          <h3 style="font-size:14px;margin-bottom:5px;">Trade duration analysis</h3>
+          <p style="font-size:13px;">See which hold times produce the most wins — and cut the ones that don't.</p>
+        </div>
+      </div>
+    </div><!-- end right panel -->
+
+    </div><!-- end two-column grid -->
   </section>
 
+  <script>
+    (function() {
+      let analyticsAnimated = false;
+
+      function countUp(el, target, decimals, prefix, suffix, duration) {
+        const start = performance.now();
+        function tick(now) {
+          const p = Math.min((now - start) / duration, 1);
+          const ease = p < 0.5 ? 2*p*p : -1+(4-2*p)*p;
+          const val = (target * ease).toFixed(decimals);
+          el.textContent = prefix + parseFloat(val).toLocaleString() + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      }
+
+      function runAnalyticsAnimations() {
+        if (analyticsAnimated) return;
+        analyticsAnimated = true;
+
+        // Counter animations
+        countUp(document.getElementById('stat-pnl'), 5423, 0, '$', '', 1600);
+        setTimeout(() => countUp(document.getElementById('stat-pf'), 2.96, 2, '', 'x', 1400), 200);
+        setTimeout(() => countUp(document.getElementById('stat-win'), 100, 0, '', '%', 1200), 400);
+
+        // SVG line draw
+        setTimeout(() => {
+          document.getElementById('pnl-line').classList.add('drawn');
+          document.getElementById('pnl-area').classList.add('drawn');
+        }, 300);
+
+        // Bar fills
+        document.querySelectorAll('.bar-fill[data-w]').forEach(el => {
+          setTimeout(() => { el.style.width = el.dataset.w + '%'; }, parseInt(el.dataset.w) * 4 + 200);
+        });
+
+        // Table rows fade in
+        document.querySelectorAll('.tr-anim').forEach(tr => {
+          tr.classList.add('visible');
+        });
+      }
+
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          runAnalyticsAnimations();
+        });
+      }, { threshold: 0.1 });
+
+      const trigger = document.getElementById('analyticsMock');
+      if (trigger) obs.observe(trigger);
+    })();
+  </script>
+
+  <!-- STRATEGY TRACKING -->
+  <section id="section-strategy" class="section section-alt" style="background:var(--bg); border:none; max-width:100%; padding:80px 48px;">
+    <div style="text-align:center; margin-bottom:64px;">
+      <div class="section-label">STRATEGY TRACKING</div>
+      <h2 style="font-size:54px; font-weight:800; line-height:1.08; letter-spacing:-1px; margin-bottom:18px;">Know Which Setups<br><span class="orange">Actually Print</span></h2>
+      <p style="color:var(--text2); font-size:17px; max-width:520px; margin:0 auto; line-height:1.7;">Tag every trade by setup type and track performance across strategies. Know exactly which setups are profitable — and cut the ones draining your account.</p>
+    </div>
+    <div style="max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr 1fr; gap:24px;">
+      <div class="mission-card" style="padding:28px;">
+        <div style="font-size:11px;font-weight:700;color:var(--orange);letter-spacing:.1em;margin-bottom:12px;">BREAKOUT SETUP</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+          <div style="font-size:28px;font-weight:800;color:#00d97e;">+$8,432</div>
+          <div style="font-size:12px;color:var(--text3);background:rgba(0,217,126,0.1);border-radius:20px;padding:3px 10px;">68% Win Rate</div>
+        </div>
+        <div style="height:4px;background:rgba(255,255,255,0.06);border-radius:3px;margin-bottom:12px;"><div style="height:100%;width:68%;background:linear-gradient(90deg,#00d97e,#22c55e);border-radius:3px;"></div></div>
+        <div style="font-size:12px;color:var(--text3);">42 trades · Avg $200/trade · Profit Factor 2.8x</div>
+      </div>
+      <div class="mission-card" style="padding:28px;">
+        <div style="font-size:11px;font-weight:700;color:var(--orange);letter-spacing:.1em;margin-bottom:12px;">VWAP RECLAIM</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+          <div style="font-size:28px;font-weight:800;color:#00d97e;">+$5,217</div>
+          <div style="font-size:12px;color:var(--text3);background:rgba(0,217,126,0.1);border-radius:20px;padding:3px 10px;">74% Win Rate</div>
+        </div>
+        <div style="height:4px;background:rgba(255,255,255,0.06);border-radius:3px;margin-bottom:12px;"><div style="height:100%;width:74%;background:linear-gradient(90deg,#00d97e,#22c55e);border-radius:3px;"></div></div>
+        <div style="font-size:12px;color:var(--text3);">31 trades · Avg $168/trade · Profit Factor 3.4x</div>
+      </div>
+      <div class="mission-card" style="padding:28px;">
+        <div style="font-size:11px;font-weight:700;color:var(--orange);letter-spacing:.1em;margin-bottom:12px;">IMPULSE TRADE</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+          <div style="font-size:28px;font-weight:800;color:#ef4444;">-$1,840</div>
+          <div style="font-size:12px;color:var(--text3);background:rgba(239,68,68,0.1);border-radius:20px;padding:3px 10px;">29% Win Rate</div>
+        </div>
+        <div style="height:4px;background:rgba(255,255,255,0.06);border-radius:3px;margin-bottom:12px;"><div style="height:100%;width:29%;background:linear-gradient(90deg,#ef4444,#f97316);border-radius:3px;"></div></div>
+        <div style="font-size:12px;color:var(--text3);">17 trades · Avg -$108/trade · Cut This Setup</div>
+      </div>
+    </div>
+  </section>
 
   <!-- CTA -->
   <section class="cta-section">
+    <h2>Know Your Numbers<br><span class="orange">Keep Your Accounts</span></h2>
     <div class="cta-tag">START FOR FREE</div>
-    <h2>The edge every <span class="orange">prop trader needs.</span></h2>
-    <button class="btn-primary btn-large">Get Started</button>
-    <div class="cta-sub">No credit card required</div>
+    <button class="btn-primary btn-large" style="min-width:280px;position:relative;z-index:10;" onclick="window.location.href='signup.html'" type="button">Get Started</button>
+
     <div class="stats-trio">
-      <div class="trio-stat"><div class="num">18,000+</div><div class="lbl">Rules monitored</div></div>
-      <div class="trio-stat"><div class="num">3,000+</div><div class="lbl">Accounts tracked</div></div>
-      <div class="trio-stat"><div class="num">9+</div><div class="lbl">Prop firms</div></div>
+      <div class="trio-stat"><div class="num">8+</div><div class="lbl">Prop firms</div></div>
+      <div class="trio-stat"><div class="num">100+</div><div class="lbl">Accounts monitored</div></div>
+      <div class="trio-stat"><div class="num">$100K+</div><div class="lbl">Payouts tracked</div></div>
     </div>
   </section>
 
@@ -1435,6 +1755,15 @@
 </html>
 
 <script>
+function scrollToSection(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const navHeight = document.querySelector('nav').offsetHeight;
+  const extraOffset = id === 'section-payout' ? 40 : id === 'section-journal' ? -310 : (id === 'section-tax' || id === 'section-calendar') ? 45 : 0;
+  const top = el.getBoundingClientRect().top + window.scrollY - navHeight + extraOffset;
+  window.scrollTo({ top, behavior: 'smooth' });
+}
+
 function switchTab(id) {
   document.querySelectorAll('.tools-tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.tools-panel').forEach(p => p.classList.remove('active'));
