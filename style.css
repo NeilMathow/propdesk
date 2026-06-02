@@ -214,6 +214,7 @@ nav .nav-right { margin-left: 0; }
   flex: 1.2;
   position: relative;
   min-height: 420px;
+  pointer-events: none;
 }
 
 .hero-mock-main {
@@ -232,6 +233,7 @@ nav .nav-right { margin-left: 0; }
   padding: 14px 16px;
   box-shadow: 0 16px 48px rgba(0,0,0,0.5);
   min-width: 200px;
+  pointer-events: none;
 }
 
 .hero-mock-float-top {
