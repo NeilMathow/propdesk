@@ -57,7 +57,7 @@
         <h1 class="hero-headline">Meet Your <span class="orange">AI Prop Firm</span> Dashboard</h1>
         <p class="hero-subtext">It knows your rules, watches your limits, and catches breaches before they happen &mdash; across every firm, every account, automatically.</p>
         <div class="hero-cta-row" style="position:relative;z-index:10;">
-          <button class="btn-primary btn-large" onclick="window.location.href='signup.html'" type="button">Get Started</button>
+          <button class="btn-primary btn-large" onclick="handleGetStarted()" type="button">Get Started</button>
           <div class="hero-trust">
             <div class="hero-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <div>
@@ -1428,7 +1428,7 @@
   <section class="cta-section">
     <h2>Know Your Numbers<br><span class="orange">Keep Your Accounts</span></h2>
     <div class="cta-tag">START FOR FREE</div>
-    <button class="btn-primary btn-large" style="min-width:280px;position:relative;z-index:10;" onclick="window.location.href='signup.html'" type="button">Get Started</button>
+    <button class="btn-primary btn-large" style="min-width:280px;position:relative;z-index:10;" onclick="handleGetStarted()" type="button">Get Started</button>
 
     <div class="stats-trio">
       <div class="trio-stat"><div class="num">8+</div><div class="lbl">Prop firms</div></div>
@@ -1745,6 +1745,21 @@
             </div>`;
         }
       });
+      window.handleGetStarted = async function() {
+        const { data: { session } } = await _supabase.auth.getSession();
+        if (session && session.user) {
+          const { data: profile } = await _supabase
+            .from('profiles')
+            .select('plan, subscription_status')
+            .eq('id', session.user.id)
+            .single();
+          const hasPlan = profile && profile.plan && profile.plan !== 'none' && profile.subscription_status === 'active';
+          window.location.href = hasPlan ? 'https://trackingprops.vercel.app/?autoLogin=1' : 'pricing.html';
+        } else {
+          window.location.href = 'signup.html';
+        }
+      };
+
       window.signOut = async function() {
         await _supabase.auth.signOut();
         window.location.reload();
